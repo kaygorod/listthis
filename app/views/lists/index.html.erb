@@ -1,0 +1,23 @@
+<h1>Все списки</h1>
+
+<table>
+  <tr>
+    <th>Название</th>
+    <th>Содержание</th>
+    <th>Автор</th>
+    <th>Создан</th>
+    <th>Обновлен</th>
+    <th> </th>
+  </tr>
+
+  <% @lists.each do |list| %>
+    <tr>
+      <td><%= list.name %></td>
+      <td><%= list.content %></td>
+      <td><%= link_to list.user.username, user_path(list.user) %></td>
+      <td><%= list.created_at %></td>
+      <td><%= list.updated_at %></td>
+      <td><%= link_to 'Перейти', list_path(list) %></td>
+    </tr>
+  <% end %>
+</table>

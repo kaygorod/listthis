@@ -1,0 +1,14 @@
+<div class="list">
+  <h1><%= @list.name %></h1>
+  <div class="row">
+    <div class="col-xs-12 col-sm-6 col-md-8">
+      <p>Автор <%= link_to @list.user.username, user_path(@list.user),class:"text-muted" %></p>
+    </div>
+    <div class="col-xs-6 col-md-4">
+      <p class="text-right">Пунктов: 12 Просмотров: 2573</p>
+    </div>
+  </div>
+  <p><img src="<%= (@list.image_url) %>" alt="..." class="img-responsive"></p>
+  <p><%= @list.content %></p>
+  <p><%= link_to "Редактировать описание", edit_list_path %></p>
+</div>
