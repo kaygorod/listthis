@@ -7,6 +7,8 @@ ruby '2.2.1'
 gem 'rails', '4.2.1'
 gem 'bootstrap-sass', '~> 3.3.6'
 gem 'carrierwave'
+gem 'tinymce-rails'
+
 # Use SCSS for stylesheets
 gem 'sass-rails', '>= 3.2'
 # Use Uglifier as compressor for JavaScript assets

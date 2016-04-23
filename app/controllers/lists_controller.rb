@@ -38,7 +38,7 @@ end
 
 private
   def list_params
-    params.require(:list).permit(:name, :content, :image)
+    params.require(:list).permit(:title, :description, :image)
   end
 
 end
