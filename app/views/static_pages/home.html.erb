@@ -1,11 +1,15 @@
 <h1>Все списки</h1>
-
 <table>
 
   <% @lists.each do |list| %>
     <tr>
       <td><%= link_to list.title, list_path(list)%></td>
+      <td><%= list.items.count %> Пунктов </td>
+      <td><%= list.image %></td>
       <td><%= link_to list.user.username, user_path(list.user) %></td>
+      <td><% list.items.each do |item|%>
+  <%= item.user.username %>
+  <% end %></td>
     </tr>
   <% end %>
 </table>

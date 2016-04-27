@@ -21,6 +21,11 @@ textarea {
   resize: vertical;
 }
 
+.right-block {
+  display: block;
+  float:right;
+  margin-top:5px;
+}
 
 
 
@@ -33,6 +38,31 @@ textarea {
   margin-right:auto;
 }
 
+.listitem{
+  list-style-position:inside;
+  margin-left:0px;
+  padding-left:0px;
+  list-style:none;
+}
+.listitem > LI:before {
+content: counter(list) " ";
+font-size:2em;
+color:#808080;
+}
+.listitem > li {
+counter-increment:list;
+}
+
+.listitem h2 {
+  display:inline;
+  }
+.list-footer{
+  display: inline;
+}
+.list-footer-right{
+  display: inline;
+  padding-right:0px;
+}
 
 
 

@@ -1,5 +1,7 @@
 <li>
   <span><%= link_to list.title, list_path(list)%></span>
+  <%= list.items.count %> Пунктов
+  <%= list.image %>
   <span class="timestamp">
     Posted <%= time_ago_in_words(list.created_at) %> ago.
   </span>

@@ -1,0 +1,53 @@
+<li>
+<h2><a name="<%= (item.id) %>"></a><%= item.title %>
+</h2>
+<div class="btn-group right-block">
+<button type="button" class=" btn btn-link dropdown-toggle" data-toggle="dropdown" rel="tooltip" title="Настройки">
+     <div class="text-muted"><span class="glyphicon glyphicon-cog"></span></div>
+  </button>
+  <ul class="dropdown-menu" role="menu">
+    <li><a href="#">Редактировать</a></li>
+    <li class="divider"></li>
+    <li><a href="#">Удалить</a></li>
+  </ul>
+</button>
+</div>
+
+</br></br>
+  <p><img src="<%= (item.image_url) %>" alt="..." class="img-responsive"></p>
+  <span><%= simple_format(item.description) %></span>
+  <% if @list.user != item.user %>
+  <span class="text-muted">
+    <h6>Добавил <%= link_to item.user.username, user_path(item.user)%>
+    <%= time_ago_in_words(item.created_at) %> назад.</h6>
+  </span>
+    <% end %>
+</li>
+</br>
+    <div class="btn-group">
+      <button type="button" class=" btn btn-link dropdown-toggle" data-toggle="dropdown">
+        <span class="glyphicon glyphicon-thumbs-up"></span>
+      </button>
+    </div>
+
+    <div class="btn-group">
+      <button type="button" class=" btn btn-link dropdown-toggle" data-toggle="dropdown">
+        <span class="glyphicon glyphicon-thumbs-down"></span>
+      </button>
+    </div>
+
+  <div class="navbar-right">
+    <div class="btn-group">
+      <button type="button" class=" btn btn-link dropdown-toggle" data-toggle="dropdown">
+        <span class="glyphicon glyphicon-comment"></span>
+      </button>
+    </div>
+
+
+    <div class="btn-group">
+      <button type="button" class=" btn btn-link dropdown-toggle" data-toggle="dropdown">
+        <span class="glyphicon glyphicon-share"></span>
+      </button>
+    </div>
+  </div>
+<hr/>

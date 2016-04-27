@@ -1,0 +1,46 @@
+<div class="list">
+  <h1><%= @list.title %></h1>
+  <small>
+  <div class="row text-muted">
+    <div class="col-xs-12 col-sm-6 col-md-8">
+
+          <p>Автор <%= link_to @list.user.username, user_path(@list.user)%></p>
+
+    </div>
+    <div class="col-xs-6 col-md-4">
+      <p class="text-right">
+        <span rel="tooltip" title="Количество пунктов">
+          <span class="glyphicon glyphicon-th-list"></span> <%= @list.items.count %>
+        </span>
+        <span rel="tooltip" title="Количество комментариев">
+          <span class="glyphicon glyphicon-comment"></span> 23
+        </span>
+        <span rel="tooltip" title="Количество просмотров">
+          <span class="glyphicon glyphicon-eye-open"></span> 2573</p>
+        </span>
+    </div>
+  </div>
+  </small>
+
+  <p><img src="<%= (@list.image_url) %>" alt="<%= @list.title %>" class="img-responsive"></p>
+
+  <%= simple_format(@list.description) %>
+
+  <a href="<%= edit_list_path%>" rel="tooltip" title="Редактировать описание">
+  <span class="glyphicon glyphicon-pencil"></span>
+  </a>
+  <div class="row">
+  <div class="col-xs-12 col-sm-6 col-md-8">
+  <button type="button" class="btn btn-default btn-sm" rel="tooltip" title="Добавить список в избранное">
+    <span class="glyphicon glyphicon-heart"></span>
+  </button>
+  <button type="button" class="btn btn-default btn-sm" rel="tooltip" title="Вставить список на сайт">
+    <span class="glyphicon glyphicon-sound-stereo"></span>
+  </button>
+  </div>
+  </div>
+
+
+  <p>Участники: <% @list.items.each do |item|%>
+  <%= item.user.username %>
+  <% end %></p>

@@ -5,6 +5,6 @@ class UsersController < ApplicationController
 
   def show
     @user = User.find_by_username(params[:id])
-    @lists = @user.lists(page: params[:page])
+    @lists = @user.lists
   end
 end

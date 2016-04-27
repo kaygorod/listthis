@@ -1,14 +1,75 @@
-<div class="list">
-  <h1><%= @list.title %></h1>
-  <div class="row">
+<%= render 'list_description' %>
+<!-- Nav tabs -->
+<ul class="nav nav-tabs" role="tablist">
+  <li class="active"><a href="#items" role="tab" data-toggle="tab">Пункты <span class="badge"> <%= @list.items.count %></span></a></li>
+  <li><a href="#queue" role="tab" data-toggle="tab">На утверждении</a></li>
+</ul>
+
+<!-- Tab panes -->
+<div class="tab-content">
+  <div class="tab-pane active" id="items">
+  </br>
+    <div class="row">
     <div class="col-xs-12 col-sm-6 col-md-8">
-      <p>Автор <%= link_to @list.user.username, user_path(@list.user),class:"text-muted" %></p>
+      <div class="dropdown">
+        <button class="btn btn-default btn-xs dropdown-toggle" type="button" id="dropdownMenu1" rel="tooltip" data-toggle="dropdown" data-placement="top" title="Изменить сортировку">
+          Сортировка
+          <span class="caret"></span>
+        </button>
+        <ul class="dropdown-menu" role="menu" aria-labelledby="dropdownMenu1">
+          <li role="presentation"><a role="menuitem" tabindex="-1" href="#">По умолчанию</a></li>
+          <li role="presentation" class="dropdown-header">По комментариям</li>
+          <li role="presentation"><a role="menuitem" tabindex="-1" href="#">Больше</a></li>
+          <li role="presentation"><a role="menuitem" tabindex="-1" href="#">Меньше</a></li>
+          <li role="presentation" class="dropdown-header">По комментариям</li>
+          <li role="presentation"><a role="menuitem" tabindex="-1" href="#">Больше</a></li>
+          <li role="presentation"><a role="menuitem" tabindex="-1" href="#">Меньше</a></li>
+          <li role="presentation" class="dropdown-header">По дате</li>
+          <li role="presentation"><a role="menuitem" tabindex="-1" href="#">Новое</a></li>
+          <li role="presentation"><a role="menuitem" tabindex="-1" href="#">Старое</a></li>
+        </ul>
+      </div>
+      </div>
     </div>
-    <div class="col-xs-6 col-md-4">
-      <p class="text-right">Пунктов: 12 Просмотров: 2573</p>
+    </br>
+<button class="btn btn-primary btn-lg btn-block" data-toggle="modal" data-target="#myModal">
+  Добавить пункт
+</button>
+</br>
+    <ol class="listitem" id="item">
+      <%= render @list.items %>
+    </ol>
+</br>
+<!-- Button trigger modal -->
+
+<button class="btn btn-primary btn-lg btn-block" data-toggle="modal" data-target="#myModal">
+  Добавить пункт
+</button>
+
+
+<!-- Modal -->
+<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+        <h4 class="modal-title" id="myModalLabel">Добавить пункт</h4>
+      </div>
+      <div class="modal-body">
+        <%= render 'items/item_form' %>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Отмена</button>
+        <button type="button" class="btn btn-primary">Добавить</button>
+      </div>
     </div>
   </div>
-  <p><img src="<%= (@list.image_url) %>" alt="..." class="img-responsive"></p>
-  <%= simple_format(@list.description) %>
-  <p><%= link_to "Редактировать описание", edit_list_path %></p>
+</div>
+
+
+  </div>
+  <div class="tab-pane" id="queue">
+  </br>
+    <p> Нет пунктов ожидающих утверждения</p>
+  </div>
 </div>
