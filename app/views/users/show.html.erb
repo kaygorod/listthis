@@ -3,10 +3,10 @@
 <%= link_to 'Редактировать', edit_user_registration_path %>
 <% end %>
 
-
+<% if @user.lists.any? %>
       <h3>Списки (<%= @user.lists.count %>)</h3>
       <ol>
         <%= render @lists %>
       </ol>
-
+    <% end %>
 
