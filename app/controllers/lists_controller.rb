@@ -3,7 +3,9 @@ class ListsController < ApplicationController
 
   def show
     @list = List.find(params[:id])
-    @items = @list.items(page: params[:page])
+    @items = @list.items.all
+    @list.views += 1
+    @list.save
   end
 
   def index
