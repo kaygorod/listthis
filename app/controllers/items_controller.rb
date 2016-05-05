@@ -8,6 +8,7 @@ class ItemsController < ApplicationController
     @item = Item.find(params[:id])
   end
 
+
   def create
       @list = List.find(params[:list_id])
       @item = @list.items.build(item_params)

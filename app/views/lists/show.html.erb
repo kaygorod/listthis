@@ -37,7 +37,7 @@
 </button>
 </br>
     <ol class="listitem" id="item">
-      <%= render @list.items %>
+      <%= render @list.items.order(rating: :desc) %>
     </ol>
 </br>
 <!-- Button trigger modal -->

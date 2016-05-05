@@ -50,4 +50,17 @@
       </button>
     </div>
   </div>
+
+  <% if vote = current_user.votes.find_by_item_id(item) %>
+    <% [current_user.votes.find_by_item_id(item)].each do |vote| %>
+      <%= button_to "Дизлайк", list_item_vote_path(@list.id,item.id, vote), method: :delete, remote: true %>
+    <% end %>
+    <span class="badge"><%= item.rating %></span>
+  <% else %>
+    <%= form_for :vote, url: list_item_votes_path(item.list, item),remote: true do |f| %>
+      <%= f.hidden_field :user_ip, value: @user_ip %>
+      <%= f.submit "Лайк", class: "btn btn-large btn-primary"  %>
+    <% end %>
+    <span class="badge"><%= item.rating %></span>
+  <% end %>
 <hr/>

@@ -3,7 +3,17 @@ class ListsController < ApplicationController
 
   def show
     @list = List.find(params[:id])
+    @items = @list.items.all  do
+      Items.oreder(:rating)
+    end
+    @list.views += 1
+    @list.save
+  end
+
+  def rating
+    @list = List.find(params[:id])
     @items = @list.items.all
+    #Items.oreder(:rating)
     @list.views += 1
     @list.save
   end
@@ -23,11 +33,13 @@ class ListsController < ApplicationController
     end
   end
 
+
   def new
   end
 
   def create
       @list = current_user.lists.build(list_params)
+      @list.views += 1
     if @list.save
       redirect_to current_user
     else
