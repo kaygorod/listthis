@@ -1,4 +1,7 @@
 class VotesController < ApplicationController
+
+
+
   def create
     @list = List.find(params[:list_id])
     @item = Item.find(params[:item_id])
