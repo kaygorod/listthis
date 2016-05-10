@@ -3,6 +3,8 @@ class ListsController < ApplicationController
 
   def show
     @list = List.find(params[:id])
+    @votes = Vote.all
+    @current_ip = request.remote_ip
     @items = @list.items.all  do
       Items.oreder(:rating)
     end
@@ -39,7 +41,7 @@ class ListsController < ApplicationController
 
   def create
       @list = current_user.lists.build(list_params)
-      @list.views += 1
+      @list.views = '0'
     if @list.save
       redirect_to current_user
     else

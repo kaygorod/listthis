@@ -64,6 +64,9 @@ counter-increment:list;
   padding-right:0px;
 }
 
+.line-item {
+  margin-top: 0.7em;
+}
 
 
 
@@ -117,4 +120,38 @@ footer ul {
 footer ul li {
   float: left;
   margin-left: 10px;
+}
+
+
+/* Кнопки голосования */
+
+.vote-block {
+  display: inline-block;
+}
+
+.vote-button {
+  display: inline-block;
+  width: 2em;
+  height: 2em;
+  border: none;
+  margin-right: 5px;
+}
+.bth-like{
+  background: white url("icon-up.svg");
+}
+
+.bth-like:hover {
+  background: white url("icon-up-active.svg");
+}
+.bth-like-active {
+  background: white url("icon-up-active.svg");
+}
+.bth-dislike{
+  background: white url("icon-down.svg");
+}
+.bth-dislike:hover {
+  background: white url("icon-down-active.svg");
+}
+.bth-dislike-active {
+  background: white url("icon-down-active.svg");
 }

@@ -13,6 +13,7 @@ class ItemsController < ApplicationController
       @list = List.find(params[:list_id])
       @item = @list.items.build(item_params)
       @item.user_id = current_user.id
+      @item.rating = '0'
     if @item.save
       redirect_to @list
     else

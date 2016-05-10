@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160505094419) do
+ActiveRecord::Schema.define(version: 20160508173612) do
 
   create_table "comments", force: :cascade do |t|
     t.text     "content"
@@ -69,6 +69,7 @@ ActiveRecord::Schema.define(version: 20160505094419) do
     t.string   "user_ip"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string   "vot"
   end
 
   add_index "votes", ["item_id", "user_id"], name: "index_votes_on_item_id_and_user_id", unique: true

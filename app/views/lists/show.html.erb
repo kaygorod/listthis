@@ -1,4 +1,5 @@
 <%= render 'list_description' %>
+
 <!-- Nav tabs -->
 <ul class="nav nav-tabs" role="tablist">
   <li class="active"><a href="#items" role="tab" data-toggle="tab">Пункты <span class="badge"> <%= @list.items.count %></span></a></li>
@@ -76,8 +77,8 @@
     </p>
   <% end %>
 <% end %>
-<% @list.comments.each do |comment| %><br>
-  <div class="row">
+<div class="row">
+  <% @list.comments.each do |comment| %><br>
     <div class="col-xs-1">
       <h4><span class="glyphicon glyphicon-user"></span></h4>
     </div>
@@ -91,16 +92,16 @@
       <% end %>
       </p>
       <small class="text-muted"><%= time_ago_in_words(comment.created_at) %> назад.</small>
-        <% if current_user == comment.user %>
+      <% if current_user == comment.user %>
         <small class="text-muted">
          <%= link_to "Удалить", list_comment_path(@list.id, comment),
                     method: :delete, data: { confirm: "Удалить комментарий?" } %>
         </small>
-        <% end %>
-        <hr>
+      <% end %>
+      <hr class="line-item">
     </div>
-  </div>
-<% end %>
+  <% end %>
+</div>
 
 </div>
   <div class="tab-pane" id="queue"></br>

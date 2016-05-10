@@ -4,7 +4,9 @@ Rails.application.routes.draw do
   get 'static_pages/help'
   resources :lists do
     resources :items do
-      resources :votes
+      resources :votes do
+        post 'like', on: :member
+      end
     end
     resources :comments
   end
