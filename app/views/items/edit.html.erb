@@ -1,0 +1,29 @@
+<div class="list">
+  <h2>Реадктирование пункта "<%= @item.title %>"
+  <small>(Список "<%= link_to @list.title, list_path(@list) %>")</small></h2>
+  <%= form_for :item, url: list_item_path(@item.list, @item),
+               method: :patch do |f| %>
+    <p>
+      <%= f.label 'Название' %><br>
+      <%= f.text_field :title, class:"form-control" %>
+    </p>
+
+    <p>
+      <%= f.label 'Описание' %><br>
+      <%= f.text_area :description, :class => "tinymce",
+                      :rows => 10, class:"form-control" %>
+    </p>
+
+     <p>
+      <%= f.label 'Изображение' %><br>
+      <%= f.file_field :image %>
+    </p>
+
+    <p>
+      <%= f.submit 'Сохранить изменения', class:"btn btn-primary" %>
+    </p>
+  <% end %>
+  <%= link_to "Отмена", list_path(@list), class:"btn btn-default",
+      data:
+      { confirm: "Вы уверены, что хотите покинуть страницу редактирования?" } %>
+</div>

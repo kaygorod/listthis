@@ -1,24 +1,30 @@
 <!DOCTYPE html>
 <html>
-<head>
-  <title><%= full_title(yield(:title)) %></title>
-  <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
-  <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
-  <%= csrf_meta_tags %>
-  <%= render 'layouts/shim' %>
-</head>
-<body>
-<%= render 'layouts/header' %>
+  <head>
+    <title><%= full_title(yield(:title)) %></title>
+    <%= stylesheet_link_tag    'application', media: 'all',
+                               'data-turbolinks-track' => true %>
+    <%= javascript_include_tag 'application',
+                               'data-turbolinks-track' => true %>
+    <%= csrf_meta_tags %>
+    <%= render 'layouts/shim' %>
+  </head>
+  <body>
+    <%= render 'layouts/header' %>
     <div class="container">
-    <% flash.each do |key, value| %>
-    <div class="alert alert-<%= key %> alert-dismissible"><%= value %>
-      <button type="button" class="close" data-dismiss="alert"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
-    </div>
-    <% end %>
-    <p class="notice"><%= notice %></p>
-       <p class="alert"><%= alert %></p>
+      <% flash.each do |key, value| %>
+        <div class="alert alert-<%= key %> alert-dismissible">
+          <%= value %>
+          <button type="button" class="close" data-dismiss="alert">
+            <span aria-hidden="true">&times;</span>
+            <span class="sr-only">Close</span>
+          </button>
+        </div>
+      <% end %>
+      <p class="notice"><%= notice %></p>
+      <p class="alert"><%= alert %></p>
       <%= yield %>
-    </div>
       <%= render 'layouts/footer' %>
-    </body>
+    </div>
+  </body>
 </html>

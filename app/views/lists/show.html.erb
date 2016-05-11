@@ -1,110 +1,100 @@
-<%= render 'list_description' %>
+<div class="list">
+  <%= render 'list_description' %>
+  <!-- Nav tabs -->
+  <ul class="nav nav-tabs" role="tablist">
+    <li class="active">
+      <a href="#items" role="tab" data-toggle="tab">Пункты
+      <span class="badge"> <%= @list.items.count %></span></a>
+    </li>
+    <li>
+      <a href="#queue" role="tab" data-toggle="tab">На утверждении</a>
+    </li>
+  </ul>
 
-<!-- Nav tabs -->
-<ul class="nav nav-tabs" role="tablist">
-  <li class="active"><a href="#items" role="tab" data-toggle="tab">Пункты <span class="badge"> <%= @list.items.count %></span></a></li>
-  <li><a href="#queue" role="tab" data-toggle="tab">На утверждении</a></li>
-</ul>
-
-<!-- Tab panes -->
-<div class="tab-content">
-  <div class="tab-pane active" id="items">
-  </br>
-    <div class="row">
-    <div class="col-xs-12 col-sm-6 col-md-8">
-      <div class="dropdown">
-        <button class="btn btn-default btn-xs dropdown-toggle" type="button" id="dropdownMenu1" rel="tooltip" data-toggle="dropdown" data-placement="top" title="Изменить сортировку">
-          Сортировка
-          <span class="caret"></span>
-        </button>
-        <ul class="dropdown-menu" role="menu" aria-labelledby="dropdownMenu1">
-          <li role="presentation"><a role="menuitem" tabindex="-1" href="#">По умолчанию</a></li>
-          <li role="presentation" class="dropdown-header">По комментариям</li>
-          <li role="presentation"><a role="menuitem" tabindex="-1" href="#">Больше</a></li>
-          <li role="presentation"><a role="menuitem" tabindex="-1" href="#">Меньше</a></li>
-          <li role="presentation" class="dropdown-header">По комментариям</li>
-          <li role="presentation"><a role="menuitem" tabindex="-1" href="#">Больше</a></li>
-          <li role="presentation"><a role="menuitem" tabindex="-1" href="#">Меньше</a></li>
-          <li role="presentation" class="dropdown-header">По дате</li>
-          <li role="presentation"><a role="menuitem" tabindex="-1" href="#">Новое</a></li>
-          <li role="presentation"><a role="menuitem" tabindex="-1" href="#">Старое</a></li>
-        </ul>
-      </div>
-      </div>
-    </div>
+  <!-- Tab panes -->
+  <div class="tab-content">
+    <div class="tab-pane active" id="items">
     </br>
-<button class="btn btn-primary btn-lg btn-block" data-toggle="modal" data-target="#myModal">
-  Добавить пункт
-</button>
-</br>
-    <ol class="listitem" id="item">
-      <%= render @list.items.order(rating: :desc) %>
-    </ol>
-</br>
-<!-- Button trigger modal -->
-
-<button class="btn btn-primary btn-lg btn-block" data-toggle="modal" data-target="#myModal">
-  Добавить пункт
-</button>
-
-
-<!-- Modal -->
-<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-  <div class="modal-dialog">
-    <div class="modal-content">
-      <div class="modal-header">
-        <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
-        <h4 class="modal-title" id="myModalLabel">Добавить пункт</h4>
+      <div class="row">
+      <div class="col-xs-12 col-sm-6 col-md-8">
+        <div class="dropdown">
+          <button class="btn btn-default btn-xs dropdown-toggle" type="button" id="dropdownMenu1" rel="tooltip" data-toggle="dropdown" data-placement="top" title="Изменить сортировку">
+            Сортировка
+            <span class="caret"></span>
+          </button>
+          <ul class="dropdown-menu" role="menu" aria-labelledby="dropdownMenu1">
+            <li role="presentation"><a role="menuitem" tabindex="-1" href="#">По умолчанию</a></li>
+            <li role="presentation" class="dropdown-header">По комментариям</li>
+            <li role="presentation"><a role="menuitem" tabindex="-1" href="#">Больше</a></li>
+            <li role="presentation"><a role="menuitem" tabindex="-1" href="#">Меньше</a></li>
+            <li role="presentation" class="dropdown-header">По комментариям</li>
+            <li role="presentation"><a role="menuitem" tabindex="-1" href="#">Больше</a></li>
+            <li role="presentation"><a role="menuitem" tabindex="-1" href="#">Меньше</a></li>
+            <li role="presentation" class="dropdown-header">По дате</li>
+            <li role="presentation"><a role="menuitem" tabindex="-1" href="#">Новое</a></li>
+            <li role="presentation"><a role="menuitem" tabindex="-1" href="#">Старое</a></li>
+          </ul>
+        </div>
+        </div>
       </div>
-      <div class="modal-body">
-        <%= render 'items/item_form' %>
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-default" data-dismiss="modal">Отмена</button>
-        <button type="button" class="btn btn-primary">Добавить</button>
-      </div>
-    </div>
-  </div>
-</div>
-<br>Комментарии:<br>
-<% if signed_in? %>
-  <%= form_for :comment, url:list_comments_path(@list) do |f| %>
-    <p>
-      <%= f.text_area :content, class: "form-control" %>
-    </p>
-    <p>
-      <%= f.submit "Отправить"%>
-    </p>
+      </br>
+  <button class="btn btn-primary btn-lg btn-block" data-toggle="modal" data-target="#myModal">
+    Добавить пункт
+  </button>
+  </br>
+      <ol class="listitem" id="item">
+        <%= render @list.items.order(rating: :desc) %>
+      </ol>
+  </br>
+  <!-- Button trigger modal -->
+
+  <button class="btn btn-primary btn-lg btn-block" data-toggle="modal" data-target="#myModal">
+    Добавить пункт
+  </button>
+  <% if signed_in? %>
+    <%= render 'items/item_form' %>
   <% end %>
-<% end %>
-<div class="row">
-  <% @list.comments.each do |comment| %><br>
-    <div class="col-xs-1">
-      <h4><span class="glyphicon glyphicon-user"></span></h4>
-    </div>
-    <div class="col-xs-11">
-      <b><%= link_to comment.user.username, user_path(comment.user)%></b>
-      <p><small><%= comment.content %></small>
-      <% if comment.item_id? %>
-        <small class="text-muted">
-          (К пункту <a href="#<%= (comment.item.id) %>"> <%= comment.item.title %></a>)
-        </small>
-      <% end %>
+
+  <br>Комментарии:<br>
+  <% if signed_in? %>
+    <%= form_for :comment, url:list_comments_path(@list) do |f| %>
+      <p>
+        <%= f.text_area :content, class: "form-control" %>
       </p>
-      <small class="text-muted"><%= time_ago_in_words(comment.created_at) %> назад.</small>
-      <% if current_user == comment.user %>
-        <small class="text-muted">
-         <%= link_to "Удалить", list_comment_path(@list.id, comment),
-                    method: :delete, data: { confirm: "Удалить комментарий?" } %>
-        </small>
-      <% end %>
-      <hr class="line-item">
-    </div>
+      <p>
+        <%= f.submit "Отправить"%>
+      </p>
+    <% end %>
   <% end %>
-</div>
+  <div class="row">
+    <% @list.comments.each do |comment| %><br>
+      <div class="col-xs-1">
+        <h4><span class="glyphicon glyphicon-user"></span></h4>
+      </div>
+      <div class="col-xs-11">
+        <b><%= link_to comment.user.username, user_path(comment.user)%></b>
+        <p><small><%= comment.content %></small>
+        <% if comment.item_id? %>
+          <small class="text-muted">
+            (К пункту <a href="#<%= (comment.item.id) %>"> <%= comment.item.title %></a>)
+          </small>
+        <% end %>
+        </p>
+        <small class="text-muted"><%= time_ago_in_words(comment.created_at) %> назад.</small>
+        <% if current_user == comment.user %>
+          <small class="text-muted">
+           <%= link_to "Удалить", list_comment_path(@list.id, comment),
+                      method: :delete, data: { confirm: "Удалить комментарий?" } %>
+          </small>
+        <% end %>
+        <hr class="line-item">
+      </div>
+    <% end %>
+  </div>
 
-</div>
-  <div class="tab-pane" id="queue"></br>
-    <p> Нет пунктов ожидающих утверждения</p>
+  </div>
+    <div class="tab-pane" id="queue"></br>
+      <p> Нет пунктов ожидающих утверждения</p>
+    </div>
   </div>
 </div>
