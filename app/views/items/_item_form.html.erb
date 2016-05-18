@@ -9,28 +9,28 @@
         </button>
         <h4 class="modal-title" id="myModalLabel">Добавить пункт</h4>
       </div>
+      <%= form_for [@list, @list.items.build] do |f| %>
         <div class="modal-body">
-          <%= form_for [@list, @list.items.build] do |f| %>
-            <p>
-              <%= f.label "Название" %><br>
-              <%= f.text_field :title, class:"form-control" %>
-            </p>
-            <p>
-              <%= f.label "Описание" %><br>
-              <%= f.text_area :description, :class => "tinymce",
+          <p>
+            <%= f.label "Название" %><br>
+            <%= f.text_field :title, class:"form-control" %>
+          </p>
+          <p>
+            <%= f.label "Описание" %><br>
+            <%= f.text_area :description, :class => "tinymce",
                               :rows => 10, class:"form-control" %>
-            </p>
-            <p>
-              <%= f.label "Изображение" %><br>
-              <%= f.file_field :image %>
-            </p>
+          </p>
+          <p>
+            <%= f.label "Изображение" %><br>
+            <%= f.file_field :image %>
+          </p>
         </div>
         <div class="modal-footer">
           <button type="button" class="btn btn-default"
-                  data-dismiss="modal">Отмена</button>
+                data-dismiss="modal">Отмена</button>
           <%= f.submit 'Добавить',class:"btn btn-primary" %>
-        <% end %>
-      </div>
+        </div>
+      <% end %>
     </div>
   </div>
 </div>

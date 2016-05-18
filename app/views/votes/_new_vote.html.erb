@@ -1,0 +1,12 @@
+<div class="vote-block">
+  <%= form_for :vote, url: list_item_votes_path(item.list, item), remote: true do |f| %>
+    <%= f.hidden_field :vot, value:'up' %>
+    <%= f.submit " ",class: "vote-button bth-like"  %>
+  <% end %>
+</div>
+<div class="vote-block">
+  <%= form_for :vote, url: list_item_votes_path(item.list, item), remote: true do |f| %>
+    <%= f.hidden_field :vot, value:'down' %>
+   <%= f.submit " ",class: "vote-button bth-dislike"  %>
+  <% end %>
+</div>

@@ -42,9 +42,9 @@
     Добавить пункт
   </button>
   </br>
-      <ol class="listitem" id="item">
-        <%= render @list.items.order(rating: :desc) %>
-      </ol>
+    <ol class="listitem" id="item">
+      <%= render @list.items.order(rating: :desc) %>
+    </ol>
   </br>
   <!-- Button trigger modal -->
 
@@ -53,43 +53,20 @@
   </button>
   <% if signed_in? %>
     <%= render 'items/item_form' %>
+  <% else %>
+    <%= render 'shared/new_session_modal' %>
   <% end %>
 
   <br>Комментарии:<br>
-  <% if signed_in? %>
-    <%= form_for :comment, url:list_comments_path(@list) do |f| %>
-      <p>
-        <%= f.text_area :content, class: "form-control" %>
-      </p>
-      <p>
-        <%= f.submit "Отправить"%>
-      </p>
-    <% end %>
-  <% end %>
+  <span id="list_<%=@list.id%>_comments_form">
+  <%= render "comments/list_comments_form" %>
+  </span>
   <div class="row">
+  <span id="list_comment">
     <% @list.comments.each do |comment| %><br>
-      <div class="col-xs-1">
-        <h4><span class="glyphicon glyphicon-user"></span></h4>
-      </div>
-      <div class="col-xs-11">
-        <b><%= link_to comment.user.username, user_path(comment.user)%></b>
-        <p><small><%= comment.content %></small>
-        <% if comment.item_id? %>
-          <small class="text-muted">
-            (К пункту <a href="#<%= (comment.item.id) %>"> <%= comment.item.title %></a>)
-          </small>
-        <% end %>
-        </p>
-        <small class="text-muted"><%= time_ago_in_words(comment.created_at) %> назад.</small>
-        <% if current_user == comment.user %>
-          <small class="text-muted">
-           <%= link_to "Удалить", list_comment_path(@list.id, comment),
-                      method: :delete, data: { confirm: "Удалить комментарий?" } %>
-          </small>
-        <% end %>
-        <hr class="line-item">
-      </div>
+    <%= render "comments/list_comments", comment: comment %>
     <% end %>
+    </span>
   </div>
 
   </div>

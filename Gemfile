@@ -37,6 +37,7 @@ gem 'sdoc', '~> 0.4.0', group: :doc
 # gem 'capistrano-rails', group: :development
 
 gem 'devise'
+gem 'cancancan', '~> 1.10'
 
 group :test do
   gem 'selenium-webdriver'

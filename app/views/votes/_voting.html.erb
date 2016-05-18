@@ -1,0 +1,14 @@
+<% if signed_in? %>
+  <% if vote = current_user.votes.find_by_item_id(item) %>
+    <%= render "votes/revote", item: item %>
+  <% else %>
+    <%= render "votes/new_vote", item: item %>
+  <% end %>
+  <% else %>
+  <% if vote = item.votes.find_by_user_ip(@current_ip) %>
+    <%= render "votes/revote", item: item %>
+  <% else %>
+    <%= render "votes/new_vote", item: item %>
+  <% end %>
+<% end %>
+

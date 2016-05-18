@@ -37,7 +37,9 @@
         </span>
         <span rel="tooltip" title="Количество комментариев">
           <span class="glyphicon glyphicon-comment"></span>
-          <%= @list.comments.count %>
+          <span id="list_comments_count">
+            <%= @list.comments.count %>
+          </span>
         </span>
         <span rel="tooltip" title="Количество просмотров">
           <span class="glyphicon glyphicon-eye-open"></span>
@@ -51,7 +53,6 @@
                                         class="img-responsive">
   </p>
   <%= simple_format(@list.description) %>
-
   <p>
     Участники: <% @list.items.each do |item|%>
     <%= item.user.username %>

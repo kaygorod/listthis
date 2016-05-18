@@ -34,146 +34,32 @@
 </br>
 <div class="row">
   <div class="col-xs-4">
-    <% if signed_in? %>
-      <% if vote = current_user.votes.find_by_item_id(item) %>
-        <% [current_user.votes.find_by_item_id(item)].each do |vote| %>
-          <% if vote.vot =="up"%>
-            <div class="vote-block">
-              <%= button_to " ", list_item_vote_path(@list.id,item.id, vote),
-                         method: :delete,class: "vote-button bth-like-active" %>
-            </div>
-            <div class="vote-block">
-              <%= form_for [item.list, item, vote] do |f| %>
-                <%= f.hidden_field :vot, value:'down' %>
-              <%= f.submit " ",class: "vote-button bth-dislike"  %>
-              <% end %>
-            </div>
-            <% else %>
-            <div class="vote-block">
-              <%= form_for [item.list, item, vote] do |f| %>
-                <%= f.hidden_field :vot, value:'up' %>
-                <%= f.submit " ",class: "vote-button bth-like"  %>
-              <% end %>
-            </div>
-            <div class="vote-block">
-              <%= button_to " ", list_item_vote_path(@list.id,item.id, vote),
-                      method: :delete,class: "vote-button bth-dislike-active" %>
-            </div>
-          <% end %>
-        <% end %>
-      <% else %>
-        <div class="vote-block">
-          <%= form_for :vote,
-                        url: list_item_votes_path(item.list, item) do |f| %>
-            <%= f.hidden_field :vot, value:'up' %>
-            <%= f.submit " ",class: "vote-button bth-like"  %>
-          <% end %>
-        </div>
-        <div class="vote-block">
-          <%= form_for :vote,
-                        url: list_item_votes_path(item.list, item) do |f| %>
-            <%= f.hidden_field :vot, value:'down' %>
-            <%= f.submit " ",class: "vote-button bth-dislike"  %>
-          <% end %>
-        </div>
-      <% end %>
-    <% else %>
-
-
-      <% if vote = item.votes.find_by_user_ip(@current_ip) %>
-        <% [item.votes.find_by_user_ip(@current_ip)].each do |vote| %>
-          <% if vote.vot =="up"%>
-            <div class="vote-block">
-              <%= button_to " ", list_item_vote_path(@list.id,item.id, vote),
-                         method: :delete,class: "vote-button bth-like-active" %>
-            </div>
-            <div class="vote-block">
-              <%= form_for [item.list, item, vote] do |f| %>
-                <%= f.hidden_field :vot, value:'down' %>
-              <%= f.submit " ",class: "vote-button bth-dislike"  %>
-              <% end %>
-            </div>
-            <% else %>
-            <div class="vote-block">
-              <%= form_for [item.list, item, vote] do |f| %>
-                <%= f.hidden_field :vot, value:'up' %>
-                <%= f.submit " ",class: "vote-button bth-like"  %>
-              <% end %>
-            </div>
-            <div class="vote-block">
-              <%= button_to " ", list_item_vote_path(@list.id,item.id, vote),
-                      method: :delete,class: "vote-button bth-dislike-active" %>
-            </div>
-          <% end %>
-        <% end %>
-      <% else %>
-        <div class="vote-block">
-          <%= form_for :vote,
-                        url: list_item_votes_path(item.list, item) do |f| %>
-            <%= f.hidden_field :vot, value:'up' %>
-            <%= f.submit " ",class: "vote-button bth-like"  %>
-          <% end %>
-        </div>
-        <div class="vote-block">
-          <%= form_for :vote,
-                        url: list_item_votes_path(item.list, item) do |f| %>
-            <%= f.hidden_field :vot, value:'down' %>
-            <%= f.submit " ",class: "vote-button bth-dislike"  %>
-          <% end %>
-        </div>
-      <% end %>
-
-
-    <% end %>
-<small class="text-muted"><b><%= item.rating %></b> очков</small>
-</div>
-<div class="col-xs-8">
-  <div class="pull-right">
+    <span id="voting_item_<%=item.id%>">
+      <%= render "votes/voting", item: item %>
+    </span>
     <small class="text-muted">
-      Комментарии (<b><%= item.comments.count %></b>)
+      Очки: <b id="rating_item_<%=item.id%>"><%= item.rating %></b>/
+      Голосов: <%= item.votes.count %>
     </small>
   </div>
-</div>
+  <div class="col-xs-8">
+    <div class="pull-right">
+      <small class="text-muted">
+        Комментарии:
+        <b id="comments_item_<%=item.id%>_count"><%= item.comments.count %></b>
+      </small>
+    </div>
   </div>
+</div>
 <hr class="line-item">
-<% if signed_in? %>
-  <%= form_for :comment, url:list_comments_path(@list) do |f| %>
-    <div class="row">
-    <div class="col-lg-12">
-      <div class="input-group">
-        <%= f.text_field :content, class: "form-control",
-                         placeholder:"Ваш комментарий" %>
-        <div>
-          <%= f.hidden_field :item_id, :value => item.id %>
-        </div>
-        <span class="input-group-btn">
-          <%= f.submit "Отправить",class: "btn btn-default" %>
-        </span>
-      </div>
-    </div>
-    </div>
-  <% end %>
-<% else %>
-  <p>Войдите или зарегистрируйтесь, чтобы добавить комментарий.</p>
-<% end %>
+<span id="item_<%=item.id%>_comments_form">
+  <%= render "comments/item_comments_form", item: item %>
+</span>
 <br>
 <div class="row">
-  <% item.comments.each do |comment| %>
-    <div class="col-xs-1">
-      <h4><span class="glyphicon glyphicon-user"></span></h4>
-    </div>
-    <div class="col-xs-11">
-      <b><%= link_to comment.user.username, user_path(comment.user) %></b>
-      <small><%= comment.content %></small>
-      <% if current_user == comment.user %>
-        <%= link_to '',list_comment_path(@list.id, comment),
-                     method: :delete, data: { confirm: "Удалить комментарий?" },
-                     class:"glyphicon glyphicon-remove pull-right" %>
-      <% end %>
-      <small class="text-muted">
-        <p><%= time_ago_in_words(comment.created_at) %> назад.</p>
-      </small>
-      <hr class="line-item">
-    </div>
-  <% end %>
+  <span id="item_comment_<%=item.id%>">
+    <% item.comments.each do |comment| %>
+      <%= render "comments/item_comments", item: item, comment: comment %>
+    <% end %>
+  </span>
 </div>

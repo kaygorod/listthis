@@ -1,4 +1,0 @@
-<%= form_for :vote, url: list_item_votes_path(item.list, item) do |f| %>
-  <%= f.hidden_field :user_ip, value: @user_ip %>
-  <%= f.submit "Лайк", class: "btn btn-large btn-primary"  %>
-  <% end %>

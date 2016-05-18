@@ -1,2 +1,2 @@
-$("#follow_form").html("<%= escape_javascript(render('users/follow')) %>")
-$("#followers").html('<%= @user.followers.count %>')
+$("#voting_item_<%=@item.id%>").html("<%= escape_javascript render('votes/new_vote', item: @item) %>");
+$("#rating_item_<%=@item.id%>").html("<%= @item.rating %>");

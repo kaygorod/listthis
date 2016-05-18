@@ -1,0 +1,54 @@
+<% if signed_in? %>
+  <% [item.votes.find_by_user_id(current_user)].each do |vote| %>
+    <% if vote.vot =="up"%>
+      <div class="vote-block">
+        <%= button_to " ", list_item_vote_path(@list.id,item.id, vote),
+                         method: :delete,class: "vote-button bth-like-active", remote: true %>
+      </div>
+      <div class="vote-block">
+        <%= form_for [item.list, item, vote], remote: true do |f| %>
+          <%= f.hidden_field :vot, value:'down' %>
+          <%= f.submit " ",class: "vote-button bth-dislike"  %>
+        <% end %>
+      </div>
+    <% else %>
+      <div class="vote-block">
+        <%= form_for [item.list, item, vote], remote: true do |f| %>
+          <%= f.hidden_field :vot, value:'up' %>
+          <%= f.submit " ",class: "vote-button bth-like"  %>
+        <% end %>
+      </div>
+      <div class="vote-block">
+        <%= button_to " ", list_item_vote_path(@list.id,item.id, vote),
+                      method: :delete,class: "vote-button bth-dislike-active", remote: true %>
+      </div>
+    <% end %>
+  <% end %>
+<% else %>
+<% current_ip = request.remote_ip %>
+  <% [item.votes.find_by_user_ip(current_ip)].each do |vote| %>
+    <% if vote.vot =="up"%>
+      <div class="vote-block">
+        <%= button_to " ", list_item_vote_path(@list.id,item.id, vote),
+                         method: :delete,class: "vote-button bth-like-active", remote: true %>
+      </div>
+      <div class="vote-block">
+        <%= form_for [item.list, item, vote], remote: true do |f| %>
+          <%= f.hidden_field :vot, value:'down' %>
+          <%= f.submit " ",class: "vote-button bth-dislike"  %>
+        <% end %>
+      </div>
+    <% else %>
+      <div class="vote-block">
+        <%= form_for [item.list, item, vote], remote: true do |f| %>
+          <%= f.hidden_field :vot, value:'up' %>
+          <%= f.submit " ",class: "vote-button bth-like"  %>
+        <% end %>
+      </div>
+      <div class="vote-block">
+        <%= button_to " ", list_item_vote_path(@list.id,item.id, vote),
+                      method: :delete,class: "vote-button bth-dislike-active", remote: true %>
+      </div>
+    <% end %>
+  <% end %>
+<% end %>

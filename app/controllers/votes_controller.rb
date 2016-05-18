@@ -1,5 +1,5 @@
 class VotesController < ApplicationController
-before_action :correct_user, only: :destroy
+before_action :correct_user, only: [:destroy, :update]
 
 
   def create
@@ -19,9 +19,10 @@ before_action :correct_user, only: :destroy
         @item.rating -= 1
         @item.save
       end
-      redirect_to @list
-    else
-      redirect_to root_path
+      respond_to do |format|
+        format.html { redirect_to @list}
+        format.js
+      end
     end
   end
 
@@ -38,7 +39,10 @@ before_action :correct_user, only: :destroy
         @item.rating -= 2
         @item.save
       end
-      redirect_to @list
+      respond_to do |format|
+        format.html { redirect_to @list}
+        format.js
+      end
     end
   end
 
@@ -56,7 +60,10 @@ before_action :correct_user, only: :destroy
       end
       @vote.destroy
     end
-    redirect_to @list
+    respond_to do |format|
+        format.html { redirect_to @list}
+        format.js
+      end
   end
 
     private

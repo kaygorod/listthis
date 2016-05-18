@@ -1,0 +1,7 @@
+<% if @comment.item_id? %>
+  $("#<%=@comment.id%>").hide();
+  $("#comments_item_<%=@item.id%>_count").html("<%= @item.comments.count %>");
+<% end %>
+$("#list_comment_<%=@comment.id%>").hide();
+$("#list_comments_count").html("<%= @list.comments.count %>");
+

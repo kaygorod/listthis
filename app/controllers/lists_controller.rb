@@ -2,6 +2,7 @@ class ListsController < ApplicationController
   before_action :authenticate_user!, only: [:create, :edit, :destroy]
   before_action :correct_user,       only: [:destroy, :edit]
 
+
   def show
     @list = List.find(params[:id])
     @current_ip = request.remote_ip
