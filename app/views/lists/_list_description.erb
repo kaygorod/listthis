@@ -33,7 +33,9 @@
       <small class="text-right pull-right">
         <span rel="tooltip" title="Количество пунктов">
           <span class="glyphicon glyphicon-th-list"></span>
-          <%= @list.items.count %>
+          <span id="list_items_count">
+            <%= @list.items.count %>
+          </span>
         </span>
         <span rel="tooltip" title="Количество комментариев">
           <span class="glyphicon glyphicon-comment"></span>
@@ -55,6 +57,9 @@
   <%= simple_format(@list.description) %>
   <p>
     Участники: <% @list.items.each do |item|%>
+
     <%= item.user.username %>
+
     <% end %>
   </p>
+

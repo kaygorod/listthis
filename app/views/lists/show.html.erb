@@ -42,20 +42,30 @@
     Добавить пункт
   </button>
   </br>
-    <ol class="listitem" id="item">
-      <%= render @list.items.order(rating: :desc) %>
+
+    <ol class="listitem" id="items_<%= @list.id %>">
+      <%= render @items.order(rating: :desc) %>
     </ol>
-  </br>
+    <%= will_paginate @items %>
+    <span id="show_more_link">
+    <%= link_to 'Показать больше', list_path(:page => @items.next_page), :class => 'load-more-posts', :remote => true%>
+    </span>
+    <%= @items.total_pages %>
+
+    </br>
   <!-- Button trigger modal -->
 
   <button class="btn btn-primary btn-lg btn-block" data-toggle="modal" data-target="#myModal">
     Добавить пункт
   </button>
   <% if signed_in? %>
+
     <%= render 'items/item_form' %>
+
   <% else %>
     <%= render 'shared/new_session_modal' %>
   <% end %>
+
 
   <br>Комментарии:<br>
   <span id="list_<%=@list.id%>_comments_form">

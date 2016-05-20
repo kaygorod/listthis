@@ -30,8 +30,11 @@ class ItemsController < ApplicationController
       @item.user_id = current_user.id
       @item.rating = '0'
     if @item.save
-      flash[:success] = "Новый пункт добавлен!"
-      redirect_to @list
+      respond_to do |format|
+        format.html { redirect_to @list}
+        format.json { head :no_content }
+        format.js
+      end
     else
       flash[:danger] = 'Ой! Что-то пошло не так...'
       redirect_to root_path
@@ -43,9 +46,12 @@ class ItemsController < ApplicationController
     @item = Item.find(params[:id])
     if @item.present?
        @item.destroy
+       respond_to do |format|
+        format.html { redirect_to @list}
+        format.json { head :no_content }
+        format.js
+      end
     end
-    flash[:success] = 'Пункт удален!'
-    redirect_to @list
   end
 
 private

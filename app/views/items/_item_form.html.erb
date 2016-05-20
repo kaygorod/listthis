@@ -9,7 +9,7 @@
         </button>
         <h4 class="modal-title" id="myModalLabel">Добавить пункт</h4>
       </div>
-      <%= form_for [@list, @list.items.build] do |f| %>
+      <%= form_for [@list, @list.items.build], remote: true do |f| %>
         <div class="modal-body">
           <p>
             <%= f.label "Название" %><br>

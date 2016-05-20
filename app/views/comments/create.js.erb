@@ -1,9 +1,11 @@
 <% if @comment.item_id? %>
   $("#item_comment_<%=@item.id%>").append("<%= escape_javascript(render 'comments/item_comments', item: @item, comment: @comment) %>");
   $("#comments_item_<%=@item.id%>_count").html("<%= @item.comments.count %>");
-  $("#item_<%=@item.id%>_comments_form").slideUp(350);
+  $("#item_<%=@item.id%>_comments_form").find("#comment_content").val('');
 <%else%>
-  $("#list_<%=@list.id%>_comments_form").slideUp(350);
+  $("#list_<%=@list.id%>_comments_form").find("#comment_content").val('');
 <% end %>
 $("#list_comments_count").html("<%= @list.comments.count %>");
 $("#list_comment").append("<%= escape_javascript(render 'comments/list_comments', comment: @comment) %>");
+
+

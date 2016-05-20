@@ -1,4 +1,4 @@
-<li>
+<li id="item_<%= item.id %>">
   <h2><a name="<%= (item.id) %>"></a><%= item.title %></h2>
   <% if signed_in? %>
     <% if current_user==item.user %>
@@ -14,7 +14,8 @@
                     edit_list_item_path(@list.id,item.id) %></li>
             <li class="divider"></li>
             <li><%= link_to "Удалить", list_item_path(@list.id,item.id),
-               method: :delete, data: { confirm: "Удалить этот пункт?" } %></li>
+               method: :delete, data: { confirm: "Удалить этот пункт?" },
+               remote: true %></li>
           </ul>
         </button>
       </div>
@@ -30,36 +31,37 @@
       <%= time_ago_in_words(item.created_at) %> назад.
     </small>
   <% end %>
-</li>
-</br>
-<div class="row">
-  <div class="col-xs-4">
-    <span id="voting_item_<%=item.id%>">
-      <%= render "votes/voting", item: item %>
-    </span>
-    <small class="text-muted">
-      Очки: <b id="rating_item_<%=item.id%>"><%= item.rating %></b>/
-      Голосов: <%= item.votes.count %>
-    </small>
-  </div>
-  <div class="col-xs-8">
-    <div class="pull-right">
+  </br>
+  </br>
+  <div class="row">
+    <div class="col-xs-4">
+      <span id="voting_item_<%=item.id%>">
+        <%= render "votes/voting", item: item %>
+      </span>
       <small class="text-muted">
-        Комментарии:
-        <b id="comments_item_<%=item.id%>_count"><%= item.comments.count %></b>
+        Очки: <b id="rating_item_<%=item.id%>"><%= item.rating %></b>/
+        Голосов: <%= item.votes.count %>
       </small>
     </div>
+    <div class="col-xs-8">
+      <div class="pull-right">
+        <small class="text-muted">
+          Комментарии:
+          <b id="comments_item_<%=item.id%>_count"><%= item.comments.count %></b>
+        </small>
+      </div>
+    </div>
   </div>
-</div>
-<hr class="line-item">
-<span id="item_<%=item.id%>_comments_form">
-  <%= render "comments/item_comments_form", item: item %>
-</span>
-<br>
-<div class="row">
-  <span id="item_comment_<%=item.id%>">
-    <% item.comments.each do |comment| %>
-      <%= render "comments/item_comments", item: item, comment: comment %>
-    <% end %>
+  <hr class="line-item">
+  <span id="item_<%=item.id%>_comments_form">
+    <%= render "comments/item_comments_form", item: item %>
   </span>
-</div>
+  <br>
+  <div class="row">
+    <span id="item_comment_<%=item.id%>">
+      <% item.comments.each do |comment| %>
+        <%= render "comments/item_comments", item: item, comment: comment %>
+      <% end %>
+    </span>
+  </div>
+</li>

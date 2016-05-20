@@ -7,7 +7,11 @@ ruby '2.2.1'
 gem 'rails', '4.2.1'
 gem 'bootstrap-sass', '~> 3.3.6'
 gem 'carrierwave'
+gem 'mini_magick'
+gem 'remotipart', '~> 1.2'
 gem 'tinymce-rails'
+
+gem 'will_paginate', '~> 3.1.0'
 
 # Use SCSS for stylesheets
 gem 'sass-rails', '>= 3.2'

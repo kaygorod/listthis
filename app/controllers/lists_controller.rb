@@ -6,9 +6,12 @@ class ListsController < ApplicationController
   def show
     @list = List.find(params[:id])
     @current_ip = request.remote_ip
-    @items = @list.items.all do
-      Items.oreder(:rating)
-    end
+    @items = @list.items.all.paginate(page: params[:page], :per_page => 3)
+    respond_to do |format|
+        format.html
+        format.json
+        format.js
+      end
     @list.views += 1
     @list.save
   end

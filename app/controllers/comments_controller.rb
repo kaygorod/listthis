@@ -8,6 +8,10 @@ class CommentsController < ApplicationController
     @comment.user_id = current_user.id
     @item = Item.find_by_id(@comment.item_id)
     if @comment.save
+      if @comment.item_id?
+        @item.comts += 1
+        @item.save
+      end
       respond_to do |format|
         format.html { redirect_to @list}
         format.json { head :no_content }
@@ -24,6 +28,10 @@ class CommentsController < ApplicationController
     @comment = Comment.find(params[:id])
     @item = Item.find_by_id(@comment.item_id)
     if @comment.present?
+      if @comment.item_id?
+       @item.comts -= 1
+       @item.save
+     end
        @comment.destroy
     end
     respond_to do |format|
