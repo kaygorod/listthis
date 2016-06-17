@@ -4,12 +4,9 @@ class ListsController < ApplicationController
 
 
   def show
-    @list = List.find(params[:id])
-    @current_ip = request.remote_ip
-    @items = @list.items.all.paginate(page: params[:page], :per_page => 3)
+    list_items
     respond_to do |format|
         format.html
-        format.json
         format.js
       end
     @list.views += 1
@@ -60,7 +57,39 @@ end
     redirect_to current_user
   end
 
+
+  def sort_time_desc
+    list_items
+  end
+
+  def sort_time_asc
+    list_items
+  end
+
+  def sort_comts_desc
+    list_items
+  end
+
+  def sort_comts_asc
+    list_items
+  end
+
+  def sort_rating_desc
+    list_items
+  end
+
+  def sort_rating_asc
+    list_items
+  end
+
 private
+
+  def list_items
+    @current_ip = request.remote_ip
+    @list = List.find(params[:id])
+    @items = @list.items.all.paginate(page: params[:page], :per_page => 5)
+  end
+
   def list_params
     params.require(:list).permit(:title, :description, :image)
   end

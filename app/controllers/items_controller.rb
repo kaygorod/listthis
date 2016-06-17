@@ -6,6 +6,15 @@ class ItemsController < ApplicationController
     @item = Item.find(params[:id])
   end
 
+  def item_comments
+    @item = Item.find(params[:id])
+    @list = @item.list
+    respond_to do |format|
+        format.html
+        format.js
+    end
+  end
+
   def edit
     @list = List.find(params[:list_id])
     @item = Item.find(params[:id])

@@ -1,0 +1,1 @@
+$("#items_<%= @list.id %>").html('<%= j render @items.order(created_at: :desc) %>');

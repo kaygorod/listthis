@@ -1,3 +1,2 @@
-$("#items_<%= @list.id %>").append("<%= escape_javascript(render @items.order(rating: :desc)) %>");
-$("#show_more_link").html("<%= link_to 'Показать больше', list_path(:page => @items.next_page + 1), :class => 'load-more-posts', :remote => true%>");
-
+$("#items_<%= @list.id %>").append('<%= j render @items.order(rating: :desc) %>');
+$("#more_items").html('<%= escape_javascript(link_to("Показать больше...", list_path(:page => @items.next_page), remote: true)) if @items.next_page %>');

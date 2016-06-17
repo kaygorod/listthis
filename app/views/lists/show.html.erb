@@ -23,16 +23,37 @@
             <span class="caret"></span>
           </button>
           <ul class="dropdown-menu" role="menu" aria-labelledby="dropdownMenu1">
-            <li role="presentation"><a role="menuitem" tabindex="-1" href="#">По умолчанию</a></li>
+            <li role="presentation">
+              <%= link_to "По умолчанию",
+                  sort_rating_desc_list_path, remote: true %>
+            </li>
+            <li role="presentation" class="dropdown-header">По рейтингу</li>
+            <li role="presentation">
+              <%= link_to "Больше",
+                  sort_rating_desc_list_path, remote: true %>
+            </li>
+            <li role="presentation">
+              <%= link_to "Меньше",
+                  sort_rating_asc_list_path, remote: true %>
+            </li>
             <li role="presentation" class="dropdown-header">По комментариям</li>
-            <li role="presentation"><a role="menuitem" tabindex="-1" href="#">Больше</a></li>
-            <li role="presentation"><a role="menuitem" tabindex="-1" href="#">Меньше</a></li>
-            <li role="presentation" class="dropdown-header">По комментариям</li>
-            <li role="presentation"><a role="menuitem" tabindex="-1" href="#">Больше</a></li>
-            <li role="presentation"><a role="menuitem" tabindex="-1" href="#">Меньше</a></li>
+            <li role="presentation">
+            <%= link_to "Больше",
+                  sort_comts_desc_list_path, remote: true %>
+            </li>
+            <li role="presentation">
+            <%= link_to "Меньше",
+                  sort_comts_asc_list_path, remote: true %>
+            </li>
             <li role="presentation" class="dropdown-header">По дате</li>
-            <li role="presentation"><a role="menuitem" tabindex="-1" href="#">Новое</a></li>
-            <li role="presentation"><a role="menuitem" tabindex="-1" href="#">Старое</a></li>
+            <li role="presentation">
+            <%= link_to "Новое",
+                  sort_time_desc_list_path, remote: true %>
+            </li>
+            <li role="presentation">
+              <%= link_to "Старое",
+                  sort_time_asc_list_path, remote: true %>
+            </li>
           </ul>
         </div>
         </div>
@@ -46,11 +67,12 @@
     <ol class="listitem" id="items_<%= @list.id %>">
       <%= render @items.order(rating: :desc) %>
     </ol>
-    <%= will_paginate @items %>
-    <span id="show_more_link">
-    <%= link_to 'Показать больше', list_path(:page => @items.next_page), :class => 'load-more-posts', :remote => true%>
-    </span>
-    <%= @items.total_pages %>
+
+    <div id="more_items">
+      <%= link_to "Показать больше...", list_path(:page => @items.next_page), remote: true %>
+    </div>
+
+
 
     </br>
   <!-- Button trigger modal -->
@@ -73,8 +95,10 @@
   </span>
   <div class="row">
   <span id="list_comment">
-    <% @list.comments.each do |comment| %><br>
+    <% @list.comments.each do |comment| %>
+
     <%= render "comments/list_comments", comment: comment %>
+
     <% end %>
     </span>
   </div>

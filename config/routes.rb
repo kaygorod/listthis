@@ -3,7 +3,18 @@ Rails.application.routes.draw do
   devise_for :users, path_names: {sign_in:"login", sign_out:"logout"}
   get 'static_pages/help'
   resources :lists do
+    member do
+      get 'sort_time_desc'
+      get 'sort_time_asc'
+      get 'sort_comts_desc'
+      get 'sort_comts_asc'
+      get 'sort_rating_desc'
+      get 'sort_rating_asc'
+    end
     resources :items do
+      member do
+        get 'item_comments'
+      end
       resources :votes do
         post 'like', on: :member
       end
