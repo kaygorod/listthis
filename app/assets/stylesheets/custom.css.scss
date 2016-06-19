@@ -1,16 +1,13 @@
 // "bootstrap-sprockets" must be imported before "bootstrap" and "bootstrap/variables"
 @import "bootstrap-sprockets";
 @import "bootstrap";
-
+@import "font-awesome-sprockets";
+@import "font-awesome";
 
 /* universal */
 
 html {
   overflow-y: scroll;
-}
-
-body {
-  padding-top: 60px;
 }
 
 section {
@@ -24,10 +21,8 @@ textarea {
 .right-block {
   display: block;
   float:right;
-  margin-top:5px;
+  margin-top:2em;
 }
-
-
 
 
 /* list */

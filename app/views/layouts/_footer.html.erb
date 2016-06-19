@@ -1,17 +1,19 @@
 <footer class="footer">
-  <small>
-    <a href="#">© ListThis! 2016</a>
-  </small>
-  <nav>
-    <ul>
-      <li><%= link_to "About",   '#' %></li>
-      <li><%= link_to "Contact", '#' %></li>
-      <li><%= link_to "Help",    help_path %></li>
-    </ul>
-  </nav>
+  <div class="container">
+    <small>
+      <a href="#">© ListThis! 2016</a>
+    </small>
+    <nav>
+      <ul>
+        <li><%= link_to "About",   '#' %></li>
+        <li><%= link_to "Contact", '#' %></li>
+        <li><%= link_to "Help",    help_path %></li>
+      </ul>
+    </nav>
+  </div>
   <script type="text/javascript">
     $(function () {
         $("[rel='tooltip']").tooltip();
     });
-</script>
+  </script>
 </footer>
