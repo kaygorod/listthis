@@ -5,7 +5,7 @@ lock '3.5.0'
 # Project configuration options
 # ------------------------------
 
-set :application,    'slylist'
+set :application,    'ListThis'
 set :login,          'kaygorod'
 set :user,           'hosting_kaygorod'
 
@@ -39,7 +39,7 @@ set :linked_dirs, %w(bin log tmp/cache tmp/pids vendor/bundle public/system)
 # set :keep_releases, 5
 
 # Configure RVM
-set :rvm_ruby_version, '2.2.1'
+set :rvm_ruby_version, '2.2'
 
 # You unlikely have to change below this line
 # -----------------------------------------------------------------------------
