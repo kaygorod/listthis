@@ -57,7 +57,20 @@ GEM
       i18n
       rake (>= 10.0.0)
       sshkit (>= 1.9.0)
+    capistrano-bower (1.1.0)
+      capistrano (~> 3.0)
+    capistrano-bundler (1.1.4)
+      capistrano (~> 3.1)
+      sshkit (~> 1.2)
     capistrano-harrow (0.5.1)
+    capistrano-passenger (0.2.0)
+      capistrano (~> 3.0)
+    capistrano-rails (1.1.7)
+      capistrano (~> 3.1)
+      capistrano-bundler (~> 1.1)
+    capistrano-rvm (0.1.2)
+      capistrano (~> 3.0)
+      sshkit (~> 1.2)
     capybara (2.7.1)
       addressable
       mime-types (>= 1.16)
@@ -244,6 +257,11 @@ DEPENDENCIES
   byebug
   cancancan (~> 1.10)
   capistrano
+  capistrano-bower
+  capistrano-bundler
+  capistrano-passenger
+  capistrano-rails
+  capistrano-rvm
   capybara
   carrierwave
   coffee-rails (~> 4.1.0)
