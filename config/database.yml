@@ -26,6 +26,6 @@ production:
   database: kaygorod_listt72
   username: kaygorod_listt72
   password: 2iSevwfC
-  host: localhost
+  host: postgresql7.locum.ru
   pool: 50
   timeout: 100000
