@@ -5,9 +5,9 @@ lock '3.5.0'
 # Project configuration options
 # ------------------------------
 
-set :application, 'app'
+set :application, 'listthis'
 set :repo_url, "git@github.com:kaygorod/listthis.git"
-set :deploy_to, "/var/www/#{fetch(:application)}"
+set :deploy_to, "/var/www/slylist.com"
 set :linked_files, fetch(:linked_files, []).push('config/database.yml')
 set :linked_dirs, fetch(:linked_dirs, []).push('bin', 'log', 'tmp/pids', 'tmp/cache', 'tmp/sockets', 'vendor/bundle', 'public/uploads')
 set :bundle_binstubs, -> { shared_path.join('bin') }
