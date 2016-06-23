@@ -10,7 +10,6 @@
 /tmp
 
 # Игнорирование прочих ненужных файлов.
-database.yml
 doc/
 *.swp
 *~
@@ -18,3 +17,7 @@ doc/
 .DS_Store
 .idea
 .secret
+/config/database.yml # доступ к базе данных
+/Procfile
+/config/deploy/ # файлы Capistrano
+/shared/ # файлы, которых нет в репозитории, но они будут скопированы на сервер при первом деплое приложения
