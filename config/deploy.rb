@@ -14,7 +14,7 @@ set :bundle_binstubs, -> { shared_path.join('bin') }
 set :keep_releases, 3
 
 namespace :deploy do
-  %w[unicorn resque].each do |service|
+  %w[unicorn].each do |service|
     namespace service do
       %w[up down restart status].each do |command|
         desc "#{command.capitalize} #{service}"
@@ -28,5 +28,4 @@ namespace :deploy do
   end
 
   after :finished, 'unicorn:restart'
-  after :finished, 'resque:restart'
 end
