@@ -4,13 +4,14 @@ class ListsController < ApplicationController
 
 
   def show
+    @list = List.find(params[:id])
     list_items
+    @list.views += 1
+    @list.save
     respond_to do |format|
         format.html
         format.js
       end
-    @list.views += 1
-    @list.save
   end
 
   def index
@@ -86,7 +87,6 @@ private
 
   def list_items
     @current_ip = request.remote_ip
-    @list = List.find(params[:id])
     @items = @list.items.all.paginate(page: params[:page], :per_page => 5)
   end
 
