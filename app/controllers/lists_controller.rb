@@ -4,7 +4,6 @@ class ListsController < ApplicationController
 
 
   def show
-    @list = List.find(params[:id])
     list_items
     @list.views += 1
     @list.save
@@ -50,7 +49,7 @@ end
 
 
   def destroy
-    @list = List.find(params[:list_id])
+    @list = List.find(params[:id])
     if @list.present?
        @list.destroy
     end
@@ -86,6 +85,7 @@ end
 private
 
   def list_items
+    @list = List.find(params[:id])
     @current_ip = request.remote_ip
     @items = @list.items.all.paginate(page: params[:page], :per_page => 5)
   end
