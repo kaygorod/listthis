@@ -38,6 +38,7 @@ class ItemsController < ApplicationController
       @item = @list.items.build(item_params)
       @item.user_id = current_user.id
       @item.rating = '0'
+      @item.comts = '0'
     if @item.save
       respond_to do |format|
         format.html { redirect_to @list}
