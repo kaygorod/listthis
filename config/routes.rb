@@ -11,6 +11,9 @@ Rails.application.routes.draw do
       get 'sort_rating_desc'
       get 'sort_rating_asc'
     end
+    member do
+        get 'iframe'
+      end
     resources :items do
       member do
         get 'item_comments'

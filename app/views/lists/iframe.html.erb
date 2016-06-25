@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title><%= full_title(yield(:title)) %></title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <%= stylesheet_link_tag    'application', media: 'all',
+                               'data-turbolinks-track' => true %>
+    <%= javascript_include_tag 'application',
+                               'data-turbolinks-track' => true %>
+    <%= csrf_meta_tags %>
+    <%= render 'layouts/shim' %>
+  </head>
+  <body>
+  <div class="container-fluid">
+      <% flash.each do |key, value| %>
+        <div class="alert alert-<%= key %> alert-dismissible">
+          <%= value %>
+          <button type="button" class="close" data-dismiss="alert">
+            <span aria-hidden="true">&times;</span>
+            <span class="sr-only">Close</span>
+          </button>
+        </div>
+      <% end %>
+      <p class="notice"><%= notice %></p>
+      <p class="alert"><%= alert %></p>
+      <div class="">
+        <%= render 'list_description' %>
+        <!-- Nav tabs -->
+        <ul class="nav nav-tabs" role="tablist">
+          <li class="active">
+            <a href="#items" role="tab" data-toggle="tab">Пункты
+            <span class="badge"> <%= @list.items.count %></span></a>
+          </li>
+          <li>
+            <a href="#queue" role="tab" data-toggle="tab">На утверждении</a>
+          </li>
+        </ul>
+
+        <!-- Tab panes -->
+        <div class="tab-content">
+          <div class="tab-pane active" id="items">
+          </br>
+            <div class="row">
+            <div class="col-xs-12 col-sm-6 col-md-8">
+              <div class="dropdown">
+                <button class="btn btn-default btn-xs dropdown-toggle" type="button" id="dropdownMenu10" rel="tooltip" data-toggle="dropdown" data-placement="top" title="Изменить сортировку">
+                  Сортировка
+                  <span class="caret"></span>
+                </button>
+                <ul class="dropdown-menu" role="menu" aria-labelledby="dropdownMenu10">
+                  <li role="presentation">
+                    <%= link_to "По умолчанию",
+                        sort_rating_desc_list_path, remote: true %>
+                  </li>
+                  <li role="presentation" class="dropdown-header">По рейтингу</li>
+                  <li role="presentation">
+                    <%= link_to "Больше",
+                        sort_rating_desc_list_path, remote: true %>
+                  </li>
+                  <li role="presentation">
+                    <%= link_to "Меньше",
+                        sort_rating_asc_list_path, remote: true %>
+                  </li>
+                  <li role="presentation" class="dropdown-header">По комментариям</li>
+                  <li role="presentation">
+                  <%= link_to "Больше",
+                        sort_comts_desc_list_path, remote: true %>
+                  </li>
+                  <li role="presentation">
+                  <%= link_to "Меньше",
+                        sort_comts_asc_list_path, remote: true %>
+                  </li>
+                  <li role="presentation" class="dropdown-header">По дате</li>
+                  <li role="presentation">
+                  <%= link_to "Новое",
+                        sort_time_desc_list_path, remote: true %>
+                  </li>
+                  <li role="presentation">
+                    <%= link_to "Старое",
+                        sort_time_asc_list_path, remote: true %>
+                  </li>
+                </ul>
+              </div>
+              </div>
+            </div>
+            </br>
+        <button class="btn btn-primary btn-lg btn-block" data-toggle="modal" data-target="#myModal">
+          Добавить пункт
+        </button>
+        </br>
+
+          <ol class="listitem" id="items_<%= @list.id %>">
+            <%= render @items.order(rating: :desc) %>
+          </ol>
+
+          <div id="more_items">
+            <%= link_to "Показать больше...", list_path(:page => @items.next_page), remote: true %>
+          </div>
+
+
+
+          </br>
+        <!-- Button trigger modal -->
+
+        <button class="btn btn-primary btn-lg btn-block" data-toggle="modal" data-target="#myModal">
+          Добавить пункт
+        </button>
+        <% if signed_in? %>
+
+          <%= render 'items/item_form' %>
+
+        <% else %>
+          <%= render 'shared/new_session_modal' %>
+        <% end %>
+
+
+        <br>Комментарии:<br>
+        <span id="list_<%=@list.id%>_comments_form">
+        <%= render "comments/list_comments_form" %>
+        </span>
+        <div class="row">
+        <span id="list_comment">
+          <% @list.comments.each do |comment| %>
+
+          <%= render "comments/list_comments", comment: comment %>
+
+          <% end %>
+          </span>
+        </div>
+
+        </div>
+          <div class="tab-pane" id="queue"></br>
+            <p> Нет пунктов ожидающих утверждения</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>
+

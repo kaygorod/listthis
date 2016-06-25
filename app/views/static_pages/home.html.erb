@@ -1,22 +1,11 @@
-<h1>Все списки</h1>
+<h1>Список списков</h1>
 <table>
 
   <% @lists.each do |list| %>
     <tr>
-      <td><%= link_to list.title, list_path(list)%></td>
-      <td><%= list.items.count %> Пунктов </td>
-      <td><%= list.image %></td>
-      <td><%= link_to list.user.username, user_path(list.user) %></td>
-      <td><% list.items.each do |item|%>
-  <%= item.user.username %>
-  <% end %></td>
+      <td><%= link_to list.title, list_path(list)%> | </td>
+      <td><%= list.items.count %> Пунктов | </td>
+      <td> Автор <%= link_to list.user.username, user_path(list.user) %></td>
     </tr>
   <% end %>
 </table>
-
-
-<table>
-
-<h1>Виджет</h1>
-<script src="http://localhost:3000/lists/1/items/5.js" type="text/javascript"></script>
-

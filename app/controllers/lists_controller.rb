@@ -1,9 +1,20 @@
 class ListsController < ApplicationController
   before_action :authenticate_user!, only: [:create, :edit, :destroy]
   before_action :correct_user,       only: [:destroy, :edit]
+  layout false, only: [:iframe]
 
 
   def show
+    list_items
+    @list.views += 1
+    @list.save
+    respond_to do |format|
+        format.html
+        format.js
+      end
+  end
+
+  def iframe
     list_items
     @list.views += 1
     @list.save

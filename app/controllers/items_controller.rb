@@ -1,6 +1,7 @@
 class ItemsController < ApplicationController
   before_action :authenticate_user!, only: [:create, :edit, :destroy]
   before_action :correct_user,       only: [:destroy, :edit]
+  protect_from_forgery except: :show
 
   def show
     @item = Item.find(params[:id])
