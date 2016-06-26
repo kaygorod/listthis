@@ -6,7 +6,6 @@ class ItemsController < ApplicationController
   def show
     @item = Item.find(params[:id])
     @list = List.find(params[:list_id])
-    redirect_to @list
   end
 
   def item_comments

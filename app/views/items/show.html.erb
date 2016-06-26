@@ -6,7 +6,4 @@
 <% provide(:image, @item.image) %>
 <% provide(:desc, @item.description) %>
 
-
-<h2><a name="<%= (@item.id) %>"></a><%= @item.title %></h2>
-<p><img src="<%= (@item.image_url) %>" alt="..." class="img-responsive"></p>
-<span><%= simple_format(@item.description) %></span>
+<script> location.href = "<%= list_path(@list) %>"; </script>
