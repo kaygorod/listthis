@@ -9,6 +9,15 @@
     <meta property="og:type" content="website"/>
     <meta property="og:url" content= "<%= absolute_url %>" />
     <meta property="og:site_name" content="SlyList" />
+
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="<%= full_title(yield(:title)) %>" />
+    <meta name="twitter:description" content="<%=yield(:desc)%>" />
+    <meta name="twitter:image:src" content="http://slylist.com<%=yield(:image)%>" />
+    <meta name="twitter:domain" content="slylist.com" />
+
+
+
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <%= stylesheet_link_tag    'application', media: 'all',
                                'data-turbolinks-track' => true %>

@@ -1,6 +1,7 @@
 class ItemsController < ApplicationController
   before_action :authenticate_user!, only: [:create, :edit, :destroy]
   before_action :correct_user,       only: [:destroy, :edit]
+  layout false, only: [:show]
 
 
   def show

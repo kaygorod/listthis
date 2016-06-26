@@ -1,9 +1,26 @@
-<% if @item.title? %>
-  <% provide(:title, @item.title) %>
-<% else %>
-  <% provide(:title, @list.title) %>
-<% end %>
-<% provide(:image, @item.image) %>
-<% provide(:desc, @item.description) %>
-
-<script> location.href = "<%= list_path(@list) %>"; </script>
+<!DOCTYPE html>
+<html>
+  <head>
+    <title><%= full_title(yield(:title)) %></title>
+    <meta property="og:title" content="<%= full_title(yield(:title)) %>"/>
+    <meta property="og:description" content="<%= @item.description %>"/>
+    <meta property="og:image" content="http://slylist.com<%= @item.image %>">
+    <meta property="og:type" content="website"/>
+    <meta property="og:url" content= "<%= absolute_url %>" />
+    <meta property="og:site_name" content="SlyList" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="<%= full_title(yield(:title)) %>" />
+    <meta name="twitter:description" content="<%= @item.description %>" />
+    <meta name="twitter:image:src" content="http://slylist.com<%= @item.image %>" />
+    <meta name="twitter:domain" content="slylist.com" />
+    <meta name="robots" content="noindex" />
+  </head>
+  <body>
+    <% if @item.title? %>
+      <% provide(:title, @item.title) %>
+    <% else %>
+      <% provide(:title, @list.title) %>
+    <% end %>
+    <script> location.href = "<%= list_path(@list) %>#<%= @item.id %>"; </script>
+  </body>
+</html>
