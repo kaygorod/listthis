@@ -59,12 +59,12 @@
 <%= simple_format(@list.description) %>
 <p>
 <!-- Button trigger modal -->
-<button class="btn btn-default btn-xs" data-toggle="modal" data-target="#myModal">
+<button class="btn btn-default btn-xs" data-toggle="modal" data-target="#modalIframe">
   <i class="fa fa-code" aria-hidden="true"></i> Встроить список
 </button>
 
 <!-- Modal -->
-<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+<div class="modal fade" id="modalIframe" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
   <div class="modal-dialog">
     <div class="modal-content">
       <div class="modal-header">
@@ -74,8 +74,8 @@
       <div class="modal-body">
         <div class="form-group">
           <label for="exampleInputPassword1">Ваш код фрейма:</label>
-          <textarea class="form-control" rows="2"><iframe src='http://slylist/lists/<%= @list.id %>/iframe' seamless width=700 height=2500 style='border:none' scrolling=''></iframe></textarea>
-          <p class="help-block">Этот код необходимо вставить на страницу вашего сайта. По-умолчанию список иммет ширину 700 пикселей и высоту 2500 пикселей. Чтобы список выглядел наиболее красиво на вашем сайте и не выступал за границы, измените вручную ширину(width) и высоту(height)</p>
+          <textarea class="form-control" rows="2"><iframe src='http://slylist.com/lists/<%= @list.id %>/iframe' seamless width=100% height=2500 style='border:none' scrolling=''></iframe></textarea>
+          <p class="help-block">Этот код необходимо вставить на страницу вашего сайта. Если список отображается некорректно, то измените вручную ширину(width) и высоту(height)</p>
         </div>
       </div>
     </div>
