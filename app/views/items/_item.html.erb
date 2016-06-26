@@ -33,6 +33,33 @@
   <% end %>
   </br>
   <div class="row">
+    <div class="col-xs-12">
+      <a rel="nofollow"
+         href="#"
+         onclick="window.open('https://www.facebook.com/sharer/sharer.php?u=http://slylist.com/lists/<%=@list.id%>/items/<%=item.id%>/&t=<%=item.title%>', '_blank', 'scrollbars=0, resizable=1, menubar=0, left=200, top=200, width=550, height=440, toolbar=0, status=0');return false"
+         target="_blank"
+         title="Поделиться в Фейсбуке">Фейс</a>
+      <a rel="nofollow"
+         href="#"
+         onclick="window.open('https://vk.com/share.php?url=http://slylist.com/lists/<%=@list.id%>/items/<%=item.id%>/', '_blank', 'scrollbars=0, resizable=1, menubar=0, left=200, top=200, width=550, height=440, toolbar=0, status=0');return false"
+         target="_blank"
+         title="Поделиться в Вконтакте">
+         ВК</a>
+      <a rel="nofollow"
+         href="#"
+         onclick="window.open('https://twitter.com/intent/tweet?text=<%=item.title%>&url=http://slylist.com/lists/<%=@list.id%>/items/<%=item.id%>/&counturl=http://slylist.com/lists/<%=@list.id%>/items/<%=item.id%>/', '_blank', 'scrollbars=0, resizable=1, menubar=0, left=200, top=200, width=550, height=440, toolbar=0, status=0');return false"
+         target="_blank"
+         title="Поделиться в Твиттере">
+         Твит</a>
+      <a rel="nofollow"
+         href="#"
+         onclick="window.open('https://plus.google.com/share?url=http://slylist.com/lists/<%=@list.id%>/items/<%=item.id%>/', '_blank', 'scrollbars=0, resizable=1, menubar=0, left=200, top=200, width=550, height=440, toolbar=0, status=0');return false"
+         target="_blank"
+         title="Плюсануть в Гугле">
+         G+</a>
+    </div>
+  </div>
+  <div class="row">
     <div class="col-xs-4">
       <span id="voting_item_<%=item.id%>">
         <%= render "votes/voting", item: item %>

@@ -38,5 +38,14 @@ Rails.application.configure do
 
   # Raises error for missing translations
   # config.action_view.raise_on_missing_translations = true
-  config.action_mailer.default_url_options = { host: 'localhost', port: 3000}
+  config.action_mailer.default_url_options = { host: 'localhost', port: 3000, :from => 'no-replay@slylist.com' }
+  config.action_mailer.delivery_method = :smtp
+  config.action_mailer.smtp_settings = {
+    :address => "smtp.yandex.ru",
+    :port => 587,
+    :domain => 'slylist.com',
+    :authentication => :plain,
+    :user_name => 'no-replay@slylist.com',
+    :password => '1ch39js39ds903s'
+  }
 end

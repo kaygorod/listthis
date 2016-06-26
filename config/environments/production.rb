@@ -78,11 +78,14 @@ Rails.application.configure do
   config.active_record.dump_schema_after_migration = false
 
 
-  config.action_mailer.default_url_options = {:host => 'slylist.com'}
+  config.action_mailer.default_url_options = {:host => 'slylist.com', :from => 'no-replay@slylist.com'}
   config.action_mailer.delivery_method = :smtp
   config.action_mailer.smtp_settings = {
-    :address => "127.0.0.1",
-    :port    => 25,
-    :domain  => 'slylist.com'
+    :address => "smtp.yandex.ru",
+    :port => 587,
+    :domain => 'slylist.com',
+    :authentication => :plain,
+    :user_name => 'no-replay@slylist.com',
+    :password => '1ch39js39ds903s'
   }
 end
