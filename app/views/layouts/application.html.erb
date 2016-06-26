@@ -2,6 +2,13 @@
 <html>
   <head>
     <title><%= full_title(yield(:title)) %></title>
+
+    <meta property="og:title" content="<%= full_title(yield(:title)) %>"/>
+    <meta property="og:description" content="<%=yield(:desc)%>"/>
+    <meta property="og:image" content="http://slylist.com<%=yield(:image)%>">
+    <meta property="og:type" content="website"/>
+    <meta property="og:url" content= "<%= absolute_url %>" />
+    <meta property="og:site_name" content="SlyList" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <%= stylesheet_link_tag    'application', media: 'all',
                                'data-turbolinks-track' => true %>
@@ -26,6 +33,7 @@
       <p class="alert"><%= alert %></p>
       <%= yield %>
     </div>
+
     <%= render 'layouts/footer' %>
   </body>
 </html>

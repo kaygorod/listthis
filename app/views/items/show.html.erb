@@ -1,0 +1,12 @@
+<% if @item.title? %>
+  <% provide(:title, @item.title) %>
+<% else %>
+  <% provide(:title, @list.title) %>
+<% end %>
+<% provide(:image, @item.image) %>
+<% provide(:desc, @item.description) %>
+
+
+<h2><a name="<%= (@item.id) %>"></a><%= @item.title %></h2>
+<p><img src="<%= (@item.image_url) %>" alt="..." class="img-responsive"></p>
+<span><%= simple_format(@item.description) %></span>
