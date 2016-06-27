@@ -85,7 +85,7 @@ Rails.application.configure do
     :port => 587,
     :domain => 'slylist.com',
     :authentication => :plain,
-    :user_name => 'no-replay@slylist.com',
+    :user_name => 'no-reply@slylist.com',
     :password => '1ch39js39ds903s'
   }
 end
