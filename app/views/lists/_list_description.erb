@@ -55,30 +55,40 @@
 <p>
     <img src="<%= (@list.image_url) %>" alt="<%= @list.title %>"
                                         class="img-responsive">
+
 </p>
 <%= simple_format(@list.description) %>
 <p>
-<!-- Button trigger modal -->
-<button class="btn btn-default btn-xs" data-toggle="modal" data-target="#modalIframe">
-  <i class="fa fa-code" aria-hidden="true"></i> Встроить список
-</button>
+<div class="row">
+  <div class="col-xs-12">
+    <div class="row-list-footer">
+      <!-- Button trigger modal -->
+      <button class="btn btn-default btn-xs" data-toggle="modal" data-target="#modalIframe">
+        <i class="fa fa-code" aria-hidden="true"></i> Встроить список
+      </button>
 
-<!-- Modal -->
-<div class="modal fade" id="modalIframe" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-  <div class="modal-dialog">
-    <div class="modal-content">
-      <div class="modal-header">
-        <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
-        <h4 class="modal-title" id="myModalLabel">Встраивание списка на ваш сайт</h4>
-      </div>
-      <div class="modal-body">
-        <div class="form-group">
-          <label for="exampleInputPassword1">Ваш код фрейма:</label>
-          <textarea class="form-control" rows="2"><iframe src='http://slylist.com/lists/<%= @list.id %>/iframe' seamless width=100% height=2500 style='border:none' scrolling=''></iframe></textarea>
-          <p class="help-block">Этот код необходимо вставить на страницу вашего сайта. Если список отображается некорректно, то измените вручную ширину(width) и высоту(height)</p>
+      <!-- Modal -->
+      <div class="modal fade" id="modalIframe" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+          <div class="modal-content">
+            <div class="modal-header">
+              <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+              <h4 class="modal-title" id="myModalLabel">Встраивание списка на ваш сайт</h4>
+            </div>
+            <div class="modal-body">
+              <div class="form-group">
+                <label for="exampleInputPassword1">Ваш код фрейма:</label>
+                <textarea class="form-control" rows="2"><iframe src='http://slylist.com/lists/<%= @list.id %>/iframe' seamless width=100% height=2500 style='border:none' scrolling=''></iframe></textarea>
+                <p class="help-block">Этот код необходимо вставить на страницу вашего сайта. Если список отображается некорректно, то измените вручную ширину(width) и высоту(height)</p>
+              </div>
+            </div>
+          </div>
         </div>
+      </div>
+      <div class="pull-right">
+        <%= render "list_share" %>
       </div>
     </div>
   </div>
 </div>
-
+<br>

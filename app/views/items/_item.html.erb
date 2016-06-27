@@ -33,63 +33,40 @@
   <% end %>
   </br>
   <div class="row">
-    <div class="col-xs-12">
-      <a rel="nofollow"
-         href="#"
-         onclick="window.open('https://www.facebook.com/sharer/sharer.php?u=http://slylist.com/lists/<%=@list.id%>/items/<%=item.id%>/&t=<%=item.title%>', '_blank', 'scrollbars=0, resizable=1, menubar=0, left=200, top=200, width=550, height=440, toolbar=0, status=0');return false"
-         target="_blank"
-         title="Поделиться в Фейсбуке">Фейс</a>
-      <a rel="nofollow"
-         href="#"
-         onclick="window.open('https://vk.com/share.php?url=http://slylist.com/lists/<%=@list.id%>/items/<%=item.id%>/', '_blank', 'scrollbars=0, resizable=1, menubar=0, left=200, top=200, width=550, height=440, toolbar=0, status=0');return false"
-         target="_blank"
-         title="Поделиться в Вконтакте">
-         ВК</a>
-      <a rel="nofollow"
-         href="#"
-         onclick="window.open('https://twitter.com/intent/tweet?text=<%=item.title%>&url=http://slylist.com/lists/<%=@list.id%>/items/<%=item.id%>/&counturl=http://slylist.com/lists/<%=@list.id%>/items/<%=item.id%>/', '_blank', 'scrollbars=0, resizable=1, menubar=0, left=200, top=200, width=550, height=440, toolbar=0, status=0');return false"
-         target="_blank"
-         title="Поделиться в Твиттере">
-         Твит</a>
-      <a rel="nofollow"
-         href="#"
-         onclick="window.open('https://plus.google.com/share?url=http://slylist.com/lists/<%=@list.id%>/items/<%=item.id%>/', '_blank', 'scrollbars=0, resizable=1, menubar=0, left=200, top=200, width=550, height=440, toolbar=0, status=0');return false"
-         target="_blank"
-         title="Плюсануть в Гугле">
-         G+</a>
-    </div>
-  </div>
-  <div class="row">
-    <div class="col-xs-4">
-      <span id="voting_item_<%=item.id%>">
-        <%= render "votes/voting", item: item %>
-      </span>
-      <small class="text-muted">
-        Очки: <b id="rating_item_<%=item.id%>"><%= item.rating %></b>/
-        Голосов: <%= item.votes.count %>
-      </small>
-    </div>
-    <div class="col-xs-8">
-      <div class="pull-right">
-        <small class="text-muted">
-          <%= link_to "Комментарии:", item_comments_list_item_path(@list.id, :id => item.id), remote: true %>
-          <b id="comments_item_<%=item.id%>_count"><%= item.comments.count %></b>
-        </small>
+  <div class="col-xs-12">
+    <div class="row-item-footer">
+      <div class="item-footer-lb">
+        <div class="vertical-centr-block">
+          <span id="voting_item_<%=item.id%>">
+            <%= render "votes/voting", item: item %>
+          </span>
+        </div>
+        <div class="vote-stat vertical-centr-block">
+          <span rel="tooltip" title="Общее количество очков этого пункта">Очки:
+          <b id="rating_item_<%=item.id%>"><%= item.rating %></b> </span>/
+          <span rel="tooltip" title="Столько человек проголосвало за этот пункт">Проголосовало:
+          <b id="vote_count_item_<%=item.id%>"><%= item.votes.count %></b></span>
+        </div>
+      </div>
+      <div class="item-footer-rb pull-right">
+        <div class="item-footer-commts"  rel="tooltip" title="Почитать комментарии или написать свой">
+            <i class="fa fa-comment-o fa-lg" aria-hidden="true"></i>
+            <%= link_to "Комментарии:", item_comments_list_item_path(@list.id, :id => item.id), remote: true, class:'link-item-nd' %>
+            <b id="comments_item_<%=item.id%>_count"><%= item.comments.count %></b>
+        </div>
+        <div class="vertical-centr-bl">
+          <%= render "items/item_share", item:item %>
+        </div>
       </div>
     </div>
+    </div>
   </div>
-
-
   <hr class="line-item">
   <span id="item_<%=item.id%>_comments_form">
-
   </span>
   <div id="item_comment_<%=item.id%>" class="row">
-<span id="ajax_comments_item_<%=item.id%>">
-
-
+    <span id="ajax_comments_item_<%=item.id%>">
     </span>
-    </div>
-
+  </div>
 </li>
 

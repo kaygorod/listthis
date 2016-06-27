@@ -1,0 +1,36 @@
+<span rel="tooltip" title="Поделиться в Фейсбуке">
+   <a rel="nofollow"
+      href="#"
+      onclick="window.open('https://www.facebook.com/sharer/sharer.php?u=http://slylist.com/lists/<%=@list.id%>/items/<%=item.id%>/&t=<%=item.title%>', '_blank', 'scrollbars=0, resizable=1, menubar=0, left=200, top=200, width=550, height=440, toolbar=0, status=0');return false"
+      target="_blank"
+      class="link-item-nd">
+         <i class="fa fa-facebook-official fa-lg fa-fw" aria-hidden="true"></i>
+   </a>
+</span>
+<span rel="tooltip" title="Рссказать Вконтакте">
+   <a rel="nofollow"
+      href="#"
+      onclick="window.open('https://vk.com/share.php?url=http://slylist.com/lists/<%=@list.id%>/items/<%=item.id%>/', '_blank', 'scrollbars=0, resizable=1, menubar=0, left=200, top=200, width=550, height=440, toolbar=0, status=0');return false"
+      target="_blank"
+      class="link-item-nd">
+      <i class="fa fa-vk fa-lg fa-fw" aria-hidden="true"></i>
+   </a>
+</span>
+<span rel="tooltip" title="Твитнуть!">
+   <a rel="nofollow"
+      href="#"
+      onclick="window.open('https://twitter.com/intent/tweet?text=<%=item.title%>&url=http://slylist.com/lists/<%=@list.id%>/items/<%=item.id%>/&counturl=http://slylist.com/lists/<%=@list.id%>/items/<%=item.id%>/', '_blank', 'scrollbars=0, resizable=1, menubar=0, left=200, top=200, width=550, height=440, toolbar=0, status=0');return false"
+      target="_blank"
+      class="link-item-nd">
+      <i class="fa fa-twitter fa-lg fa-fw" aria-hidden="true"></i>
+   </a>
+</span>
+<span rel="tooltip" title="Плюсануть!">
+   <a rel="nofollow"
+      href="#"
+      onclick="window.open('https://plus.google.com/share?url=http://slylist.com/lists/<%=@list.id%>/items/<%=item.id%>/', '_blank', 'scrollbars=0, resizable=1, menubar=0, left=200, top=200, width=550, height=440, toolbar=0, status=0');return false"
+      target="_blank"
+      class="link-item-nd">
+      <i class="fa fa-google-plus fa-lg fa-fw" aria-hidden="true"></i>
+   </a>
+</span>

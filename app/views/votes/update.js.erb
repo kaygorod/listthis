@@ -1,2 +1,3 @@
 $("#voting_item_<%=@item.id%>").html("<%= escape_javascript render('votes/revote', item: @item) %>");
 $("#rating_item_<%=@item.id%>").html("<%= @item.rating %>");
+$("#vote_count_item_<%=@item.id%>").html("<%= @item.votes.count %>");
