@@ -29,11 +29,11 @@ class ListsController < ApplicationController
   end
 
   def edit
-    @list = List.find(params[:id])
+    @list = List.friendly.find(params[:id])
   end
 
   def update
-    @list = List.find(params[:id])
+    @list = List.friendly.find(params[:id])
     if @list.update_attributes(list_params)
       flash[:success] = "Изменения сохранены!"
       redirect_to @list
@@ -96,7 +96,7 @@ end
 private
 
   def list_items
-    @list = List.find(params[:id])
+    @list = List.friendly.find(params[:id])
     @current_ip = request.remote_ip
     @items = @list.items.all.paginate(page: params[:page], :per_page => 5)
   end
@@ -106,7 +106,7 @@ private
   end
 
   def correct_user
-    @list = current_user.lists.find(params[:id])
+    @list = current_user.lists.friendly.find(params[:id])
     if @list.nil?
       redirect_to root_path
     end

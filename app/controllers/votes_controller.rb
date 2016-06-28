@@ -3,7 +3,7 @@ before_action :correct_user, only: [:destroy, :update]
 
 
   def create
-    @list = List.find(params[:list_id])
+    @list = List.friendly.find(params[:list_id])
     @item = Item.find(params[:item_id])
     @vote = @item.votes.build(vote_params)
     if signed_in?
@@ -28,7 +28,7 @@ before_action :correct_user, only: [:destroy, :update]
 
 
   def update
-    @list = List.find(params[:list_id])
+    @list = List.friendly.find(params[:list_id])
     @item = Item.find(params[:item_id])
     @vote = Vote.find(params[:id])
     if @vote.update_attributes(vot_params)
@@ -47,7 +47,7 @@ before_action :correct_user, only: [:destroy, :update]
   end
 
   def destroy
-    @list = List.find(params[:list_id])
+    @list = List.friendly.find(params[:list_id])
     @item = Item.find(params[:item_id])
     @vote = Vote.find(params[:id])
     if @vote.present?

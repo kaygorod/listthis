@@ -2,7 +2,7 @@
   <% [item.votes.find_by_user_id(current_user)].each do |vote| %>
     <% if vote.vot =="up"%>
       <div class="vote-block">
-      <%= form_for [item.list, item, vote], remote: true do |f| %>
+      <%= form_for [item.list, item, vote], remote: true,method: :delete do |f| %>
         <button type="submit"
                 class="fa fa-arrow-circle-o-up fa-2x vote-button bth-like-active"
                 aria-hidden="true"

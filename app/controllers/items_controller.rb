@@ -6,7 +6,7 @@ class ItemsController < ApplicationController
 
   def show
     @item = Item.find(params[:id])
-    @list = List.find(params[:list_id])
+    @list = List.friendly.find(params[:list_id])
   end
 
   def item_comments
@@ -19,12 +19,12 @@ class ItemsController < ApplicationController
   end
 
   def edit
-    @list = List.find(params[:list_id])
+    @list = List.friendly.find(params[:list_id])
     @item = Item.find(params[:id])
   end
 
   def update
-    @list = List.find(params[:list_id])
+    @list = List.friendly.find(params[:list_id])
     @item = Item.find(params[:id])
     if @item.update_attributes(item_params)
        flash[:success] = "Изменения сохранены!"
@@ -37,7 +37,7 @@ class ItemsController < ApplicationController
 
 
   def create
-      @list = List.find(params[:list_id])
+      @list = List.friendly.find(params[:list_id])
       @item = @list.items.build(item_params)
       @item.user_id = current_user.id
       @item.rating = '0'
@@ -55,7 +55,7 @@ class ItemsController < ApplicationController
   end
 
   def destroy
-    @list = List.find(params[:list_id])
+    @list = List.friendly.find(params[:list_id])
     @item = Item.find(params[:id])
     if @item.present?
        @item.destroy

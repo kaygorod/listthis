@@ -7,4 +7,6 @@ class List < ActiveRecord::Base
   validates :title, presence: true
   validates :description, presence: true
   validates :image, presence: true
+  extend FriendlyId
+    friendly_id :title, use: :slugged
 end

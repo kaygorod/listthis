@@ -78,11 +78,13 @@
 
 
     </br>
+  <% if @list.items.count > 2 %>
   <!-- Button trigger modal -->
-
   <button class="btn btn-primary btn-lg btn-block" data-toggle="modal" data-target="#myModal">
     Добавить пункт
   </button>
+  <%end%>
+
   <% if signed_in? %>
 
     <%= render 'items/item_form' %>
@@ -98,7 +100,7 @@
   </span>
   <div class="row">
   <span id="list_comment">
-    <% @list.comments.each do |comment| %>
+    <% @list.comments.where(:item_id => nil).each do |comment| %>
 
     <%= render "comments/list_comments", comment: comment %>
 

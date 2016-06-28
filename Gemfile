@@ -10,6 +10,7 @@ gem 'font-awesome-sass'
 gem 'carrierwave'
 gem 'mini_magick'
 gem 'remotipart', '~> 1.2'
+gem 'russian', '~> 0.6.0'
 
 gem 'will_paginate', '~> 3.1.0'
 
