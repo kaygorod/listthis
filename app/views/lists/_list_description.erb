@@ -86,9 +86,9 @@
         </div>
       </div>
       Участники:
-      <% @list.items.group(:user_id).each do |item| %>
-        <%= link_to item.user.username, user_path(item.user)%>
-        <%= item.user.items.count %>
+      <% @list.items.group(:user_id).each do |itus| %>
+        <%= link_to itus.user.username, user_path(itus.user)%>
+        <%= itus.user.items.count %>
       <%end%>
       <div class="pull-right">
         <%= render "list_share" %>
