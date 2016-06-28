@@ -10,7 +10,7 @@
     <meta property="og:site_name" content="SlyList" />
     <meta name="twitter:card" content="summary_large_image" />
     <meta name="twitter:title" content="<%= full_title(yield(:title)) %>" />
-    <meta name="twitter:description" content="<%= @item.description %>" />
+    <meta name="twitter:description" content="<%= truncate(@item.description, length: 100) %>" />
     <meta name="twitter:image:src" content="http://slylist.com<%= @item.image %>" />
     <meta name="twitter:domain" content="slylist.com" />
     <meta name="robots" content="noindex" />
@@ -24,3 +24,4 @@
     <script> location.href = "<%= list_path(@list) %>#<%= @item.id %>"; </script>
   </body>
 </html>
+

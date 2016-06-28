@@ -12,7 +12,7 @@
 
     <meta name="twitter:card" content="summary_large_image" />
     <meta name="twitter:title" content="<%= full_title(yield(:title)) %>" />
-    <meta name="twitter:description" content="<%=yield(:desc)%>" />
+    <meta name="twitter:description" content="<%=truncate(yield(:desc), length: 100)%>" />
     <meta name="twitter:image:src" content="http://slylist.com<%=yield(:image)%>" />
     <meta name="twitter:domain" content="slylist.com" />
 

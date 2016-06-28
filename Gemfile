@@ -10,7 +10,6 @@ gem 'font-awesome-sass'
 gem 'carrierwave'
 gem 'mini_magick'
 gem 'remotipart', '~> 1.2'
-gem 'tinymce-rails'
 
 gem 'will_paginate', '~> 3.1.0'
 
@@ -43,6 +42,7 @@ gem 'sdoc', '~> 0.4.0', group: :doc
 
 gem 'devise'
 gem 'cancancan', '~> 1.10'
+gem 'friendly_id', '~> 5.1.0'
 
 group :test do
   gem 'selenium-webdriver'
