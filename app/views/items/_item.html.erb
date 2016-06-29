@@ -50,8 +50,13 @@
       </div>
       <div class="item-footer-rb pull-right">
         <div class="item-footer-commts"  rel="tooltip" title="Почитать комментарии или написать свой">
+            <span class="visible-xs-inline">
+            <%= link_to "", item_comments_list_item_path(@list.id, :id => item.id), remote: true, class:'link-item-nd fa fa-comment-o fa-lg' %>
+            </span>
+            <span class="hidden-xs">
             <i class="fa fa-comment-o fa-lg" aria-hidden="true"></i>
             <%= link_to "Комментарии:", item_comments_list_item_path(@list.id, :id => item.id), remote: true, class:'link-item-nd' %>
+            </span>
             <b id="comments_item_<%=item.id%>_count"><%= item.comments.count %></b>
         </div>
         <div class="vertical-centr-bl">
