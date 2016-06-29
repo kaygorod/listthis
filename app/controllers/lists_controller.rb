@@ -6,6 +6,7 @@ class ListsController < ApplicationController
 
   def show
     list_items
+    @user_items = @list.items.group(:user_id)
     @list.views += 1
     @list.save
     respond_to do |format|
