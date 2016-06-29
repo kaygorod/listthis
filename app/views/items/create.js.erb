@@ -1,7 +1,6 @@
 $('#items_<%= @list.id %>').append("<%= escape_javascript(render 'items/item', item: @item) %>");
 $('#item_title').val('');
 $('#item_description').val('');
+$("html, body").animate({scrollTop: $("#item_<%= @item.id %>").offset().top});
 $('#myModal').modal('hide')
-
-
 
