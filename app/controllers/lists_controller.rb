@@ -6,7 +6,6 @@ class ListsController < ApplicationController
 
   def show
     list_items
-    @user_items = @list.items.group(:user_id)
     @list.views += 1
     @list.save
     respond_to do |format|
@@ -99,7 +98,7 @@ private
   def list_items
     @list = List.friendly.find(params[:id])
     @current_ip = request.remote_ip
-    @items = @list.items.all.paginate(page: params[:page], :per_page => 5)
+    @items = @list.items.paginate(page: params[:page], :per_page => 5)
   end
 
   def list_params

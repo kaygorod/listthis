@@ -1,7 +1,7 @@
 module ListsHelper
   def authors_items
+    Item.where("list_id = ?", @list.id).group(:user_id)
 
-    @user_items = @list.items.group(:user_id)
 
   end
 
