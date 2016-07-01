@@ -1,7 +1,8 @@
 <% if @comment.item_id? %>
   $("#comment_<%= @comment.id %>").css({backgroundColor: 'yellow'}).fadeOut(1000);
   $("#comments_item_<%=@item.id%>_count").html("<%= @item.comments.count %>");
-<% end %>
+<% else %>
 $("#list_comment_<%=@comment.id%>").css({backgroundColor: 'yellow'}).fadeOut(1000);
+<%end%>
 $("#list_comments_count").html("<%= @list.comments.count %>");
 

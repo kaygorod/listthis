@@ -60,7 +60,7 @@ end
 
 
   def destroy
-    @list = List.find(params[:id])
+    @list = List.friendly.find(params[:id])
     if @list.present?
        @list.destroy
     end
