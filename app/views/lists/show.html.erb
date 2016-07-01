@@ -99,13 +99,13 @@
   <%= render "comments/list_comments_form" %>
   </span>
   <div class="row">
-  <span id="list_comment">
+  <div id="list_comment">
     <% @list.comments.where(:item_id => nil).each do |comment| %>
 
     <%= render "comments/list_comments", comment: comment %>
 
     <% end %>
-    </span>
+    </div>
   </div>
 
   </div>
@@ -114,3 +114,14 @@
     </div>
   </div>
 </div>
+<p id="demo"></p>
+<script>
+
+
+var item = window.location.hash.replace("#","")
+document.getElementById("demo").innerHTML = item
+
+
+
+
+</script>

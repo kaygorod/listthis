@@ -98,7 +98,7 @@ private
   def list_items
     @list = List.friendly.find(params[:id])
     @current_ip = request.remote_ip
-    @items = @list.items.paginate(page: params[:page], :per_page => 5)
+    @items = @list.items.paginate(page: params[:page], :per_page => 25)
   end
 
   def list_params

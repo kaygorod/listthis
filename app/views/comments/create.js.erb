@@ -2,10 +2,21 @@
   $("#item_comment_<%=@item.id%>").append("<%= escape_javascript(render 'comments/item_comments', item: @item, comment: @comment) %>");
   $("#comments_item_<%=@item.id%>_count").html("<%= @item.comments.count %>");
   $("#item_<%=@item.id%>_comments_form").find("#comment_content").val('');
+  $("html, body").animate({scrollTop: $("#comment_<%=@comment.id%>").offset().top},2000);
+$("#comment_<%=@comment.id%>").animate({backgroundColor: 'yellow'},2000,function() {
+  $("#comment_<%=@comment.id%>").animate({backgroundColor: 'white'},2000)
+});
+
 <%else%>
   $("#list_<%=@list.id%>_comments_form").find("#comment_content").val('');
+  $("#list_comment").append("<%= escape_javascript(render 'comments/list_comments', comment: @comment) %>");
+  $("html, body").animate({scrollTop: $("#list_comment_<%=@comment.id%>").offset().top},2000);
+  $("#list_comment_<%=@comment.id%>").animate({backgroundColor: 'yellow'},2000,function() {
+  $("#list_comment_<%=@comment.id%>").animate({backgroundColor: 'white'},2000)
+});
 <% end %>
 $("#list_comments_count").html("<%= @list.comments.count %>");
-$("#list_comment").append("<%= escape_javascript(render 'comments/list_comments', comment: @comment) %>");
+
+
 
 
