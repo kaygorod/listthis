@@ -12,7 +12,7 @@
     <% end %>
     </p>
     <small class="text-muted"><%= time_ago_in_words(comment.created_at) %> назад.</small>
-    <% if current_user == comment.user %>
+    <% if can? :destroy, comment %>
       <small class="text-muted">
        <%= link_to "Удалить", list_comment_path(@list.id, comment),
                 method: :delete, data: { confirm: "Удалить комментарий?" },

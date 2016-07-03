@@ -1,4 +1,5 @@
 class Vote < ActiveRecord::Base
+  resourcify
   belongs_to :user
   belongs_to :item
   validates :item_id, presence: true

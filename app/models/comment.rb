@@ -1,4 +1,5 @@
 class Comment < ActiveRecord::Base
+  resourcify
   belongs_to :user
   belongs_to :item
   belongs_to :list

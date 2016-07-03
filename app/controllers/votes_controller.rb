@@ -1,5 +1,6 @@
 class VotesController < ApplicationController
-before_action :correct_user, only: [:destroy, :update]
+#before_action :correct_user, only: [:destroy, :update]
+load_and_authorize_resource only: [:create, :update, :destroy]
 
 
   def create

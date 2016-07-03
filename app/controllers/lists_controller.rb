@@ -1,13 +1,13 @@
 class ListsController < ApplicationController
-  before_action :authenticate_user!, only: [:create, :edit, :destroy]
-  before_action :correct_user,       only: [:destroy, :edit]
+  load_and_authorize_resource :find_by => :slug, only: [:new, :create, :edit, :update, :destroy]
+  before_action :authenticate_user!, only: [:new, :create, :edit, :update, :destroy]
+  #before_action :correct_user,       only: [:destroy, :edit]
   layout false, only: [:iframe]
 
 
   def show
     list_items
-    @list.views += 1
-    @list.save
+    views
     respond_to do |format|
         format.html
         format.js
@@ -16,17 +16,16 @@ class ListsController < ApplicationController
 
   def iframe
     list_items
-    @list.views += 1
-    @list.save
+    views
     respond_to do |format|
-        format.html
-        format.js
-      end
+      format.html
+      format.js
+    end
   end
 
-  def index
-    @lists = List.all
-  end
+  #def index
+  #  @lists = List.all
+  #end
 
   def edit
     @list = List.friendly.find(params[:id])
@@ -43,8 +42,8 @@ class ListsController < ApplicationController
     end
   end
 
-  def new
-  end
+  #def new
+  #end
 
   def create
       @list = current_user.lists.build(list_params)
@@ -55,8 +54,8 @@ class ListsController < ApplicationController
     else
       flash[:danger] = 'Ой! Что-то пошло не так...'
       redirect_to root_path
+    end
   end
-end
 
 
   def destroy
@@ -95,6 +94,11 @@ end
 
 private
 
+  def views
+    @list.views += 1
+    @list.save
+  end
+
   def list_items
     @list = List.friendly.find(params[:id])
     @current_ip = request.remote_ip
@@ -105,11 +109,11 @@ private
     params.require(:list).permit(:title, :description, :image)
   end
 
-  def correct_user
-    @list = current_user.lists.friendly.find(params[:id])
-    if @list.nil?
-      redirect_to root_path
-    end
-  end
+  #def correct_user
+  #  @list = current_user.lists.friendly.find(params[:id])
+  #  if @list.nil?
+  #    redirect_to root_path
+  #  end
+  #end
 
 end

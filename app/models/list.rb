@@ -1,4 +1,5 @@
 class List < ActiveRecord::Base
+  resourcify
   belongs_to :user
   validates :user_id, presence: true
   has_many :items, dependent: :destroy

@@ -5,7 +5,7 @@
   <div class="col-xs-11">
     <b><%= link_to comment.user.username, user_path(comment.user) %></b>
     <small><%= comment.content %></small>
-    <% if current_user == comment.user %>
+    <% if can? :destroy, comment %>
       <%= link_to '',list_comment_path(@list.id, comment),
                     method: :delete, data: { confirm: "Удалить комментарий?" },
                     class:"glyphicon glyphicon-remove pull-right",

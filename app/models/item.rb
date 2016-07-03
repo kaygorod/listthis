@@ -1,4 +1,5 @@
 class Item < ActiveRecord::Base
+  resourcify
   belongs_to :user
   belongs_to :list
   has_many :votes, dependent: :destroy

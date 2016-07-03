@@ -117,5 +117,7 @@
 
 <script>
 var item = window.location.hash.replace("#","")
-$("#item_"+item).css({backgroundColor: 'yellow'}).animate({backgroundColor: 'white'},2000);
+$("html, body").animate({scrollTop: $("#item_"+item).offset().top},4000,function() {
+$("#item_"+item).css({backgroundColor: 'yellow'}).animate({backgroundColor: 'white'},2000)
+});
 </script>

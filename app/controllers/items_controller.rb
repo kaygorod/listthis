@@ -1,6 +1,7 @@
 class ItemsController < ApplicationController
-  before_action :authenticate_user!, only: [:create, :edit, :destroy]
-  before_action :correct_user,       only: [:destroy, :edit]
+  load_and_authorize_resource only: [:create, :edit, :update, :destroy]
+  before_action :authenticate_user!, only: [:create, :edit, :update, :destroy]
+  #before_action :correct_user,       only: [:destroy, :edit]
   layout false, only: [:show]
 
 
@@ -72,11 +73,11 @@ private
     params.require(:item).permit(:title, :description, :image)
   end
 
-  def correct_user
-    @item = current_user.items.find(params[:id])
-    if @item.nil?
-      redirect_to root_path
-    end
-  end
+  #def correct_user
+  #  @item = current_user.items.find(params[:id])
+  #  if @item.nil?
+  #    redirect_to root_path
+  #  end
+  #end
 
 end
