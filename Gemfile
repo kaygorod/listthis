@@ -42,6 +42,9 @@ gem 'sdoc', '~> 0.4.0', group: :doc
 # gem 'capistrano-rails', group: :development
 
 gem 'devise'
+gem 'omniauth'
+gem 'omniauth-facebook'
+gem 'omniauth-vkontakte'
 gem 'cancancan', '~> 1.10'
 gem 'friendly_id', '~> 5.1.0'
 gem 'cancancan', '~> 1.10'

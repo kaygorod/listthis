@@ -10,6 +10,10 @@ class UsersController < ApplicationController
     @lists = @user.lists
   end
 
+  def edit
+
+  end
+
   private
 
   #def admin_user
