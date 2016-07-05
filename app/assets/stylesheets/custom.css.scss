@@ -33,6 +33,30 @@ textarea {
 }
 
 
+.avatar-header{
+  width:2.4em;
+  height:2.4em;
+  border-radius:50%;
+  border:solid #808080 2px;
+
+}
+.non-avatar-header{
+  display: inline-block;
+  width:2.4em;
+  height:2.4em;
+  border-radius:50%;
+  border:solid #808080 2px;
+  background-color:#cccccc;
+  padding-left:10px;
+  padding-top:5px;
+}
+.non-avatar-header-name{
+
+  margin-top:50px;
+
+}
+
+
 /* list */
 
 .list {
