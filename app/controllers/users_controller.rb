@@ -10,6 +10,10 @@ class UsersController < ApplicationController
     @lists = @user.lists
   end
 
+  def create
+
+  end
+
   def edit
 
   end

@@ -21,7 +21,11 @@
                 <img src="<%= (current_user.avatar_url) %>" class="avatar-header">
               <% else %>
                 <div class="non-avatar-header text-uppercase">
+                  <% if current_user.username? %>
                   <%= truncate(current_user.username.html_safe, length: 1, :omission => "")%>
+                  <% else %>
+                  <%= truncate(current_user.email.html_safe, length: 1, :omission => "")%>
+                  <% end %>
                 </div>
               <% end %>
               <span class="caret"></span>
