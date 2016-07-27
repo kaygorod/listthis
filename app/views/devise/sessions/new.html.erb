@@ -1,11 +1,24 @@
 <div class="row">
   <div class="col-md-4 col-md-offset-4">
-    <div class="form-group">
-      <ul class="nav nav-tabs nav-justified">
-        <li class="active"><a href="#">Войти на сайт</a></li>
-        <li><a href="#">Регистрация</a></li>
-      </ul>
-    </div>
+    <h3 class="text-center">Вход на сайт</h3>
+    <em>Войти через:</em>
+    <%- if devise_mapping.omniauthable? %>
+      <div class="btn-group btn-group-justified">
+        <a href="<%=omniauth_authorize_path(resource_name, :vkontakte)%>"
+           type="button" class="btn btn-primary"
+           style="background-color:#4d7198">
+           <i class="fa fa-vk fa-lg fa-fw" aria-hidden="true"></i>
+           Вконтакте
+        </a>
+        <a href="<%=omniauth_authorize_path(resource_name, :facebook)%>"
+           type="button" class="btn btn-primary"
+           style="background-color:#3b5998">
+           <i class="fa fa-facebook-official fa-lg fa-fw" aria-hidden="true"></i>
+           Фейсбук
+        </a>
+      </div>
+    <% end -%></br>
+    <em>Стандартный вход:</em>
     <%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
       <div class="form-group">
         <%= f.email_field :email, autofocus: true, class: "form-control" , placeholder: "E-mail"%>
@@ -15,7 +28,7 @@
       </div>
       <% if devise_mapping.rememberable? -%>
         <div class="form-group">
-          <%= f.check_box :remember_me %>  <%= f.label :remember_me %>
+          <%= f.check_box :remember_me %>  <%= f.label "Запомнить меня" %>
         </div>
       <% end -%>
       <div class="form-group">

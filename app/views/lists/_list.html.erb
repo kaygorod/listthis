@@ -1,11 +1,10 @@
 <li>
-  <span><%= link_to list.title, list_path(list)%></span>
-  <%= list.items.count %> Пунктов
-  <%= list.image %>
-  <span class="timestamp">
-    Posted <%= time_ago_in_words(list.created_at) %> ago.
-  </span>
-  <% if can? :update, @item %>
-  <span><%= link_to 'Редактировать', edit_list_path(list) %></span>
+  <%= link_to list.title, list_path(list)%> |
+  <%= list.items.count %> Пунктов |
+  Опубликован <%= time_ago_in_words(list.created_at) %> назад. |
+  Просмотры: <%= list.views %> |
+  Комментарии: <%= list.comments.count %> |
+  <% if can? :update, @list %>
+  <%= link_to 'Редактировать', edit_list_path(list) %>
   <% end %>
 </li>

@@ -328,3 +328,29 @@ html[xmlns] .input-file-row-1{
 }
 
 
+/* страница юзера */
+
+.avatar-user-page{
+  width:4.4em;
+  height:4.4em;
+  border-radius:50%;
+  border:solid #808080 2px;
+  margin-bottom:10px;
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+}
+.non-avatar-user-page{
+  display: inline-block;
+  width:4.4em;
+  height:4.4em;
+  border-radius:50%;
+  border:solid #808080 2px;
+  background-color:#cccccc;
+  margin-bottom:10px;
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+
