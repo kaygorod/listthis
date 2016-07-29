@@ -3,6 +3,8 @@ class ListsController < ApplicationController
   before_action :authenticate_user!, only: [:new, :create, :edit, :update, :destroy]
   #before_action :correct_user,       only: [:destroy, :edit]
   layout false, only: [:iframe, :plugin]
+  #отключение проверки токена protect_from_forgery для работы js
+  skip_before_action :verify_authenticity_token , :only => [:plugin]
 
 
   def show

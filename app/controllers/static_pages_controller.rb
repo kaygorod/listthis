@@ -1,5 +1,9 @@
 class StaticPagesController < ApplicationController
+  #отключение проверки токена protect_from_forgery для работы js
+  skip_before_action :verify_authenticity_token , :only => [:plugin]
+  #отключение стандартной шапки и футера
   layout false, only: [:plugin]
+
   def home
     @lists = List.all
   end
