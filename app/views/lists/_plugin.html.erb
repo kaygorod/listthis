@@ -1,0 +1,121 @@
+
+<div class="list">
+<%= render 'list_description' %>
+  <!-- Nav tabs -->
+  <ul class="nav nav-tabs" role="tablist">
+    <li class="active">
+      <a href="#items" role="tab" data-toggle="tab">Пункты
+      <span class="badge"> <%= @list.items.count %></span></a>
+    </li>
+    <li>
+      <a href="#queue" role="tab" data-toggle="tab">На утверждении</a>
+    </li>
+  </ul>
+
+  <!-- Tab panes -->
+  <div class="tab-content">
+    <div class="tab-pane active" id="items">
+    </br>
+      <div class="row">
+      <div class="col-xs-12 col-sm-6 col-md-8">
+        <div class="dropdown">
+          <button class="btn btn-default btn-xs dropdown-toggle" type="button" id="dropdownMenu10" rel="tooltip" data-toggle="dropdown" data-placement="top" title="Изменить сортировку">
+            Сортировка
+            <span class="caret"></span>
+          </button>
+          <ul class="dropdown-menu" role="menu" aria-labelledby="dropdownMenu10">
+            <li role="presentation">
+              <%= link_to "По умолчанию",
+                  sort_rating_desc_list_path, remote: true %>
+            </li>
+            <li role="presentation" class="dropdown-header">По рейтингу</li>
+            <li role="presentation">
+              <%= link_to "Больше",
+                  sort_rating_desc_list_path, remote: true %>
+            </li>
+            <li role="presentation">
+              <%= link_to "Меньше",
+                  sort_rating_asc_list_path, remote: true %>
+            </li>
+            <li role="presentation" class="dropdown-header">По комментариям</li>
+            <li role="presentation">
+            <%= link_to "Больше",
+                  sort_comts_desc_list_path, remote: true %>
+            </li>
+            <li role="presentation">
+            <%= link_to "Меньше",
+                  sort_comts_asc_list_path, remote: true %>
+            </li>
+            <li role="presentation" class="dropdown-header">По дате</li>
+            <li role="presentation">
+            <%= link_to "Новое",
+                  sort_time_desc_list_path, remote: true %>
+            </li>
+            <li role="presentation">
+              <%= link_to "Старое",
+                  sort_time_asc_list_path, remote: true %>
+            </li>
+          </ul>
+        </div>
+        </div>
+      </div>
+      </br>
+  <button class="btn btn-primary btn-lg btn-block" data-toggle="modal" data-target="#myModal">
+    Добавить пункт
+  </button>
+  </br>
+
+    <ol class="listitem" id="items_<%= @list.id %>">
+      <%= render @items.order(rating: :desc) %>
+    </ol>
+
+    <div id="more_items">
+      <%= link_to "Показать больше...", list_path(:page => @items.next_page), remote: true %>
+    </div>
+
+
+
+    </br>
+  <% if @list.items.count > 2 %>
+  <!-- Button trigger modal -->
+  <button class="btn btn-primary btn-lg btn-block" data-toggle="modal" data-target="#myModal">
+    Добавить пункт
+  </button>
+  <%end%>
+
+  <% if signed_in? %>
+
+    <%= render 'items/item_form' %>
+
+  <% else %>
+    <%= render 'shared/new_session_modal' %>
+  <% end %>
+
+
+  <br>Комментарии:<br>
+  <span id="list_<%=@list.id%>_comments_form">
+  <%= render "comments/list_comments_form" %>
+  </span>
+  <div class="row">
+  <div id="list_comment">
+    <% @list.comments.where(:item_id => nil).each do |comment| %>
+
+    <%= render "comments/list_comments", comment: comment %>
+
+    <% end %>
+    </div>
+  </div>
+
+  </div>
+    <div class="tab-pane" id="queue"></br>
+      <p> Нет пунктов ожидающих утверждения</p>
+    </div>
+  </div>
+</div>
+
+<script>
+var item = window.location.hash.replace("#","")
+$("html, body").animate({scrollTop: $("#item_"+item).offset().top},4000,function() {
+$("#item_"+item).css({backgroundColor: 'yellow'}).animate({backgroundColor: 'white'},2000)
+});
+</script>

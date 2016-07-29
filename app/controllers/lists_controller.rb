@@ -2,7 +2,7 @@ class ListsController < ApplicationController
   load_and_authorize_resource :find_by => :slug, only: [:new, :create, :edit, :update, :destroy]
   before_action :authenticate_user!, only: [:new, :create, :edit, :update, :destroy]
   #before_action :correct_user,       only: [:destroy, :edit]
-  layout false, only: [:iframe]
+  layout false, only: [:iframe, :plugin]
 
 
   def show
@@ -21,6 +21,12 @@ class ListsController < ApplicationController
       format.html
       format.js
     end
+  end
+
+  def plugin
+    @list=List.find(params[:id])
+    @current_ip = request.remote_ip
+    @items = @list.items.paginate(page: params[:page], :per_page => 25)
   end
 
   #def index

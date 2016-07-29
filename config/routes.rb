@@ -19,6 +19,7 @@ Rails.application.routes.draw do
       get 'sort_comts_asc'
       get 'sort_rating_desc'
       get 'sort_rating_asc'
+      get 'plugin'
     end
     member do
         get 'iframe'
@@ -46,6 +47,8 @@ Rails.application.routes.draw do
   get 'users/:id',    to: 'users#show',    as: 'user'
   get 'users',    to: 'users#index',    as: 'users'
 
+
+  match '/plugin',    to: 'static_pages#plugin',    via: 'get'
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 
