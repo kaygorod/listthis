@@ -3,6 +3,7 @@
 <% provide(:image, @list.image) %>
 <div class="list">
   <%= render 'list_description' %>
+
   <!-- Nav tabs -->
   <ul class="nav nav-tabs" role="tablist">
     <li class="active">
@@ -28,34 +29,34 @@
           <ul class="dropdown-menu" role="menu" aria-labelledby="dropdownMenu10">
             <li role="presentation">
               <%= link_to "По умолчанию",
-                  sort_rating_desc_list_path, remote: true %>
+                  list_path(:sort => 'rating_desc' ), remote: true, class:"items_sort" %>
             </li>
             <li role="presentation" class="dropdown-header">По рейтингу</li>
             <li role="presentation">
               <%= link_to "Больше",
-                  sort_rating_desc_list_path, remote: true %>
+                  list_path(:sort => 'rating_desc' ), remote: true, class:"items_sort" %>
             </li>
             <li role="presentation">
               <%= link_to "Меньше",
-                  sort_rating_asc_list_path, remote: true %>
+                  list_path(:sort => 'rating_asc' ), remote: true, class:"items_sort" %>
             </li>
             <li role="presentation" class="dropdown-header">По комментариям</li>
             <li role="presentation">
             <%= link_to "Больше",
-                  sort_comts_desc_list_path, remote: true %>
+                  list_path(:sort => 'comts_desc' ), remote: true, class:"items_sort" %>
             </li>
             <li role="presentation">
             <%= link_to "Меньше",
-                  sort_comts_asc_list_path, remote: true %>
+                  list_path(:sort => 'comts_asc' ), remote: true, class:"items_sort" %>
             </li>
             <li role="presentation" class="dropdown-header">По дате</li>
             <li role="presentation">
             <%= link_to "Новое",
-                  sort_time_desc_list_path, remote: true %>
+                  list_path(:sort => 'created_at_desc' ), remote: true, class:"items_sort" %>
             </li>
             <li role="presentation">
               <%= link_to "Старое",
-                  sort_time_asc_list_path, remote: true %>
+                  list_path(:sort => 'created_at_asc' ), remote: true, class:"items_sort" %>
             </li>
           </ul>
         </div>
@@ -72,7 +73,7 @@
     </ol>
 
     <div id="more_items">
-      <%= link_to "Показать больше...", list_path(:page => @items.next_page), remote: true %>
+      <%= link_to "Показать больше...", list_path(:page => @items.next_page), remote: true, id: "items_more" %>
     </div>
 
 
@@ -116,6 +117,11 @@
 </div>
 
 <script>
+
+
+
+
+
 var item = window.location.hash.replace("#","")
 $("html, body").animate({scrollTop: $("#item_"+item).offset().top},4000,function() {
 $("#item_"+item).css({backgroundColor: 'yellow'}).animate({backgroundColor: 'white'},2000)

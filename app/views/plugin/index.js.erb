@@ -44,20 +44,51 @@ function main() {
 }
 
 
-$(document).ready ( function(){
-  /******* Load CSS *******/
 
-
-  var listid = $('#slylist').data('listId');
-  var plugin_link = $("<script>", {
-            type: "text/javascript",
-            src: "http://slylist.com/lists/"+listid+"/plugin.js"
-        });
-        plugin_link.appendTo('head');
-});
 
 
 
 })(); // We call our anonymous function immediately
+
+(function ($) {
+
+$(document).ready (function(){
+  /******* Load CSS *******/
+
+
+ // var listid = $('#slylist').data('listId');
+ // var plugin_link = $("<script>", {
+ //           type: "text/javascript",
+ //           src: "http://localhost:3000/plugin/"+listid+".js"
+ //       });
+ //       plugin_link.appendTo('head');
+
+  var css_link = $("<link>", {
+            rel: "stylesheet",
+            type: "text/css",
+            href: "http://slylist.com/assets/application-16fe0191e545a7d7c9f66977750af2541a2e4db3f93bc09f34fae4bf850ec6cc.css"
+        });
+        css_link.appendTo('head');
+
+  var bootstrap_link = $("<script>", {
+            type: "text/javascript",
+            src: "http://slylist.com/assets/application-9afb756dca30fc4bd6d5ce07798d540f353af49025c7a06335bc3fba5bf5e723.js"
+        });
+        bootstrap_link.appendTo('head');
+
+
+  var listid = $('#slylist').data('listId');
+        $.ajax({
+          url: "http://slylist.com/plugin/"+listid+".js",
+          crossDomain: true,
+          dataType: "script"
+  });
+});
+
+
+}(jQuery));
+
+
+
 
 

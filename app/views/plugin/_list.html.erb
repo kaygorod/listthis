@@ -1,6 +1,6 @@
 
 <div class="list">
-<%= render 'list_description' %>
+<%= render 'plugin/list_description' %>
   <!-- Nav tabs -->
   <ul class="nav nav-tabs" role="tablist">
     <li class="active">
@@ -26,34 +26,34 @@
           <ul class="dropdown-menu" role="menu" aria-labelledby="dropdownMenu10">
             <li role="presentation">
               <%= link_to "По умолчанию",
-                  sort_rating_desc_list_path, remote: true %>
+                  list_path(:sort => 'rating_desc' ), remote: true, class:"items_sort", :data => { :sort => 'rating_desc' } %>
             </li>
             <li role="presentation" class="dropdown-header">По рейтингу</li>
             <li role="presentation">
               <%= link_to "Больше",
-                  sort_rating_desc_list_path, remote: true %>
+                  list_path(:sort => 'rating_desc' ), remote: true, class:"items_sort", :data => { :sort => 'rating_desc' } %>
             </li>
             <li role="presentation">
               <%= link_to "Меньше",
-                  sort_rating_asc_list_path, remote: true %>
+                  list_path(:sort => 'rating_asc' ), remote: true, class:"items_sort", :data => { :sort => 'rating_asc' } %>
             </li>
             <li role="presentation" class="dropdown-header">По комментариям</li>
             <li role="presentation">
             <%= link_to "Больше",
-                  sort_comts_desc_list_path, remote: true %>
+                  list_path(:sort => 'comts_desc' ), remote: true, class:"items_sort", :data => { :sort => 'comts_desc' } %>
             </li>
             <li role="presentation">
             <%= link_to "Меньше",
-                  sort_comts_asc_list_path, remote: true %>
+                  list_path(:sort => 'comts_asc' ), remote: true, class:"items_sort", :data => { :sort => 'comts_asc' } %>
             </li>
             <li role="presentation" class="dropdown-header">По дате</li>
             <li role="presentation">
             <%= link_to "Новое",
-                  sort_time_desc_list_path, remote: true %>
+                  list_path(:sort => 'created_at_desc' ), remote: true, class:"items_sort", :data => { :sort => 'created_at_desc' } %>
             </li>
             <li role="presentation">
               <%= link_to "Старое",
-                  sort_time_asc_list_path, remote: true %>
+                  list_path(:sort => 'created_at_asc' ), remote: true, class:"items_sort", :data => { :sort => 'created_at_asc' } %>
             </li>
           </ul>
         </div>
@@ -64,13 +64,15 @@
     Добавить пункт
   </button>
   </br>
-
+<button class="btn btn-primary btn-lg btn-block" id="sortitems" data-sort="rating_asc">
+    Сортировать
+  </button>
     <ol class="listitem" id="items_<%= @list.id %>">
       <%= render @items.order(rating: :desc) %>
     </ol>
 
     <div id="more_items">
-      <%= link_to "Показать больше...", list_path(:page => @items.next_page), remote: true %>
+      <%= link_to "Показать больше...", list_url(:page => @items.next_page), remote: true %>
     </div>
 
 
@@ -85,7 +87,7 @@
 
   <% if signed_in? %>
 
-    <%= render 'items/item_form' %>
+    <%= render 'items/item_form_plugin' %>
 
   <% else %>
     <%= render 'shared/new_session_modal' %>
@@ -114,6 +116,21 @@
 </div>
 
 <script>
+(function ($) {
+$('body').on('click', '.items_sort', function() {
+  var sort = $(this).data('sort');
+      $.ajax({
+        url: "http://slylist.com/lists/1.js?sort="+(sort),
+        crossDomain: true,
+        dataType: "script",
+        success: function(){
+    alert('Load was performed.');
+  }
+});
+    });
+
+
+}(jQuery));
 var item = window.location.hash.replace("#","")
 $("html, body").animate({scrollTop: $("#item_"+item).offset().top},4000,function() {
 $("#item_"+item).css({backgroundColor: 'yellow'}).animate({backgroundColor: 'white'},2000)

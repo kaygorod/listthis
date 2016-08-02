@@ -1,0 +1,54 @@
+<div class="modal fade" id="myModal" tabindex="-1" role="dialog"
+                        aria-labelledby="myModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal">
+          <span aria-hidden="true">&times;</span>
+          <span class="sr-only">Close</span>
+        </button>
+        <h4 class="modal-title" id="myModalLabel">Добавить пункт</h4>
+      </div>
+
+
+      <form class="s_form">
+        <input class="s_text nameinp sinp items_form_title" type="text" name="title" placeholder="Название">
+        <input class="s_text phoneinp sinp items_form_description" type="text" name="description" placeholder="Описание">
+        <input class="s_text phoneinp sinp items_form_image" type="file" name="image" placeholder="Изображение">
+        <input class="items_form_plugin" type="button" value="Отправить">
+      </form>
+
+
+
+    </div>
+  </div>
+</div>
+<script>
+(function ($) {
+  $('body').on('click', '.items_form_plugin', function() {
+    var tit = $(".items_form_title").val();
+    var desc = $(".items_form_description").val();
+    var im = $(".items_form_image").val();
+    var li = <%= @list.id %>
+
+    alert('?title='+tit+'&description='+desc+'&img='+im)
+      $.ajax({
+          url: 'http://slylist.comlists/1/items.js',
+          type: 'POST',
+          //crossDomain: true,
+          //xhrFields: {
+          //  withCredentials: true
+          //},
+          data: {item : {title : tit , description : desc }},
+          //dataType: 'text/plain',
+
+    success: function(responseData, textStatus, jqXHR) {
+        var value = responseData.someKey;
+    },
+    error: function (responseData, textStatus, errorThrown) {
+        alert('POST failed.');
+    }
+});
+});
+}(jQuery));
+</script>
