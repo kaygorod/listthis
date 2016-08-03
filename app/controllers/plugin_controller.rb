@@ -1,6 +1,7 @@
 class PluginController < ApplicationController
-  #skip_before_action :verify_authenticity_token , :only => [:show, :index]
+  skip_before_action :verify_authenticity_token , :only => [:show, :index]
   layout false, only: [:index, :show]
+
 
   def index
 
@@ -19,4 +20,5 @@ class PluginController < ApplicationController
     @list.views += 1
     @list.save
   end
+
 end

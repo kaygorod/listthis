@@ -1,7 +1,7 @@
 class VotesController < ApplicationController
 #before_action :correct_user, only: [:destroy, :update]
 load_and_authorize_resource only: [:create, :update, :destroy]
-
+before_filter :set_access_control_headers
 
   def create
     @list = List.friendly.find(params[:list_id])

@@ -7,7 +7,7 @@ class ListsController < ApplicationController
   #skip_before_action :verify_authenticity_token , :only => [:plugin]
 
   #protect_from_forgery except: [:sort_time_desc, :sort_time_asc]
-before_filter :set_access_control_headers
+#before_filter :set_access_control_headers
 
   def items_form_iframe
     @list = List.friendly.find(params[:id])
@@ -136,7 +136,7 @@ private
     end
     @list = List.friendly.find(params[:id])
     @current_ip = request.remote_ip
-    @items = @list.items.paginate(page: params[:page], :per_page => 25).order(sort_order)
+    @items = @list.items.paginate(page: params[:page], :per_page => 5).order(sort_order)
   end
 
   def list_params
@@ -149,11 +149,11 @@ private
   #    redirect_to root_path
   #  end
   #end
-  def set_access_control_headers
-    headers['Access-Control-Allow-Origin'] = '*'
-    headers['Access-Control-Allow-Methods'] = 'POST, PUT, DELETE, GET, OPTIONS'
-    headers['Access-Control-Request-Method'] = 'GET, OPTIONS, HEAD, POST'
-    headers['Access-Control-Allow-Headers'] = 'x-requested-with,Content-Type, Authorization'
-  end
+ # def set_access_control_headers
+ #   headers['Access-Control-Allow-Origin'] = '*'
+ #   headers['Access-Control-Allow-Methods'] = 'POST, PUT, DELETE, GET, OPTIONS'
+ #   headers['Access-Control-Request-Method'] = 'GET, OPTIONS, HEAD, POST'
+ #   headers['Access-Control-Allow-Headers'] = 'x-requested-with,Content-Type, Authorization'
+ # end
 
 end

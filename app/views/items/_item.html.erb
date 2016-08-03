@@ -25,7 +25,7 @@
   <% end %>
   </br>
   </br>
-  <p><img src="<%= (item.image_url) %>" alt="..." class="img-responsive"></p>
+  <p><img src="<%= root_url %>/<%= (item.image_url) %>" alt="..." class="img-responsive"></p>
   <span><%= simple_format(item.description) %></span>
   <% if @list.user != item.user %>
     <small class="text-muted">

@@ -28,6 +28,12 @@ module ListThis
     config.active_record.raise_in_transactional_callbacks = true
     config.i18n.default_locale = :ru
 
+    config.middleware.insert_before Warden::Manager, "Rack::Cors" do
+      allow do
+        origins '*'
+        resource '*', :headers => :any, :methods => [:get, :post, :options]
+      end
+    end
 
   end
 end

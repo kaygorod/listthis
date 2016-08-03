@@ -3,7 +3,7 @@ class ItemsController < ApplicationController
   before_action :authenticate_user!, only: [:create, :edit, :update, :destroy]
   #before_action :correct_user,       only: [:destroy, :edit]
   layout false, only: [:show]
-  before_filter :set_access_control_headers
+  #before_filter :set_access_control_headers
 
 
   def show
@@ -42,7 +42,7 @@ class ItemsController < ApplicationController
    # headers['Access-Control-Allow-Origin'] = '*'
       @list = List.friendly.find(params[:list_id])
       @item = @list.items.build(item_params)
-      @item.user_id = current_user.id
+      #@item.user_id = current_user.id
       @item.rating = '0'
       @item.comts = '0'
       #@item.title = params[:title]
@@ -75,7 +75,7 @@ class ItemsController < ApplicationController
 
 private
   def item_params
-    params.require(:item).permit(:title, :description)
+    params.require(:item).permit(:title, :description, :user_id)
   end
 
   #def correct_user
@@ -85,11 +85,11 @@ private
   #  end
   #end
 
-  def set_access_control_headers
-    headers['Access-Control-Allow-Origin'] = '*'
-    headers['Access-Control-Allow-Methods'] = 'POST, PUT, DELETE, GET, OPTIONS'
-    headers['Access-Control-Request-Method'] = 'GET, OPTIONS, HEAD, POST'
-    headers['Access-Control-Allow-Headers'] = 'x-requested-with,Content-Type, Authorization'
-  end
+  #def set_access_control_headers
+  #  headers['Access-Control-Allow-Origin'] = '*'
+  #  headers['Access-Control-Allow-Methods'] = 'POST, PUT, DELETE, GET, OPTIONS'
+  #  headers['Access-Control-Request-Method'] = 'GET, OPTIONS, HEAD, POST'
+  #  headers['Access-Control-Allow-Headers'] = 'x-requested-with,Content-Type, Authorization'
+  #end
 
 end

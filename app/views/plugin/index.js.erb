@@ -63,6 +63,8 @@ $(document).ready (function(){
  //       });
  //       plugin_link.appendTo('head');
 
+
+
   var css_link = $("<link>", {
             rel: "stylesheet",
             type: "text/css",
@@ -79,7 +81,7 @@ $(document).ready (function(){
 
   var listid = $('#slylist').data('listId');
         $.ajax({
-          url: "http://slylist.com/plugin/"+listid+".js",
+          url: "<%=plugin_index_url%>/"+listid+".js",
           crossDomain: true,
           dataType: "script"
   });

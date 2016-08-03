@@ -1,5 +1,6 @@
-
+<%= token_tag(nil) %>
 <div class="list">
+<%= csrf_meta_tags %>
 <%= render 'plugin/list_description' %>
   <!-- Nav tabs -->
   <ul class="nav nav-tabs" role="tablist">
@@ -64,9 +65,6 @@
     Добавить пункт
   </button>
   </br>
-<button class="btn btn-primary btn-lg btn-block" id="sortitems" data-sort="rating_asc">
-    Сортировать
-  </button>
     <ol class="listitem" id="items_<%= @list.id %>">
       <%= render @items.order(rating: :desc) %>
     </ol>
@@ -120,7 +118,7 @@
 $('body').on('click', '.items_sort', function() {
   var sort = $(this).data('sort');
       $.ajax({
-        url: "http://slylist.com/lists/1.js?sort="+(sort),
+        url: "<%=list_url(@list)%>.js?sort="+(sort),
         crossDomain: true,
         dataType: "script",
         success: function(){
