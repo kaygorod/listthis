@@ -9,9 +9,10 @@ Bundler.require(*Rails.groups)
 module ListThis
   class Application < Rails::Application
 
+    #подключение просмотра айфреймов для всего приложения
     config.action_dispatch.default_headers = {
     'X-Frame-Options' => 'ALLOWALL'
-  }
+    }
     # Settings in config/environments/* take precedence over those specified here.
     # Application configuration should go into files in config/initializers
     # -- all .rb files in that directory are automatically loaded.
@@ -28,12 +29,13 @@ module ListThis
     config.active_record.raise_in_transactional_callbacks = true
     config.i18n.default_locale = :ru
 
-    config.middleware.insert_before Warden::Manager, "Rack::Cors" do
-      allow do
-        origins '*'
-        resource '*', :headers => :any, :methods => [:get, :post, :options]
-      end
-    end
+    #Конфиг корса
+    #config.middleware.insert_before 0, "Rack::Cors" do
+    #  allow do
+    #    origins '*'
+    #    resource '*', :headers => :any, :methods => :any
+    #  end
+    #end
 
   end
 end

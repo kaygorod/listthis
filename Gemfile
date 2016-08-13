@@ -49,7 +49,10 @@ gem 'cancancan', '~> 1.10'
 gem 'friendly_id', '~> 5.1.0'
 gem 'cancancan', '~> 1.10'
 gem 'rolify'
-gem 'rack-cors', :require => 'rack/cors'
+#gem 'rack-cors', :require => 'rack/cors'
+#gem 'rails-iframe-resizer', '~> 0.1.0'
+
+
 
 group :test do
   gem 'selenium-webdriver'

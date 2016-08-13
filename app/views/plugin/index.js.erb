@@ -39,6 +39,10 @@ function scriptLoadHandler() {
 /******** Our main function ********/
 function main() {
     jQuery(document).ready(function($) {
+
+
+
+
         // We can use jQuery 1.4.2 here
     });
 }
@@ -78,6 +82,12 @@ $(document).ready (function(){
         });
         bootstrap_link.appendTo('head');
 
+  var ifremejs_link = $("<script>", {
+            type: "text/javascript",
+            src: "https://raw.githubusercontent.com/davidjbradshaw/iframe-resizer/master/js/iframeResizer.min.js"
+        });
+        ifremejs_link.appendTo('head');
+
 
   var listid = $('#slylist').data('listId');
         $.ajax({
@@ -85,6 +95,7 @@ $(document).ready (function(){
           crossDomain: true,
           dataType: "script"
   });
+
 });
 
 

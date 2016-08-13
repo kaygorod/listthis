@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title><%= full_title(yield(:title)) %></title>
+
+    <meta property="og:title" content="<%= full_title(yield(:title)) %>"/>
+    <meta property="og:description" content="<%=yield(:desc)%>"/>
+    <meta property="og:image" content="http://slylist.com<%=yield(:image)%>">
+    <meta property="og:type" content="website"/>
+    <meta property="og:url" content= "<%= absolute_url %>" />
+    <meta property="og:site_name" content="SlyList" />
+
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="<%= full_title(yield(:title)) %>" />
+    <meta name="twitter:description" content="<%=truncate(yield(:desc), length: 100)%>" />
+    <meta name="twitter:image:src" content="http://slylist.com<%=yield(:image)%>" />
+    <meta name="twitter:domain" content="slylist.com" />
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <%= stylesheet_link_tag    'application', media: 'all',
+                               'data-turbolinks-track' => true %>
+    <%= javascript_include_tag 'application',
+                               'data-turbolinks-track' => true %>
+    <script type="text/javascript" src="https://raw.githubusercontent.com/davidjbradshaw/iframe-resizer/master/js/iframeResizer.contentWindow.min.js"></script>
+
+    <%= csrf_meta_tags %>
+    <%= render 'layouts/shim' %>
+  </head>
+  <body>
+  <div id="iframe_new_item" >
+
+<% if signed_in? %>
+<%= form_for [@list, @list.items.build], remote: true, :format => :json do |f| %>
+          <p>
+            <%= f.label "Название" %><br>
+            <%= f.text_field :title, class:"form-control" %>
+          </p>
+          <p>
+            <%= f.label "Описание" %><br>
+            <%= f.text_area :description,
+                              :rows => 10, class:"form-control" %>
+          </p>
+          <p>
+            <%= f.label "Изображение" %><br>
+            <%= f.file_field :image %>
+          </p>
+
+          <%= f.submit 'Добавить',class:"btn btn-primary", id:"button" %>
+
+      <% end %>
+<%else%>
+<h5 class="modal-title" id="myModalLabel">
+          Для начала войдите или
+          <%= link_to "зарегистрируйтесь", new_user_registration_path %>
+        </h5>
+      <%= form_for(:user, :url => session_path(:user)) do |f| %>
+        <div class="modal-body">
+          <div class="form-group">
+            <%= f.email_field :email, autofocus: true,
+                              class: "form-control" , placeholder: "E-mail"%>
+          </div>
+          <div class="form-group">
+            <%= f.password_field :password, autocomplete: "off" ,
+                                 class: "form-control" , placeholder: "Пароль"%>
+          </div>
+          <div class="form-group">
+            <%= f.check_box :remember_me %>  <%= f.label "Запомнить меня" %>
+          </div>
+          <div class="form-group">
+            <%= f.submit "Войти", class:"btn btn-primary btn-lg btn-block",id:"button-login" %>
+          </div>
+          <%= link_to "Забыли пароль?", new_password_path(:user) %>
+        </div>
+      <% end %>
+<%end%>
+</div>
+
+<script>
+$.ajaxSetup({
+  dataType: 'json'
+});
+$("#new_item").on("ajax:success", function(e, data, status, xhr) {
+  if ('parentIFrame' in window){
+    window.parentIFrame.sendMessage(data['id']);
+  }
+});
+
+</script>
+</body>
+</html>

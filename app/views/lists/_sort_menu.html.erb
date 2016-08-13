@@ -1,0 +1,39 @@
+<div class="dropdown">
+  <button class="btn btn-default btn-xs dropdown-toggle" type="button" id="dropdownMenu10" rel="tooltip" data-toggle="dropdown" data-placement="top" title="Изменить сортировку">
+    Сортировка
+    <span class="caret"></span>
+  </button>
+  <ul class="dropdown-menu" role="menu" aria-labelledby="dropdownMenu10">
+    <li role="presentation">
+      <%= link_to "По умолчанию",
+          list_path(:sort => 'rating_desc' ), remote: true, class:"items_sort" %>
+    </li>
+    <li role="presentation" class="dropdown-header">По рейтингу</li>
+    <li role="presentation">
+      <%= link_to "Больше",
+          list_path(:sort => 'rating_desc' ), remote: true, class:"items_sort" %>
+    </li>
+    <li role="presentation">
+      <%= link_to "Меньше",
+          list_path(:sort => 'rating_asc' ), remote: true, class:"items_sort" %>
+    </li>
+    <li role="presentation" class="dropdown-header">По комментариям</li>
+    <li role="presentation">
+    <%= link_to "Больше",
+          list_path(:sort => 'comts_desc' ), remote: true, class:"items_sort" %>
+    </li>
+    <li role="presentation">
+    <%= link_to "Меньше",
+          list_path(:sort => 'comts_asc' ), remote: true, class:"items_sort" %>
+    </li>
+    <li role="presentation" class="dropdown-header">По дате</li>
+    <li role="presentation">
+    <%= link_to "Новое",
+          list_path(:sort => 'created_at_desc' ), remote: true, class:"items_sort" %>
+    </li>
+    <li role="presentation">
+      <%= link_to "Старое",
+          list_path(:sort => 'created_at_asc' ), remote: true, class:"items_sort" %>
+    </li>
+  </ul>
+</div>

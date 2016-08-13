@@ -1,0 +1,6 @@
+<script>
+var item = window.location.hash.replace("#","")
+$("html, body").animate({scrollTop: $("#item_"+item).offset().top},4000,function() {
+$("#item_"+item).css({backgroundColor: 'yellow'}).animate({backgroundColor: 'white'},2000)
+});
+</script>

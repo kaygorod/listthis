@@ -1,0 +1,74 @@
+<div class="list">
+  <%= render 'plugin/list_description' %>
+
+  <!-- Кнопки табов -->
+  <ul class="nav nav-tabs" role="tablist">
+    <li class="active">
+      <a href="#items" role="tab" data-toggle="tab">Пункты
+      <span class="badge"> <%= @list.items.count %></span></a>
+    </li>
+    <li>
+      <a href="#queue" role="tab" data-toggle="tab">На утверждении</a>
+    </li>
+  </ul>
+
+  <!-- Содержание табов -->
+  <div class="tab-content">
+    <div class="tab-pane active" id="items">
+    </br>
+      <div class="row">
+        <div class="col-xs-12 col-sm-6 col-md-8">
+
+          <%= render 'plugin/sort' %>
+
+        </div>
+      </div>
+      </br>
+
+      <button id="button_modal_open" class="btn btn-primary btn-lg btn-block" data-toggle="modal" data-target="#myModal">
+        Добавить пункт
+      </button>
+      </br>
+
+      <ol class="listitem" id="items_<%= @list.id %>">
+        <% @items.each do |item| %>
+          <%= render 'plugin/item', item: item  %>
+        <%end%>
+      </ol>
+
+      <div id="more_items">
+        <%= link_to "Показать больше...", list_url(:page => @items.next_page), remote: true %>
+      </div>
+      </br>
+
+      <% if @list.items.count > 2 %>
+        <!-- Button trigger modal -->
+        <button id="button_modal_open" class="btn btn-primary btn-lg btn-block" data-toggle="modal" data-target="#myModal">
+          Добавить пункт
+        </button>
+      <%end%>
+
+
+        <%= render 'plugin/item_form' %>
+
+
+
+      <br>Комментарии:<br>
+      <div class="row">
+      <div class="col-xs-12">
+      <iframe src="<%= list_comments_plugin_index_url %>?list=<%=@list.id%>" scrolling="no" frameborder="0" width="100%"></iframe>
+      <script>iFrameResize({log:true})</script>
+      </div>
+      </div>
+
+      </div>
+      <div class="tab-pane" id="queue"></br>
+        <p> Нет пунктов ожидающих утверждения</p>
+      </div>
+    </div>
+  </div>
+
+<%= render 'plugin/script' %>
+
+
+

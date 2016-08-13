@@ -1,0 +1,30 @@
+<div class="vote-block" >
+  <%= form_for :vote, url: list_item_votes_url(item.list, item),
+                      remote: true do |f| %>
+    <%= f.hidden_field :vot, value:'up' %>
+    <button type="submit"
+            id="button-like-item-<%=item.id%>"
+            data-vot="up"
+            data-item="<%=item.id%>"
+            class="fa fa-arrow-circle-o-up fa-2x vote-button bth-like"
+            aria-hidden="true"
+            rel="tooltip" title="Нравится">
+
+    </button>
+  <% end %>
+</div>
+<div class="vote-block">
+  <%= form_for :vote, url: list_item_votes_url(item.list, item),
+                      remote: true do |f| %>
+    <%= f.hidden_field :vot, value:'down' %>
+    <button type="submit"
+            id="button-dislike-item-<%=item.id%>"
+            data-vot="down"
+            data-item="<%=item.id%>"
+            class="fa fa-arrow-circle-o-down fa-2x vote-button bth-dislike"
+            aria-hidden="true"
+            rel="tooltip" title="Не нравится">
+    </button>
+  <% end %>
+</div>
+

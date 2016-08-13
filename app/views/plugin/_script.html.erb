@@ -1,0 +1,102 @@
+<script>
+(function ($) {
+//сортировка
+$('body').on('click', '.items_sort', function() {
+  var sort = $(this).data('sort');
+      $.ajax({
+        url: "<%=list_url(@list)%>.js?sort="+(sort),
+        crossDomain: true,
+        dataType: "script",
+        success: function(){
+    alert('Load was performed.');
+    }
+  });
+});
+
+//Голосование
+$('button.vote-button').click(function() {
+  var votyp = $(this).attr('data-vot');
+  var item = $(this).attr('data-item');
+  if (votyp == "up")
+  {
+    $(this).removeClass("bth-like").addClass("bth-like-active");
+    $(this).attr("data-vot","del");
+    $("#button-dislike-item-"+item).removeClass("bth-dislike-active").addClass("bth-dislike");
+    $("#button-dislike-item-"+item).attr("data-vot","down");
+  }
+  if (votyp == "down")
+  {
+    $(this).removeClass("bth-dislike").addClass("bth-dislike-active");
+    $(this).attr("data-vot","del");
+    $("#button-like-item-"+item).removeClass("bth-like-active").addClass("bth-like");
+    $("#button-like-item-"+item).attr("data-vot","up");
+  }
+  if (votyp == "del")
+  {
+    $("#button-dislike-item-"+item).removeClass("bth-dislike-active").addClass("bth-dislike");
+    $("#button-dislike-item-"+item).attr("data-vot","down");
+    $("#button-like-item-"+item).removeClass("bth-like-active").addClass("bth-like");
+    $("#button-like-item-"+item).attr("data-vot","up");
+  }
+
+});
+
+
+
+//Форма отправки пункта
+$('body').on('click', '#button_modal_open', function() {
+  $('#modal_iframe').empty();
+  var iframe = $('<iframe/>', {
+       src : '<%= new_item_list_url %>',
+       scrolling : 'no',
+       frameborder : '0',
+       width : '100%'
+     });
+(iframe).prependTo('#modal_iframe');
+var script = $("<script>", {
+            type : "text/javascript",
+            text : "iFrameResize({log:true, messageCallback : function(messageData){$.ajax({url: '<%= new_item_list_url %>.js?item='+(messageData.message),crossDomain: true,dataType: 'script',error: function(){alert('Ой! Что-то пошло не так. Попробуйте перезагрузить страницу.');}});$('p#callback').html('<b>Frame ID:</b> '    + messageData.iframe.id + ' <b>Message:</b> '    + messageData.message);}})"});
+(script).appendTo('#modal_iframe');
+});
+
+
+//показать комментарии и форму пункта
+$('body').on('click', '.show_comments_item', function() {
+  var item = $(this).data('item-id');
+  $(this).removeClass("show_comments_item").addClass("open_comments_item");
+  var iframe = $('<iframe/>', {
+       src : '<%= item_comments_plugin_index_url %>?list=<%=@list.id%>&item='+item,
+       scrolling : 'no',
+       frameborder : '0',
+       width : '100%',
+       height : '50px'
+
+     });
+  var script = $("<script>", {
+            type : "text/javascript",
+            text : "iFrameResize({log:true})"
+        });
+
+  (iframe).prependTo('#all-item-comments-'+item);
+  (script).appendTo('#all-item-comments-'+item);
+});
+
+
+//скрыть комментарии и форму пункта
+$('body').on('click', '.open_comments_item', function() {
+  var item = $(this).data('item-id');
+  $('#all-item-comments-'+item).empty();
+  $(this).removeClass("open_comments_item").addClass("show_comments_item");
+});
+
+
+
+
+
+var item = window.location.hash.replace("#","")
+$("html, body").animate({scrollTop: $("#item_"+item).offset().top},4000,function() {
+$("#item_"+item).css({backgroundColor: 'yellow'}).animate({backgroundColor: 'white'},2000)
+});
+
+}(jQuery));
+</script>

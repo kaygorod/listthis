@@ -1,2 +1,1 @@
-$("#ajax_comments_item_<%=@item.id%>").html("<% @item.comments.each do |comment| %><%= j render 'comments/item_comments', item: @item, comment: comment %><% end %>");
-$("#item_<%=@item.id%>_comments_form").html("<%= j render 'comments/item_comments_form', item: @item %><br>");
+$("#all-item-comments-<%=@item.id%>").html("<%= j render 'comments/item_comments', item: @item %>");

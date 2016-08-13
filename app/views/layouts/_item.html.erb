@@ -1,0 +1,80 @@
+<li id="item_<%= item.id %>">
+          <%= yield :title%>
+
+  <% if signed_in? %>
+    <% if can? :update, item %>
+      <div class="btn-group right-block">
+        <button type="button" class=" btn btn-link dropdown-toggle"
+                data-toggle="dropdown" rel="tooltip" title="Настройки">
+          <div class="text-muted">
+            <span class="glyphicon glyphicon-cog"></span>
+          </div>
+        </button>
+          <ul class="dropdown-menu" role="menu">
+            <li><%= link_to "Редактировать",
+                    edit_list_item_path(@list.id,item.id) %></li>
+            <% if can? :destroy, item %>
+            <li class="divider"></li>
+            <li><%= link_to "Удалить", list_item_path(@list.id,item.id),
+               method: :delete, data: { confirm: "Удалить этот пункт?" },
+               remote: true %></li>
+            <% end %>
+          </ul>
+        </button>
+      </div>
+    <% end %>
+  <% end %>
+  </br>
+  </br>
+  <p><img src="<%= root_url %>/<%= (item.image_url) %>" alt="..." class="img-responsive"></p>
+  <span><%= simple_format(item.description) %></span>
+  <% if @list.user != item.user %>
+    <small class="text-muted">
+      Добавил <%= link_to item.user.username, user_path(item.user)%>
+      <%= time_ago_in_words(item.created_at) %> назад.
+    </small>
+  <% end %>
+  </br>
+  <div class="row">
+  <div class="col-xs-12">
+    <div class="row-item-footer">
+      <div class="item-footer-lb">
+        <div class="vertical-centr-block">
+          <span id="voting_item_<%=item.id%>">
+            <%= render "votes/voting", item: item %>
+          </span>
+        </div>
+        <div class="vote-stat vertical-centr-block">
+          <span rel="tooltip" title="Общее количество очков этого пункта">Очки:
+          <b id="rating_item_<%=item.id%>"><%= item.rating %></b> </span><sapn class="hidden-xs">/
+          <span rel="tooltip" title="Столько человек проголосвало за этот пункт">Проголосовало:
+          <b id="vote_count_item_<%=item.id%>"><%= item.votes.count %></b></span></sapn>
+        </div>
+      </div>
+      <div class="item-footer-rb pull-right">
+        <div class="item-footer-commts show_comments_item" data-item-id="<%= item.id %>" rel="tooltip" title="Почитать комментарии или написать свой">
+            <span class="visible-xs-inline">
+            <%= link_to "", item_comments_list_item_path(@list.id, :id => item.id), remote: true, class:'link-item-nd fa fa-comment-o fa-lg' %>
+            </span>
+            <span class="hidden-xs">
+            <i class="fa fa-comment-o fa-lg" aria-hidden="true"></i>
+            <%= link_to "Комментарии:", item_comments_list_item_path(@list.id, :id => item.id), remote: true, class:'link-item-nd' %>
+            </span>
+            <b id="comments_item_<%=item.id%>_count"><%= item.comments.count %></b>
+        </div>
+        <div class="vertical-centr-bl">
+          <%= yield :item_share%>
+        </div>
+      </div>
+    </div>
+    </div>
+  </div>
+  <hr class="line-item">
+
+<div class="row">
+  <div class="col-xs-12" id="all-item-comments-<%=item.id%>">
+
+  </div>
+</div>
+
+</li>

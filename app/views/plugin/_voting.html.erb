@@ -1,0 +1,7 @@
+  <% if vote = item.votes.find_by_user_ip(@current_ip) %>
+    <%= render "plugin/revote", item: item %>
+  <% else %>
+    <%= render "plugin/new_vote", item: item %>
+  <% end %>
+
+

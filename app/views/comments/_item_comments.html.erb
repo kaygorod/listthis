@@ -1,19 +1,10 @@
-<div class="row" id="comment_<%= comment.id %>">
-  <div class="col-xs-1">
-    <h4><span class="glyphicon glyphicon-user"></span></h4>
-  </div>
-  <div class="col-xs-11">
-    <b><%= link_to comment.user.username, user_path(comment.user) %></b>
-    <small><%= comment.content %></small>
-    <% if can? :destroy, comment %>
-      <%= link_to '',list_comment_path(@list.id, comment),
-                    method: :delete, data: { confirm: "Удалить комментарий?" },
-                    class:"glyphicon glyphicon-remove pull-right",
-                    remote: true %>
+<div id="item_<%=item.id%>_comments_form">
+  <%= render 'comments/item_comment_form', item: item %>
+</div>
+<div id="item_comment_<%=item.id%>">
+  <div id="ajax_comments_item_<%=item.id%>">
+    <% item.comments.each do |comment| %>
+      <%= render 'comments/item_comment', item: item, comment: comment %>
     <% end %>
-    <small class="text-muted">
-      <p><%= time_ago_in_words(comment.created_at) %> назад.</p>
-    </small>
-    <hr class="line-item">
   </div>
 </div>

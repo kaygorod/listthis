@@ -1,7 +1,7 @@
 <span rel="tooltip" title="Поделиться в Фейсбуке">
    <a rel="nofollow"
       href="#"
-      onclick="window.open('https://www.facebook.com/sharer/sharer.php?u=http://slylist.com/lists/<%=@list.id%>', '_blank', 'scrollbars=0, resizable=1, menubar=0, left=200, top=200, width=550, height=440, toolbar=0, status=0');return false"
+      onclick="window.open('https://www.facebook.com/sharer/sharer.php?u=<%=list_url(@list)%>', '_blank', 'scrollbars=0, resizable=1, menubar=0, left=200, top=200, width=550, height=440, toolbar=0, status=0');return false"
       target="_blank"
       class="link-decoration-none"
       style="color:#3b5998">
@@ -11,7 +11,7 @@
 <span rel="tooltip" title="Рссказать Вконтакте">
    <a rel="nofollow"
       href="#"
-      onclick="window.open('https://vk.com/share.php?url=http://slylist.com/lists/<%=@list.id%>', '_blank', 'scrollbars=0, resizable=1, menubar=0, left=200, top=200, width=550, height=440, toolbar=0, status=0');return false"
+      onclick="window.open('https://vk.com/share.php?url=<%=list_url(@list)%>', '_blank', 'scrollbars=0, resizable=1, menubar=0, left=200, top=200, width=550, height=440, toolbar=0, status=0');return false"
       target="_blank"
       class="link-decoration-none"
       style="color:#4d7198">
@@ -21,7 +21,7 @@
 <span rel="tooltip" title="Твитнуть!">
    <a rel="nofollow"
       href="#"
-      onclick="window.open('https://twitter.com/intent/tweet?text=<%=@list.title%>&url=http://slylist.com/lists/<%=@list.id%>&counturl=http://slylist.com/lists/<%=@list.id%>', '_blank', 'scrollbars=0, resizable=1, menubar=0, left=200, top=200, width=550, height=440, toolbar=0, status=0');return false"
+      onclick="window.open('https://twitter.com/intent/tweet?text=<%=@list.title%>&url=<%=list_url(@list)%>&counturl=<%=list_url(@list)%>', '_blank', 'scrollbars=0, resizable=1, menubar=0, left=200, top=200, width=550, height=440, toolbar=0, status=0');return false"
       target="_blank"
       class="link-decoration-none"
       style="color:#1faee9">
@@ -31,7 +31,7 @@
 <span rel="tooltip" title="Плюсануть!">
    <a rel="nofollow"
       href="#"
-      onclick="window.open('https://plus.google.com/share?url=http://slylist.com/lists/<%=@list.id%>', '_blank', 'scrollbars=0, resizable=1, menubar=0, left=200, top=200, width=550, height=440, toolbar=0, status=0');return false"
+      onclick="window.open('https://plus.google.com/share?url=<%=list_url(@list)%>', '_blank', 'scrollbars=0, resizable=1, menubar=0, left=200, top=200, width=550, height=440, toolbar=0, status=0');return false"
       target="_blank"
       class="link-decoration-none"
       style="color:#ea4334">

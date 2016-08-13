@@ -1,6 +1,6 @@
 <div class="vote-block" >
   <%= form_for :vote, url: list_item_votes_path(item.list, item),
-                      remote: true do |f| %>
+                      remote: true, :format => :json do |f| %>
     <%= f.hidden_field :vot, value:'up' %>
     <button type="submit"
             class="fa fa-arrow-circle-o-up fa-2x vote-button bth-like"
@@ -11,7 +11,7 @@
 </div>
 <div class="vote-block">
   <%= form_for :vote, url: list_item_votes_path(item.list, item),
-                      remote: true do |f| %>
+                      remote: true, :format => :json do |f| %>
     <%= f.hidden_field :vot, value:'down' %>
     <button type="submit"
             class="fa fa-arrow-circle-o-down fa-2x vote-button bth-dislike"

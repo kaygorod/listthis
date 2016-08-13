@@ -1,129 +1,73 @@
-<% provide(:title, @list.title) %>
-<% provide(:desc, @list.description) %>
-<% provide(:image, @list.image) %>
-<div class="list">
-  <%= render 'list_description' %>
+<% content_for :head do %>
+<!DOCTYPE html>
+<html>
+  <head>
+    <title><%= full_title(yield(:title)) %></title>
 
-  <!-- Nav tabs -->
-  <ul class="nav nav-tabs" role="tablist">
-    <li class="active">
-      <a href="#items" role="tab" data-toggle="tab">Пункты
-      <span class="badge"> <%= @list.items.count %></span></a>
-    </li>
-    <li>
-      <a href="#queue" role="tab" data-toggle="tab">На утверждении</a>
-    </li>
-  </ul>
+    <meta property="og:title" content="<%= full_title(yield(:title)) %>"/>
+    <meta property="og:description" content="<%=yield(:desc)%>"/>
+    <meta property="og:image" content="http://slylist.com<%=yield(:image)%>">
+    <meta property="og:type" content="website"/>
+    <meta property="og:url" content= "<%= absolute_url %>" />
+    <meta property="og:site_name" content="SlyList" />
 
-  <!-- Tab panes -->
-  <div class="tab-content">
-    <div class="tab-pane active" id="items">
-    </br>
-      <div class="row">
-      <div class="col-xs-12 col-sm-6 col-md-8">
-        <div class="dropdown">
-          <button class="btn btn-default btn-xs dropdown-toggle" type="button" id="dropdownMenu10" rel="tooltip" data-toggle="dropdown" data-placement="top" title="Изменить сортировку">
-            Сортировка
-            <span class="caret"></span>
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="<%= full_title(yield(:title)) %>" />
+    <meta name="twitter:description" content="<%=truncate(yield(:desc), length: 100)%>" />
+    <meta name="twitter:image:src" content="http://slylist.com<%=yield(:image)%>" />
+    <meta name="twitter:domain" content="slylist.com" />
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <%= stylesheet_link_tag    'application', media: 'all',
+                               'data-turbolinks-track' => true %>
+    <%= javascript_include_tag 'application',
+                               'data-turbolinks-track' => true %>
+
+    <%= csrf_meta_tags %>
+    <%= render 'layouts/shim' %>
+  </head>
+  <body>
+    <%= render 'layouts/header' %>
+    <div class="container">
+      <% flash.each do |key, value| %>
+        <div class="alert alert-<%= key %> alert-dismissible">
+          <%= value %>
+          <button type="button" class="close" data-dismiss="alert">
+            <span aria-hidden="true">&times;</span>
+            <span class="sr-only">Close</span>
           </button>
-          <ul class="dropdown-menu" role="menu" aria-labelledby="dropdownMenu10">
-            <li role="presentation">
-              <%= link_to "По умолчанию",
-                  list_path(:sort => 'rating_desc' ), remote: true, class:"items_sort" %>
-            </li>
-            <li role="presentation" class="dropdown-header">По рейтингу</li>
-            <li role="presentation">
-              <%= link_to "Больше",
-                  list_path(:sort => 'rating_desc' ), remote: true, class:"items_sort" %>
-            </li>
-            <li role="presentation">
-              <%= link_to "Меньше",
-                  list_path(:sort => 'rating_asc' ), remote: true, class:"items_sort" %>
-            </li>
-            <li role="presentation" class="dropdown-header">По комментариям</li>
-            <li role="presentation">
-            <%= link_to "Больше",
-                  list_path(:sort => 'comts_desc' ), remote: true, class:"items_sort" %>
-            </li>
-            <li role="presentation">
-            <%= link_to "Меньше",
-                  list_path(:sort => 'comts_asc' ), remote: true, class:"items_sort" %>
-            </li>
-            <li role="presentation" class="dropdown-header">По дате</li>
-            <li role="presentation">
-            <%= link_to "Новое",
-                  list_path(:sort => 'created_at_desc' ), remote: true, class:"items_sort" %>
-            </li>
-            <li role="presentation">
-              <%= link_to "Старое",
-                  list_path(:sort => 'created_at_asc' ), remote: true, class:"items_sort" %>
-            </li>
-          </ul>
         </div>
-        </div>
-      </div>
-      </br>
-  <button class="btn btn-primary btn-lg btn-block" data-toggle="modal" data-target="#myModal">
-    Добавить пункт
-  </button>
-  </br>
-
-    <ol class="listitem" id="items_<%= @list.id %>">
-      <%= render @items.order(rating: :desc) %>
-    </ol>
-
-    <div id="more_items">
-      <%= link_to "Показать больше...", list_path(:page => @items.next_page), remote: true, id: "items_more" %>
-    </div>
-
-
-
-    </br>
-  <% if @list.items.count > 2 %>
-  <!-- Button trigger modal -->
-  <button class="btn btn-primary btn-lg btn-block" data-toggle="modal" data-target="#myModal">
-    Добавить пункт
-  </button>
-  <%end%>
-
+      <% end %>
+<%end%>
+<% content_for :list_button do %>
+  <%= render 'lists/list_button' %>
+<%end%>
+<% content_for :list_share do %>
+  <%= render 'lists/list_share' %>
+<%end%>
+<% content_for :sort_menu do %>
+  <%= render 'lists/sort_menu' %>
+<%end%>
+<% content_for :items do %>
+  <%= render @items.order(rating: :desc) %>
+<%end%>
+<% content_for :modal do %>
   <% if signed_in? %>
-
     <%= render 'items/item_form' %>
-
   <% else %>
     <%= render 'shared/new_session_modal' %>
   <% end %>
+<%end%>
+<% content_for :list_comments_form do %>
+  <%= render "comments/list_comments"%>
+<%end%>
+<% content_for :script do %>
+  <%= render 'script' %>
+<%end%>
 
 
-  <br>Комментарии:<br>
-  <span id="list_<%=@list.id%>_comments_form">
-  <%= render "comments/list_comments_form" %>
-  </span>
-  <div class="row">
-  <div id="list_comment">
-    <% @list.comments.where(:item_id => nil).each do |comment| %>
-
-    <%= render "comments/list_comments", comment: comment %>
-
-    <% end %>
-    </div>
-  </div>
-
-  </div>
-    <div class="tab-pane" id="queue"></br>
-      <p> Нет пунктов ожидающих утверждения</p>
-    </div>
-  </div>
-</div>
-
-<script>
-
-
-
-
-
-var item = window.location.hash.replace("#","")
-$("html, body").animate({scrollTop: $("#item_"+item).offset().top},4000,function() {
-$("#item_"+item).css({backgroundColor: 'yellow'}).animate({backgroundColor: 'white'},2000)
-});
-</script>
+<% content_for :bottom do %>
+<%= render 'layouts/footer' %>
+  </body>
+</html>
+<%end%>

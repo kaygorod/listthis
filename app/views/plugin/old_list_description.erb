@@ -1,0 +1,87 @@
+<div class="row">
+  <div class="col-xs-12">
+    <% if signed_in? %>
+      <%= render "list_button" %>
+    <% end %>
+    <h1>
+      <%= @list.title %>
+    </h1>
+  </div>
+</div>
+<div class="row text-muted">
+  <div class="col-xs-6">
+    <small>
+      Автор <%= link_to @list.user.username, user_url(@list.user)%>
+    </small>
+  </div>
+  <div class="col-xs-6">
+    <small class="text-right pull-right">
+      <span rel="tooltip" title="Количество пунктов">
+        <span class="glyphicon glyphicon-th-list"></span>
+        <span id="list_items_count">
+          <%= @list.items.count %>
+        </span>
+      </span>
+      <span rel="tooltip" title="Количество комментариев">
+        <span class="glyphicon glyphicon-comment"></span>
+        <span id="list_comments_count">
+          <%= @list.comments.count %>
+        </span>
+      </span>
+      <span rel="tooltip" title="Количество просмотров">
+        <span class="glyphicon glyphicon-eye-open"></span>
+        <%= @list.views %>
+      </span>
+    </small>
+  </div>
+</div>
+<p>
+    <img src="<%= root_url %>/<%= (@list.image_url) %>" alt="<%= @list.title %>"
+                                        class="img-responsive">
+
+</p>
+<%= simple_format(@list.description) %>
+<p>
+<div class="text-muted ">
+<b>Участники:</b>
+      <% authors_items.each do |item| %>
+
+      <i class="fa fa-user" aria-hidden="true"></i> <%= link_to item.user.username, user_url(item.user), class:"link-item-nd"%>
+      <%end%>
+      </div>
+<div class="row"><br>
+  <div class="col-xs-12">
+    <div class="row-list-footer">
+
+      <button type="button" class="btn btn-success btn-xs" data-toggle="button">
+      <i class="fa fa-heart-o" aria-hidden="true"></i> Избранное | 6</button>
+      <!-- Button trigger modal -->
+      <button class="btn btn-default btn-xs" data-toggle="modal" data-target="#modalIframe">
+        <i class="fa fa-code" aria-hidden="true"></i> <span class="hidden-xs">Встроить список</span>
+      </button>
+
+      <!-- Modal -->
+      <div class="modal fade" id="modalIframe" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+          <div class="modal-content">
+            <div class="modal-header">
+              <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+              <h4 class="modal-title" id="myModalLabel">Встраивание списка на ваш сайт</h4>
+            </div>
+            <div class="modal-body">
+              <div class="form-group">
+                <label for="exampleInputPassword1">Ваш код фрейма:</label>
+                <textarea class="form-control" rows="2"><iframe src='http://slylist.com/lists/<%= @list.id %>/iframe' seamless width=100% height=2500 style='border:none' scrolling=''></iframe></textarea>
+                <p class="help-block">Этот код необходимо вставить на страницу вашего сайта. Если список отображается некорректно, то измените вручную ширину(width) и высоту(height)</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="pull-right">
+        <%= render "list_share" %>
+      </div>
+    </div>
+  </div>
+</div>
+<br>

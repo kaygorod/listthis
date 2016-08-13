@@ -4,25 +4,35 @@ class ListsController < ApplicationController
   #before_action :correct_user,       only: [:destroy, :edit]
   layout false, only: [:iframe, :plugin, :items_form_iframe]
   #отключение проверки токена protect_from_forgery для работы js
-  #skip_before_action :verify_authenticity_token , :only => [:plugin]
+  skip_before_action :verify_authenticity_token , :only => [:show, :list_items, :new_item]
 
   #protect_from_forgery except: [:sort_time_desc, :sort_time_asc]
-#before_filter :set_access_control_headers
+  #before_filter :set_access_control_headers
+  layout false, only: [:new_item]
 
-  def items_form_iframe
+  def new_item
+    allow_iframe
     @list = List.friendly.find(params[:id])
+    if params[:item]
+    @item = Item.find(params[:item])
+    respond_to do |format|
+      format.js
+      end
+    end
   end
 
   def show
     list_items
     views
     respond_to do |format|
-        format.html
+        format.html {render layout: "list"}
         format.js
       end
+
   end
 
   def iframe
+    allow_iframe
     list_items
     views
     respond_to do |format|
@@ -82,31 +92,31 @@ class ListsController < ApplicationController
   end
 
 
-  def sort_time_desc
-    headers['Access-Control-Allow-Origin'] = '*'
-    list_items
-  end
+  #def sort_time_desc
+  #  headers['Access-Control-Allow-Origin'] = '*'
+  #  list_items
+  #end
 
-  def sort_time_asc
-    headers['Access-Control-Allow-Origin'] = '*'
-    list_items
-  end
+  #def sort_time_asc
+  #  headers['Access-Control-Allow-Origin'] = '*'
+  #  list_items
+  #end
 
-  def sort_comts_desc
-    list_items
-  end
+  #def sort_comts_desc
+  #  list_items
+  #end
 
-  def sort_comts_asc
-    list_items
-  end
+  #def sort_comts_asc
+  #  list_items
+  #end
 
-  def sort_rating_desc
-    list_items
-  end
+  #def sort_rating_desc
+  #  list_items
+  #end
 
-  def sort_rating_asc
-    list_items
-  end
+  #def sort_rating_asc
+  #  list_items
+  #end
 
 private
 
@@ -136,11 +146,15 @@ private
     end
     @list = List.friendly.find(params[:id])
     @current_ip = request.remote_ip
-    @items = @list.items.paginate(page: params[:page], :per_page => 5).order(sort_order)
+    @items = @list.items.paginate(page: params[:page], :per_page => 25).order(sort_order)
   end
 
   def list_params
     params.require(:list).permit(:title, :description, :image)
+  end
+
+  def allow_iframe
+    response.headers.delete "X-Frame-Options"
   end
 
   #def correct_user

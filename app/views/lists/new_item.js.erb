@@ -1,0 +1,12 @@
+$('#items_<%= @list.id %>').append("<%= escape_javascript(render 'plugin/item', item: @item) %>");
+//вставка скрипта для возможности проголосовать сразу
+var script = $("<script>", {
+            type : "text/javascript",
+            text : "$('button.vote-button').click(function() {var votyp = $(this).attr('data-vot');var item = '<%= @item.id %>';if (votyp == 'up'){$(this).removeClass('bth-like').addClass('bth-like-active');$(this).attr('data-vot','del');$('#button-dislike-item-'+item).removeClass('bth-dislike-active').addClass('bth-dislike');$('#button-dislike-item-'+item).attr('data-vot','down');}if (votyp == 'down'){$(this).removeClass('bth-dislike').addClass('bth-dislike-active');$(this).attr('data-vot','del');$('#button-like-item-'+item).removeClass('bth-like-active').addClass('bth-like');$('#button-like-item-'+item).attr('data-vot','up');}if (votyp == 'del'){$('#button-dislike-item-'+item).removeClass('bth-dislike-active').addClass('bth-dislike');$('#button-dislike-item-'+item).attr('data-vot','down');$('#button-like-item-'+item).removeClass('bth-like-active').addClass('bth-like');$('#button-like-item-'+item).attr('data-vot','up');}});"
+          });
+(script).appendTo('#items_<%= @list.id %>');
+//
+$('#myModal').modal('hide')
+$("#item_<%= @item.id %>").animate({backgroundColor: 'yellow'},2000,function() {
+  $("#item_<%= @item.id %>").animate({backgroundColor: 'white'},2000)
+});

@@ -1,0 +1,58 @@
+<% current_ip = request.remote_ip %>
+  <% [item.votes.find_by_user_ip(current_ip)].each do |vote| %>
+    <% if vote.vot =="up"%>
+      <div class="vote-block">
+      <%= form_for [item.list, item, vote], url: list_item_vote_url(item.list, item, vote), remote: true,method: :delete, :format => :json do |f| %>
+        <button type="submit"
+                id="button-like-item-<%=item.id%>"
+                data-vot="del"
+                data-item="<%=item.id%>"
+                class="fa fa-arrow-circle-o-up fa-2x vote-button bth-like-active"
+                aria-hidden="true"
+                rel="tooltip" title="Удлаить мой голос">
+        </button>
+      <% end %>
+      </div>
+      <div class="vote-block">
+        <%= form_for [item.list, item, vote], url: list_item_vote_url(item.list, item, vote), remote: true, :format => :json do |f| %>
+          <%= f.hidden_field :vot, value:'down' %>
+          <button type="submit"
+                  id="button-dislike-item-<%=item.id%>"
+                  data-vot="down"
+                  data-item="<%=item.id%>"
+                  class="fa fa-arrow-circle-o-down fa-2x vote-button bth-dislike"
+                  aria-hidden="true"
+                  rel="tooltip" title="Переголосовать">
+          </button>
+        <% end %>
+      </div>
+    <% else %>
+      <div class="vote-block">
+        <%= form_for [item.list, item, vote], url: list_item_vote_url(item.list, item, vote), remote: true, :format => :json do |f| %>
+          <%= f.hidden_field :vot, value:'up' %>
+          <button type="submit"
+                  id="button-like-item-<%=item.id%>"
+                  data-vot="up"
+                  data-item="<%=item.id%>"
+                  class="fa fa-arrow-circle-o-up fa-2x vote-button bth-like"
+                  aria-hidden="true"
+                  rel="tooltip" title="Переголосовать">
+          </button>
+        <% end %>
+      </div>
+      <div class="vote-block">
+      <%= form_for [item.list, item, vote], url: list_item_vote_url(item.list, item, vote), remote: true,method: :delete, :format => :json do |f| %>
+        <button type="submit"
+                id="button-dislike-item-<%=item.id%>"
+                data-vot="del"
+                data-item="<%=item.id%>"
+                class="fa fa-arrow-circle-o-down fa-2x vote-button bth-dislike-active"
+                aria-hidden="true"
+                rel="tooltip" title="Удлаить мой голос">
+        </button>
+      <% end %>
+      </div>
+    <% end %>
+  <% end %>
+
+
