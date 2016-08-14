@@ -6,18 +6,6 @@
 
 /* universal */
 
-html {
-  overflow-y: scroll;
-}
-
-section {
-  overflow: auto;
-}
-
-textarea {
-  resize: vertical;
-}
-
 .right-block {
   display: block;
   float:right;
@@ -57,28 +45,12 @@ textarea {
 }
 
 
+
 /* list */
 
-.list {
-  max-width:728px;
-  margin-left:auto;
-  margin-right:auto;
-}
 
-.listitem{
-  list-style-position:inside;
-  margin-left:0px;
-  padding-left:0px;
-  list-style:none;
-}
-.listitem > LI:before {
-content: counter(list) " ";
-font-size:2em;
-color:#808080;
-}
-.listitem > li {
-counter-increment:list;
-}
+
+
 
 .listitem h2 {
   display:inline;
@@ -352,8 +324,88 @@ html[xmlns] .input-file-row-1{
 
 /* НОВЫЕ СТИЛИ 14 августа */
 
-/* Футер пункта */
+/* Основные */
+html {
+  overflow-y: scroll;
+}
 
+section {
+  overflow: auto;
+}
+
+body {
+  background-color: #f5f8fa;
+}
+
+textarea {
+  resize: vertical;
+}
+@media (max-width: 768px) {
+.navbar {
+    margin-bottom:0px;
+}
+}
+
+
+
+.container {
+    margin-right: auto;
+    margin-left: auto;
+    padding-left: 0px;
+    padding-right: 0px;
+
+}
+.slylist-container{
+  padding-left: 15px;
+  padding-right: 15px;
+}
+
+
+/* Лист */
+
+.list {
+  max-width:758px;
+  margin-left:auto;
+  margin-right:auto;
+  background-color: white;
+  border-radius:5px;
+
+}
+.list-main-image{
+  border-radius: 5px 5px 0px 0px;
+}
+
+@media (max-width: 768px) {
+.list-main-image{
+  border-radius: 0px 0px 0px 0px;
+}
+}
+
+/* Пункт */
+.listitem{
+  list-style-position:inside;
+  margin-left:0px;
+  padding-left:0px;
+  list-style:none;
+}
+.listitem > LI:before {
+  content: counter(list) " ";
+  font-size:2em;
+  color:#808080;
+  padding-left:15px;
+}
+.listitem > li {
+  counter-increment:list;
+  padding-top:15px;
+}
+
+.item-button-set {
+  display: block;
+  float:right;
+  margin-top:5px;
+}
+
+/* Футер пункта */
 
 .item-footer-commts{
   display: inline-block;
@@ -418,3 +470,6 @@ html[xmlns] .input-file-row-1{
   background: url(ajax-loader.gif) center no-repeat;
   display:none;
 }
+
+
+

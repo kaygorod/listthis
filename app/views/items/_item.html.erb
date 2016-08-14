@@ -2,7 +2,7 @@
   <h2><a name="<%= (item.id) %>"></a><%= item.title %></h2>
   <% if signed_in? %>
     <% if can? :update, item %>
-      <div class="btn-group right-block">
+      <div class="btn-group item-button-set">
         <button type="button" class=" btn btn-link dropdown-toggle"
                 data-toggle="dropdown" rel="tooltip" title="Настройки">
           <div class="text-muted">
@@ -26,6 +26,7 @@
   </br>
   </br>
   <p><img src="<%= root_url %>/<%= (item.image_url) %>" alt="..." class="img-responsive"></p>
+  <div class="slylist-container">
   <span><%= simple_format(item.description) %></span>
   <% if @list.user != item.user %>
     <small class="text-muted">
@@ -33,6 +34,7 @@
       <%= time_ago_in_words(item.created_at) %> назад.
     </small>
   <% end %>
+  </div>
   </br>
 
 
