@@ -25,7 +25,7 @@
   <span><%= simple_format(item.description) %></span>
   <% if @list.user != item.user %>
     <small class="text-muted">
-      Добавил <%= link_to item.user.username, user_url(item.user)%>
+      Добавил <%= link_to item.user.username, user_path(item.user)%>
       <%= time_ago_in_words(item.created_at) %> назад.
     </small>
   <% end %>
@@ -49,21 +49,17 @@
       </div>
       <div class="item-footer-rb pull-right">
 
-        <div class="item-footer-commts show_comments_item" data-item-id="<%= item.id %>" rel="tooltip" title="Почитать комментарии или написать свой">
-
-            <span class="visible-xs-inline">
-            <i class="link-item-nd fa fa-comment-o fa-lg" aria-hidden="true"></i>
-            </span>
-
-            <span class="hidden-xs">
-            <i class="fa fa-comment-o fa-lg" aria-hidden="true"></i>
-
-            <span class='link-item-nd'>Комментарии:</span>
-            </span>
-
-            <b id="comments_item_<%=item.id%>_count"><%= item.comments.count %></b>
+        <div class="item-footer-commts show_comments_item" data-item-id="<%= item.id %>" id="item_comments_button_<%= item.id %>">
+              <span class="visible-xs-inline">
+              <i class="fa fa-comment-o fa-lg" aria-hidden="true"></i>
+              </span>
 
 
+              <span class="hidden-xs">
+              <i class="fa fa-comment-o fa-lg" aria-hidden="true"></i>
+              <span>Комментарии:</span>
+              </span>
+              <b id="comments_item_<%=item.id%>_count"><%= item.comments.count %></b>
         </div>
 
         <div class="vertical-centr-bl">
@@ -75,13 +71,10 @@
   </div>
 
 
-  <hr class="line-item">
-
-  <div class="row">
-  <div class="col-xs-12" id="all-item-comments-<%=item.id%>">
+  <div id="all-item-comments-<%=item.id%>">
 
   <script id="script"></script>
-  </div>
+
   </div>
 
 </li>

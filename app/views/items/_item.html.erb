@@ -34,45 +34,56 @@
     </small>
   <% end %>
   </br>
+
+
+
   <div class="row">
-  <div class="col-xs-12">
-    <div class="row-item-footer">
-      <div class="item-footer-lb">
-        <div class="vertical-centr-block">
-          <span id="voting_item_<%=item.id%>">
-            <%= render "votes/voting", item: item %>
-          </span>
+    <div class="col-xs-12">
+      <div class="row-item-footer">
+        <div class="item-footer-lb">
+          <div class="vertical-centr-block">
+            <span id="voting_item_<%=item.id%>">
+              <%= render "votes/voting", item: item %>
+            </span>
+          </div>
+          <div class="vote-stat vertical-centr-block">
+            <span rel="tooltip" title="Общее количество очков этого пункта">Очки:
+            <b id="rating_item_<%=item.id%>"><%= item.rating %></b> </span><sapn class="hidden-xs">/
+            <span rel="tooltip" title="Столько человек проголосвало за этот пункт">Проголосовало:
+            <b id="vote_count_item_<%=item.id%>"><%= item.votes.count %></b></span></sapn>
+          </div>
         </div>
-        <div class="vote-stat vertical-centr-block">
-          <span rel="tooltip" title="Общее количество очков этого пункта">Очки:
-          <b id="rating_item_<%=item.id%>"><%= item.rating %></b> </span><sapn class="hidden-xs">/
-          <span rel="tooltip" title="Столько человек проголосвало за этот пункт">Проголосовало:
-          <b id="vote_count_item_<%=item.id%>"><%= item.votes.count %></b></span></sapn>
+        <div class="item-footer-rb pull-right">
+
+
+
+<div class="item-footer-commts show_comments_item" data-item-id="<%= item.id %>" id="item_comments_button_<%= item.id %>">
+              <span class="visible-xs-inline">
+              <i class="fa fa-comment-o fa-lg" aria-hidden="true"></i>
+              </span>
+
+
+              <span class="hidden-xs">
+              <i class="fa fa-comment-o fa-lg" aria-hidden="true"></i>
+              <span>Комментарии:</span>
+              </span>
+              <b id="comments_item_<%=item.id%>_count"><%= item.comments.count %></b>
+</div>
+
+
+
+          <div class="vertical-centr-bl">
+            <%= render "items/item_share", item:item %>
+          </div>
         </div>
       </div>
-      <div class="item-footer-rb pull-right">
-        <div class="item-footer-commts"  rel="tooltip" title="Почитать комментарии или написать свой">
-            <span class="visible-xs-inline">
-            <%= link_to "", item_comments_list_item_path(@list.id, :id => item.id), remote: true, class:'link-item-nd fa fa-comment-o fa-lg' %>
-            </span>
-            <span class="hidden-xs">
-            <i class="fa fa-comment-o fa-lg" aria-hidden="true"></i>
-            <%= link_to "Комментарии:", item_comments_list_item_path(@list.id, :id => item.id), remote: true, class:'link-item-nd' %>
-            </span>
-            <b id="comments_item_<%=item.id%>_count"><%= item.comments.count %></b>
-        </div>
-        <div class="vertical-centr-bl">
-          <%= render "items/item_share", item:item %>
-        </div>
-      </div>
-    </div>
     </div>
   </div>
-  <hr class="line-item">
-  <div class="row">
-  <div class="col-xs-12" id="all-item-comments-<%=item.id%>">
+
+<div class="slylist-loader"></div>
+  <div id="all-item-comments-<%=item.id%>">
 
   </div>
-</div>
+
 </li>
 

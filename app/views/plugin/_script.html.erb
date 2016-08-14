@@ -63,7 +63,7 @@ var script = $("<script>", {
 //показать комментарии и форму пункта
 $('body').on('click', '.show_comments_item', function() {
   var item = $(this).data('item-id');
-  $(this).removeClass("show_comments_item").addClass("open_comments_item");
+  $(this).removeClass("show_comments_item").addClass("open_comments_item ifc-active");
   var iframe = $('<iframe/>', {
        src : '<%= item_comments_plugin_index_url %>?list=<%=@list.id%>&item='+item,
        scrolling : 'no',
@@ -86,7 +86,7 @@ $('body').on('click', '.show_comments_item', function() {
 $('body').on('click', '.open_comments_item', function() {
   var item = $(this).data('item-id');
   $('#all-item-comments-'+item).empty();
-  $(this).removeClass("open_comments_item").addClass("show_comments_item");
+  $(this).removeClass("open_comments_item ifc-active").addClass("show_comments_item");
 });
 
 

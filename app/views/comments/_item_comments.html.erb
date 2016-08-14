@@ -1,10 +1,12 @@
-<div id="item_<%=item.id%>_comments_form">
-  <%= render 'comments/item_comment_form', item: item %>
-</div>
-<div id="item_comment_<%=item.id%>">
-  <div id="ajax_comments_item_<%=item.id%>">
-    <% item.comments.each do |comment| %>
-      <%= render 'comments/item_comment', item: item, comment: comment %>
-    <% end %>
+<div class="list-item-comments">
+  <div id="item_<%=item.id%>_comments_form" class="list-item-comments-form">
+    <%= render 'comments/item_comment_form', item: item %>
+  </div>
+  <div id="item_comments_<%=item.id%>">
+    <div id="ajax_comments_item_<%=item.id%>">
+      <% item.comments.each do |comment| %>
+        <%= render 'comments/item_comment', item: item, comment: comment %>
+      <% end %>
+    </div>
   </div>
 </div>

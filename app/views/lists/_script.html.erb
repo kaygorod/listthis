@@ -1,4 +1,28 @@
 <script>
+
+
+//показать комментарии и форму пункта
+$('body').on('click', '.show_comments_item', function() {
+  $('.slylist-loader').show();
+  var item = $(this).data('item-id');
+      $.ajax({
+        url: "<%=list_path%>/items/"+item+"/item_comments",
+        dataType: "script",
+  });
+  $(this).removeClass("show_comments_item").addClass("open_comments_item ifc-active");
+  $('.slylist-loader').hide();
+});
+
+//скрыть комментарии и форму пункта
+$('body').on('click', '.open_comments_item', function() {
+  var item = $(this).data('item-id');
+  $('#all-item-comments-'+item).empty();
+  $(this).removeClass("open_comments_item ifc-active").addClass("show_comments_item");
+});
+
+
+
+
 var item = window.location.hash.replace("#","")
 $("html, body").animate({scrollTop: $("#item_"+item).offset().top},4000,function() {
 $("#item_"+item).css({backgroundColor: 'yellow'}).animate({backgroundColor: 'white'},2000)
