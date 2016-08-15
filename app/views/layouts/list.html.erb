@@ -6,7 +6,7 @@
 
 <!-- Описание списка -->
   <div class="row">
-    <div class="slylist-container">
+
       <div class="col-xs-12">
         <% if signed_in? %>
           <%= yield :list_button %>
@@ -15,10 +15,10 @@
           <%= @list.title %>
         </h1>
       </div>
-    </div>
+
     </div>
 <div class="row text-muted">
-  <div class="slylist-container">
+
   <div class="col-xs-6">
     <small>
       Автор <%= link_to @list.user.username, user_url(@list.user)%>
@@ -43,12 +43,13 @@
         <%= @list.views %>
       </span>
     </small>
-  </div>
+
   </div>
 </div>
-<div class="slylist-container">
+<div class="row">
+<div class="col-xs-12">
 <p><%= simple_format(@list.description) %></p>
-<p>
+
 <div class="text-muted ">
   <b>Участники:</b>
   <% authors_items.each do |item| %>
@@ -56,8 +57,10 @@
   <%end%>
 </div>
 </div>
+</div>
+
 <div class="row"><br>
-<div class="slylist-container">
+
   <div class="col-xs-12">
     <div class="row-list-footer">
       <button type="button" class="btn btn-success btn-xs" data-toggle="button">
@@ -98,10 +101,10 @@
     </div>
   </div>
 </div>
-</div>
+
 <br>
   <!-- табы -->
-  <div class="slylist-container">
+
 <ul class="nav nav-tabs" role="tablist">
   <li class="active">
     <a href="#items" role="tab" data-toggle="tab">Пункты
@@ -112,53 +115,53 @@
     <a href="#queue" role="tab" data-toggle="tab">На утверждении</a>
   </li>
 </ul>
-</div>
+
   <!-- Содержание табов -->
   <div class="tab-content">
     <div class="tab-pane active" id="items"></br>
       <div class="row">
-        <div class="slylist-container">
+
         <div class="col-xs-12 col-sm-6 col-md-8">
           <%= yield :sort_menu %>
         </div>
-        </div>
+
       </div></br>
-      <div class="slylist-container">
+
       <button class="btn btn-primary btn-lg btn-block" data-toggle="modal" data-target="#myModal" id="button_modal_open">
         Добавить пункт
       </button> </br>
-      </div>
+
       <!-- пункты -->
       <ol class="listitem" id="items_<%= @list.id %>">
         <%= yield :items %>
       </ol>
-      <div class="slylist-container">
+
       <div id="more_items">
         <%= link_to "Показать больше...", list_path(:page => @items.next_page), remote: true, id: "items_more" %>
-      </div>
+
       </div></br>
       <% if @list.items.count > 2 %>
-      <div class="slylist-container">
+
         <!-- Button trigger modal -->
         <button class="btn btn-primary btn-lg btn-block" data-toggle="modal" data-target="#myModal" id="button_modal_open">
           Добавить пункт
         </button>
-        </div>
+
       <%end%>
 
       <%= yield :modal %>
-<div class="slylist-container">
+
       <br>Комментарии:<br>
 
       <%= yield :list_comments_form %>
       </div>
-    </div>
+
     <div class="tab-pane" id="queue"></br>
-    <div class="slylist-container">
+
       <p> Нет пунктов ожидающих утверждения</p>
       </div>
     </div>
-  </div>
+
 </div>
 <%= yield :script %>
 <%= yield :bottom %>

@@ -52,9 +52,7 @@
 
 
 
-.listitem h2 {
-  display:inline;
-  }
+
 .list-footer{
   display: inline;
 }
@@ -340,21 +338,30 @@ body {
 textarea {
   resize: vertical;
 }
+
+
+
 @media (max-width: 768px) {
-.navbar {
-    margin-bottom:0px;
-}
-}
-
-
-
-.container {
+  .container {
     margin-right: auto;
     margin-left: auto;
     padding-left: 0px;
     padding-right: 0px;
 
+  }
+  .navbar {
+    margin-bottom:0px;
+  }
+
+
 }
+
+ .row {
+    margin-left: 0px;
+    margin-right: 0px;
+  }
+
+
 .slylist-container{
   padding-left: 15px;
   padding-right: 15px;
@@ -397,6 +404,11 @@ textarea {
 .listitem > li {
   counter-increment:list;
   padding-top:15px;
+}
+
+.listitem h2 {
+  display:inline;
+  width:100%
 }
 
 .item-button-set {
