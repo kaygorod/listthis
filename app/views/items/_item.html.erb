@@ -1,6 +1,5 @@
 <li id="item_<%= item.id %>">
-  <h2><a name="<%= (item.id) %>"></a><%= item.title %></h2>
-  <% if signed_in? %>
+<% if signed_in? %>
     <% if can? :update, item %>
       <div class="btn-group item-button-set">
         <button type="button" class=" btn btn-link dropdown-toggle"
@@ -23,8 +22,10 @@
       </div>
     <% end %>
   <% end %>
-  </br>
-  </br>
+
+
+  <h2><a name="<%= (item.id) %>"></a><%= item.title %></h2>
+
   <p><img src="<%= root_url %>/<%= (item.image_url) %>" alt="..." class="img-responsive"></p>
 <div class="row">
 <div class="col-xs-12">
@@ -42,7 +43,7 @@
 
 
   <div class="row">
-    <div class="col-xs-12">
+
       <div class="row-item-footer">
         <div class="item-footer-lb">
           <div class="vertical-centr-block">
@@ -81,7 +82,7 @@
           </div>
         </div>
       </div>
-    </div>
+
   </div>
 
 <div class="slylist-loader"></div>
