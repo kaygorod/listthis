@@ -21,28 +21,7 @@
 }
 
 
-.avatar-header{
-  width:2.4em;
-  height:2.4em;
-  border-radius:50%;
-  border:solid #808080 2px;
 
-}
-.non-avatar-header{
-  display: inline-block;
-  width:2.4em;
-  height:2.4em;
-  border-radius:50%;
-  border:solid #808080 2px;
-  background-color:#cccccc;
-  padding-left:10px;
-  padding-top:5px;
-}
-.non-avatar-header-name{
-
-  margin-top:50px;
-
-}
 
 
 
@@ -291,30 +270,7 @@ html[xmlns] .input-file-row-1{
 }
 
 
-/* страница юзера */
 
-.avatar-user-page{
-  width:4.4em;
-  height:4.4em;
-  border-radius:50%;
-  border:solid #808080 2px;
-  margin-bottom:10px;
-  display: block;
-  margin-left: auto;
-  margin-right: auto;
-}
-.non-avatar-user-page{
-  display: inline-block;
-  width:4.4em;
-  height:4.4em;
-  border-radius:50%;
-  border:solid #808080 2px;
-  background-color:#cccccc;
-  margin-bottom:10px;
-  display: block;
-  margin-left: auto;
-  margin-right: auto;
-}
 
 
 
@@ -369,6 +325,16 @@ textarea {
 }
 
 
+/*Хеадер*/
+.avatar-header img{
+  width:35px;
+  height:35px;
+  border-radius:50%;
+  border:solid #808080 2px;
+
+}
+
+
 /* Лист */
 
 .list {
@@ -377,9 +343,10 @@ textarea {
   margin-right:auto;
   background-color: white;
   border-radius:5px;
-  -webkit-box-shadow: 0px 1px 4px 0px rgba(108, 122, 137, 1);
--moz-box-shadow:    0px 1px 4px 0px rgba(108, 122, 137, 1);
-box-shadow:         0px 1px 4px 0px rgba(108, 122, 137, 1);
+  box-shadow:0px 0px 3px rgba(168, 168, 168, 1);
+  -webkit-box-shadow:0px 0px 3px rgba(168, 168, 168, 1);
+  -moz-box-shadow:    0px 0px 3px rgba(168, 168, 168, 1);
+
 
 }
 .list-main-image{
@@ -468,7 +435,7 @@ box-shadow:         0px 1px 4px 0px rgba(108, 122, 137, 1);
   border-top: 10px solid #6C7A89;
 }
 
-.list-item-comments_avatar{
+.list-item-comments_avatar img{
   width:35px;
   height:35px;
   border-radius:50%;
@@ -503,3 +470,134 @@ box-shadow:         0px 1px 4px 0px rgba(108, 122, 137, 1);
 
 
 
+
+/*Ярлык списка*/
+ul.slylist-gird-container{
+  margin-left:0px;
+  padding-left:0px;
+  list-style:none;
+  column-count:3;
+  column-gap: 0px;
+  column-width: 350px;
+
+}
+li.slylist-gird{
+  display:inline-block;
+  position: relative;
+  max-width:600px;
+  border-radius:5px;
+  padding-bottom:5px;
+  margin:15px;
+  background-color:white;
+  box-shadow:0px 0px 3px rgba(168, 168, 168, 1);
+  -webkit-box-shadow:0px 0px 3px rgba(168, 168, 168, 1);
+  -moz-box-shadow:    0px 0px 3px rgba(168, 168, 168, 1);
+}
+
+li.slylist-gird A:link{
+  text-decoration: none;
+  color:black;
+}
+li.slylist-gird A:visited{
+  color:black;
+  opacity:0.6;
+}
+li.slylist-gird A:active{
+  opacity:0.8;
+}
+li.slylist-gird A:hover{
+}
+
+li.slylist-gird img{
+  border-radius:5px 5px 0px 0px;
+}
+
+li .slylist-items-count{
+  position: absolute;
+  top:10px;
+  background-color: rgba(128, 128, 128, 0.5);
+  padding:5px;
+  border-radius:0px 5px 5px 0px;
+  color:white;
+  font-size:16px;
+  padding-left:10px;
+  z-index:1;
+}
+.slylist-items-count i{
+  font-size:13px;
+  z-index:2;
+}
+.slylist-gird-title{
+  font-size:22px;
+  margin:5px 10px 5px 10px;
+}
+.slylist-gird-footer{
+  line-height: 30px;
+  color:#999;
+  font-size:15px;
+  margin:0px 10px 0px 10px;
+}
+.slylist-gird-avatar img{
+  border-radius:50% !important;
+  -moz-border-radius:50% !important;
+  width:20px;
+  height:20px;
+  vertical-align: middle;
+  margin-right:5px;
+}
+.slylist-gird-footer-stat{
+  float:right;
+}
+.slylist-gird-footer-stat i{
+  margin-left:5px;
+}
+.slylist-gird-footer-author{
+  display:inline;
+}
+@media (max-width: 768px) {
+  ul.slylist-gird-container{
+  margin-left:0px;
+  padding-left:0px;
+  list-style:none;
+  column-count:1;
+  column-gap: 0px;
+  column-width: 768px;
+
+}
+li.slylist-gird{
+  display:inline-block;
+  position: relative;
+  max-width:768px;
+  border-radius:0px;
+  padding-bottom:5px;
+  margin:15px 0px;
+  background-color:white;
+  border-bottom:1px solid #999;
+  -webkit-box-shadow: 0px 0px 0px 0px rgba(108, 122, 137, 1);
+  -moz-box-shadow:    0px 0px 0px 0px rgba(108, 122, 137, 1);
+  box-shadow:         0px 0px 0px 0px rgba(108, 122, 137, 1);
+}
+li.slylist-gird img{
+  border-radius:0px 0px 0px 0px;
+}
+}
+
+
+/* страница юзера */
+.slylist-text-head{
+background-color: black;
+  color: transparent;
+  text-shadow: 0px 0px 1px rgba(255,255,255,0.9);
+  -webkit-background-clip: text;
+     -moz-background-clip: text;
+          background-clip: text;
+}
+.slylist-avatar-user-page img{
+  width:60px;
+  height:60px;
+  border-radius:50%;
+  margin-bottom:10px;
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+}

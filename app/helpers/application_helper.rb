@@ -14,4 +14,15 @@ module ApplicationHelper
     request.original_url
   end
 
+  def display_avatar(user)
+    if user.avatar.blank?
+      image_tag("user.svg")
+      else
+      image_tag(user.avatar)
+
+
+
+     end
+  end
+
 end

@@ -22,8 +22,10 @@ class ListsController < ApplicationController
   end
 
   def show
+
     list_items
     views
+
     respond_to do |format|
         format.html {render layout: "list"}
         format.js

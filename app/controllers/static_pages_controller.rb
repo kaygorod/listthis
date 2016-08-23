@@ -1,7 +1,7 @@
 class StaticPagesController < ApplicationController
   #отключение проверки токена protect_from_forgery для работы js
   #отключение стандартной шапки и футера
-  layout false, only: [:help]
+  #layout false, only: [:help]
 
   def home
     @lists = List.all

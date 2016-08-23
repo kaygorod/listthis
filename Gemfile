@@ -52,7 +52,7 @@ gem 'rolify'
 #gem 'rack-cors', :require => 'rack/cors'
 #gem 'rails-iframe-resizer', '~> 0.1.0'
 
-
+#gem "jquery-fileupload-rails"
 
 group :test do
   gem 'selenium-webdriver'

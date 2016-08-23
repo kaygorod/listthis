@@ -1,16 +1,8 @@
 <div class="row">
   <div class="col-xs-12">
-    <% if @user.avatar? %>
-      <img src="<%= (@user.avatar_url) %>" class="avatar-user-page text-center">
-    <% else %>
-      <div class="non-avatar-user-page text-uppercase">
-        <% if @user.username? %>
-        <%= truncate(@user.username.html_safe, length: 1, :omission => "")%>
-        <% else %>
-        <%= truncate(@user.email.html_safe, length: 1, :omission => "")%>
-        <% end %>
-      </div>
-    <% end %>
+  <div class="slylist-avatar-user-page">
+  <%= display_avatar(@user) %>
+  </div>
   <h4 class="text-center"><%= @user.username %></h4>
   <p class="text-center">
     <% if user_signed_in? %>
@@ -20,12 +12,35 @@
     <% end %>
   </p>
   <% if @user.lists.any? %>
-    <h3>
+    <h3 class="slylist-text-head">
       <% if current_user == @user %>
         Ваши списки<%else%>Списки пользователя<%end%> <span class="badge"><%= @user.lists.count %></span></h3>
-    <ol>
-      <%= render @lists %>
-    </ol>
+
+        <div class="row">
+<ul class="slylist-gird-container">
+  <% @user.lists.each do |list| %>
+    <li class="slylist-gird">
+      <div class="slylist-items-count"><i class="fa fa-th-list" aria-hidden="true"></i> <%= list.items.count %></div>
+      <a href="<%=list_path(list)%>"><img src="<%= list.image %>" alt="..." class="img-responsive"></a>
+      <div class="slylist-gird-title"><%= link_to list.title, list_path(list)%></div>
+      <div class="slylist-gird-footer">
+        <div class="slylist-gird-footer-stat">
+          <i class="fa fa-comment-o" aria-hidden="true"></i> <%= list.comments.count %>
+          <i class="fa fa-eye" aria-hidden="true"></i> <%= number_to_human(list.views, strip_insignificant_zeros: true) %>
+        </div>
+        <a href="<%= user_path(list.user) %>">
+        <span class="slylist-gird-avatar">
+        <%= display_avatar(list.user) %>
+        </span>
+        <div class="slylist-gird-footer-author">
+        <%= list.user.username%>
+        </a>
+      </div>
+    </li>
+  <% end %>
+</ul>
+</div>
+
   <% end %>
   </div>
 </div>

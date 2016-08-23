@@ -29,6 +29,7 @@
   <p><img src="<%= root_url %>/<%= (item.image_url) %>" alt="..." class="img-responsive"></p>
 <div class="row">
 <div class="col-xs-12">
+
   <span><%= simple_format(item.description) %></span>
   <% if @list.user != item.user %>
     <small class="text-muted">
