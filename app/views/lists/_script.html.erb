@@ -20,6 +20,12 @@ $('body').on('click', '.open_comments_item', function() {
   $(this).removeClass("open_comments_item ifc-active").addClass("show_comments_item");
 });
 
+//обработка входа
+$("form#sign_in_user").bind("ajax:success", function(){
+   location.reload();
+  });
+
+
 
 
 

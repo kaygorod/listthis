@@ -325,12 +325,19 @@ textarea {
 }
 
 
+/*отключение зума на айфоне при вводе*/
+input[type='password'],
+input[type='password'],
+textarea {
+  font-size: 16px;
+}
+
 /*Хеадер*/
 .avatar-header img{
   width:35px;
   height:35px;
   border-radius:50%;
-  border:solid #808080 2px;
+  border:solid #7DF9FF 2px;
 
 }
 
@@ -338,7 +345,7 @@ textarea {
 /* Лист */
 
 .list {
-  max-width:758px;
+  max-width:728px;
   margin-left:auto;
   margin-right:auto;
   background-color: white;
@@ -511,6 +518,7 @@ li.slylist-gird A:hover{
 li.slylist-gird img{
   border-radius:5px 5px 0px 0px;
 }
+
 
 li .slylist-items-count{
   position: absolute;

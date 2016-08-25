@@ -53,11 +53,11 @@
   <%= render @items.order(rating: :desc) %>
 <%end%>
 <% content_for :modal do %>
-  <% if signed_in? %>
+
     <%= render 'items/item_form' %>
-  <% else %>
+
     <%= render 'shared/new_session_modal' %>
-  <% end %>
+
 <%end%>
 <% content_for :list_comments_form do %>
   <%= render "comments/list_comments"%>

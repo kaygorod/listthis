@@ -127,10 +127,20 @@
 
       </div></br>
 
-      <button class="btn btn-primary btn-lg btn-block" data-toggle="modal" data-target="#myModal" id="button_modal_open">
-        Добавить пункт
-      </button> </br>
-
+     <!-- Button trigger modal -->
+     <div class="row">
+      <div class="col-xs-12" id="button_openmod1">
+        <% if signed_in? %>
+        <button class="btn btn-primary btn-lg btn-block" data-toggle="modal" data-target="#newItem" id="button_modal_open1">
+          Добавить пункт
+        </button>
+        <%else%>
+        <button class="btn btn-primary btn-lg btn-block" data-toggle="modal" data-target="#modalSign_in" id="button_modal_open1">
+          Добавить пункт
+        </button>
+        <%end%>
+      </div>
+      </div>
       <!-- пункты -->
       <ol class="listitem" id="items_<%= @list.id %>">
         <%= yield :items %>
@@ -143,10 +153,19 @@
       <% if @list.items.count > 2 %>
 
         <!-- Button trigger modal -->
-        <button class="btn btn-primary btn-lg btn-block" data-toggle="modal" data-target="#myModal" id="button_modal_open">
+        <div class="row">
+        <div class="col-xs-12" id="button_openmod1">
+        <% if signed_in? %>
+        <button class="btn btn-primary btn-lg btn-block" data-toggle="modal" data-target="#newItem" id="button_modal_open2">
           Добавить пункт
         </button>
-
+        <%else%>
+        <button class="btn btn-primary btn-lg btn-block" data-toggle="modal" data-target="#modalSign_in" id="button_modal_open2">
+          Добавить пункт
+        </button>
+        <%end%>
+        </div>
+        </div>
       <%end%>
 
       <%= yield :modal %>

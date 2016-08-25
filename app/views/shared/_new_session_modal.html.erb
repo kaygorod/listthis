@@ -1,4 +1,4 @@
-<div class="modal fade" id="myModal" tabindex="-1" role="dialog"
+<div class="modal fade" id="modalSign_in" tabindex="-1" role="dialog"
                         aria-labelledby="myModalLabel" aria-hidden="true">
   <div class="modal-dialog">
     <div class="modal-content">
@@ -12,7 +12,7 @@
           <%= link_to "зарегистрируйтесь", new_user_registration_path %>
         </h4>
       </div>
-      <%= form_for(:user, :url => session_path(:user)) do |f| %>
+      <%= form_for(:user, :url => session_path(:user), html:{id: 'sign_in_user', :'data-type' => 'json'}, remote: true) do |f| %>
         <div class="modal-body">
           <div class="form-group">
             <%= f.email_field :email, autofocus: true,
@@ -31,6 +31,8 @@
           <%= link_to "Забыли пароль?", new_password_path(:user) %>
         </div>
       <% end %>
+      <div class="modal-footer">
+        </div>
     </div>
   </div>
 </div>
