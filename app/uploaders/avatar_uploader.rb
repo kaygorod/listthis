@@ -1,6 +1,6 @@
 # encoding: utf-8
 
-class ImageUploader < CarrierWave::Uploader::Base
+class AvatarUploader < CarrierWave::Uploader::Base
 
   # Include RMagick or MiniMagick support:
   # include CarrierWave::RMagick
@@ -25,13 +25,7 @@ class ImageUploader < CarrierWave::Uploader::Base
   # end
 
   # Process files as they are uploaded:
-  process :resize_to_limit => [1200, -1]
-  version :thumb do
-    process :resize_to_limit => [350, -1]
-  end
-  version :list do
-    process :resize_to_limit => [728, -1]
-  end
+  process :resize_to_fill => [150, 150]
   #
   # def scale(width, height)
   #   # do something
@@ -60,12 +54,11 @@ class ImageUploader < CarrierWave::Uploader::Base
     "#{secure_token}.#{file.extension}" if original_filename.present?
   end
 
-  protected
+protected
   def secure_token
     var = :"@#{mounted_as}_secure_token"
     model.instance_variable_get(var) or model.instance_variable_set(var, SecureRandom.uuid)
   end
-
   # Override the filename of the uploaded files:
   # Avoid using model.id or version_name here, see uploader/store.rb for details.
   # def filename

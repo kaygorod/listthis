@@ -55,9 +55,9 @@
 <% content_for :modal do %>
 
     <%= render 'items/item_form' %>
-
+    <% unless signed_in? %>
     <%= render 'shared/new_session_modal' %>
-
+    <%end%>
 <%end%>
 <% content_for :list_comments_form do %>
   <%= render "comments/list_comments"%>

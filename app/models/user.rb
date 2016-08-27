@@ -1,5 +1,5 @@
 class User < ActiveRecord::Base
-  mount_uploader :avatar, ImageUploader
+  mount_uploader :avatar, AvatarUploader
   rolify
   has_many :lists
   has_many :items
@@ -37,6 +37,10 @@ class User < ActiveRecord::Base
          #          :password => Devise.friendly_token[0,20])
 #    end
  # end
+# запускает создание миниатюр по размерам
+#User.all.each do |user|
+#  user.avatar.recreate_versions! if user.avatar?
+#end
 
 def self.from_omniauth_vk(auth)
   where(provider: auth.provider, uid: auth.uid).first_or_create do |user|

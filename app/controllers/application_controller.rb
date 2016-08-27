@@ -23,12 +23,14 @@ def after_sign_in_path_for(resource)
 end
 
   protected
+
   def store_current_location
     store_location_for(:user, request.url)
   end
 
 
   def configure_permitted_parameters
-    devise_parameter_sanitizer.for(:sign_up) << [:username, :email, :password, :password_confirmation, :avatar]
+    devise_parameter_sanitizer.permit(:sign_up, keys:[:username, :email, :password, :password_confirmation, :avatar])
+    devise_parameter_sanitizer.permit(:account_update, keys:[:username, :email, :password, :password_confirmation, :current_password, :avatar])
   end
 end
