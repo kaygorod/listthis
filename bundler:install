@@ -1,0 +1,43 @@
+rvm 1.27.0 (latest) by Wayne E. Seguin <wayneeseguin@gmail.com>, Michal Papis <mpapis@gmail.com> [https://rvm.io/]
+ruby-2.2.1
+ruby 2.2.1p85 (2015-02-26 revision 49769) [i686-linux]
+00:00 git:wrapper
+      01 mkdir -p /tmp/listthis/
+    ✔ 01 deploy@194.67.201.84 2.148s
+      Uploading /tmp/listthis/git-ssh.sh 100.0%
+      02 chmod +rx /tmp/listthis/git-ssh.sh
+    ✔ 02 deploy@194.67.201.84 2.027s
+00:08 git:check
+      01 git ls-remote --heads git@github.com:kaygorod/listthis.git
+      01 ead63e0c00a2d65078f6833a4ecdcf9a7d96a08a	refs/heads/master
+      01 fc4333f8a864c3ebdb065033d446a0b866d34de2	refs/heads/plugin
+    ✔ 01 deploy@194.67.201.84 3.838s
+00:12 deploy:check:directories
+      01 mkdir -p /var/www/listthis/shared /var/www/listthis/releases
+    ✔ 01 deploy@194.67.201.84 4.207s
+00:16 deploy:check:linked_dirs
+      01 mkdir -p /var/www/listthis/shared/bin /var/www/listthis/shared/log /var/www/listthis/shared/tmp/pids /var/www/listthis/shared/tmp/cache /var/www/listthis/shared/tmp/sockets /var/www/listthis/shared/vendor/bundle /var/www/listthis/shared/public/uploads /var/www/listthis/shared/public/assets
+    ✔ 01 deploy@194.67.201.84 2.061s
+00:18 deploy:check:make_linked_dirs
+      01 mkdir -p /var/www/listthis/shared/config
+    ✔ 01 deploy@194.67.201.84 2.237s
+00:33 git:clone
+      The repository mirror is at /var/www/listthis/repo
+00:35 git:update
+      01 git remote update --prune
+      01 Fetching origin
+    ✔ 01 deploy@194.67.201.84 5.528s
+00:45 git:create_release
+      01 mkdir -p /var/www/listthis/releases/20160828091958
+    ✔ 01 deploy@194.67.201.84 2.148s
+      02 git archive master | tar -x -f - -C /var/www/listthis/releases/20160828091958
+    ✔ 02 deploy@194.67.201.84 5.835s
+01:02 git:set_current_revision
+      01 echo "ead63e0c00a2d65078f6833a4ecdcf9a7d96a08a" >> REVISION
+    ✔ 01 deploy@194.67.201.84 4.300s
+01:06 deploy:symlink:linked_files
+      01 mkdir -p /var/www/listthis/releases/20160828091958/config
+    ✔ 01 deploy@194.67.201.84 2.149s
+      02 rm /var/www/listthis/releases/20160828091958/config/database.yml
+    ✔ 02 deploy@194.67.201.84 2.150s
+      03 ln -s /var/www/listthis/shared/config/database.yml /var/www/listthis/releases/20160828091958/config/database.yml

@@ -4,7 +4,7 @@ class ImageUploader < CarrierWave::Uploader::Base
 
   # Include RMagick or MiniMagick support:
   # include CarrierWave::RMagick
-  include CarrierWave::MiniMagick
+  #include CarrierWave::MiniMagick
 
   # Choose what kind of storage to use for this uploader:
   storage :file
@@ -25,31 +25,31 @@ class ImageUploader < CarrierWave::Uploader::Base
   # end
 
   # Process files as they are uploaded:
-  process :resize_to_limit => [1200, -1]
-  process :optimize
+  #process :resize_to_limit => [1200, -1]
+  #process :optimize
 
 
-  version :thumb do
-    process :resize_to_limit => [350, -1]
-    process :optimize
-  end
-  version :large do
-    process :resize_to_limit => [728, -1]
-    process :optimize
-  end
+  #version :thumb do
+  #  process :resize_to_limit => [350, -1]
+  #  process :optimize
+  #end
+  #version :large do
+  #  process :resize_to_limit => [728, -1]
+  #  process :optimize
+  #end
 
-  def optimize
-  manipulate! do |img|
-      return img unless img.mime_type.match /image\/jpeg/
-      img.strip
-      img.combine_options do |c|
-          c.quality "80"
-          c.depth "8"
-          c.interlace "plane"
-      end
-      img
-  end
-end
+  #def optimize
+  #manipulate! do |img|
+  #    return img unless img.mime_type.match /image\/jpeg/
+  #    img.strip
+  #    img.combine_options do |c|
+  #        c.quality "80"
+  #        c.depth "8"
+  #        c.interlace "plane"
+  #    end
+  #    img
+  #end
+  #end
   #
   # def scale(width, height)
   #   # do something
