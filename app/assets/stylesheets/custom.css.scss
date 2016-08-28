@@ -4,6 +4,7 @@
 @import "font-awesome-sprockets";
 @import "font-awesome";
 
+
 /* universal */
 
 .right-block {
@@ -324,6 +325,11 @@ textarea {
   padding-right: 15px;
 }
 
+/*индикатор прогресс-юбара*/
+html.turbolinks-progress-bar::before {
+  background-color: #7DF9FF !important;
+  height: 3px !important;
+}
 
 /*отключение зума на айфоне при вводе*/
 input[type='text'],

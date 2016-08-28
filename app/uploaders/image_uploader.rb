@@ -26,12 +26,30 @@ class ImageUploader < CarrierWave::Uploader::Base
 
   # Process files as they are uploaded:
   process :resize_to_limit => [1200, -1]
+  process :optimize
+
+
   version :thumb do
     process :resize_to_limit => [350, -1]
+    process :optimize
   end
-  version :list do
+  version :large do
     process :resize_to_limit => [728, -1]
+    process :optimize
   end
+
+  def optimize
+  manipulate! do |img|
+      return img unless img.mime_type.match /image\/jpeg/
+      img.strip
+      img.combine_options do |c|
+          c.quality "80"
+          c.depth "8"
+          c.interlace "plane"
+      end
+      img
+  end
+end
   #
   # def scale(width, height)
   #   # do something
