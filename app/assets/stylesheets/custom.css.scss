@@ -326,9 +326,9 @@ textarea {
 }
 
 /*индикатор прогресс-юбара*/
-html.turbolinks-progress-bar::before {
-  background-color: #7DF9FF !important;
-  height: 3px !important;
+.turbolinks-progress-bar {
+  height: 5px;
+  background-color: #7DF9FF;
 }
 
 /*отключение зума на айфоне при вводе*/

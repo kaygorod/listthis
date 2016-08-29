@@ -23,9 +23,9 @@ test:
 production:
   adapter: postgresql
   encoding: unicode
-  database: kaygorod_listt72
-  username: kaygorod_listt72
-  password: 2iSevwfC
-  host: postgresql7.locum.ru
-  pool: 50
-  timeout: 100000
+  database: slylistdb
+  username: kaygorod
+  password: fdauriwonfjks
+  #host: localhost
+  #pool: 5
+  #timeout: 5000
