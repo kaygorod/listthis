@@ -22,10 +22,10 @@ test:
 
 production:
   adapter: postgresql
-  encoding: unicode
-  database: slylistdb
-  username: kaygorod
-  password: fdauriwonfjks
+
+  database: d4h79feueqmn5l
+  username: uuweoiasxfnees
+  password: MDE7mGP31my_iSeryz6npuvf05
   #host: localhost
   #pool: 5
   #timeout: 5000
