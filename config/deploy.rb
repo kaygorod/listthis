@@ -12,6 +12,8 @@ set :linked_files, fetch(:linked_files, []).push('config/database.yml')
 set :linked_dirs, fetch(:linked_dirs, []).push('bin', 'log', 'tmp/pids', 'tmp/cache', 'tmp/sockets', 'vendor/bundle', 'public/uploads')
 set :bundle_binstubs, -> { shared_path.join('bin') }
 set :keep_releases, 3
+#добавлено 29 августа
+set :ssh_options, :compression => false, :keepalive => true
 
 namespace :deploy do
   %w[unicorn].each do |service|
