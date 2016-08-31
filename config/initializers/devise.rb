@@ -240,7 +240,12 @@ Devise.setup do |config|
   # up on your models and hooks.
   # config.omniauth :github, 'APP_ID', 'APP_SECRET', scope: 'user,public_repo'
   config.omniauth :facebook, "165454103870490", "ea1ca79fc04615c935ac51b0f0543098"
-  config.omniauth :vkontakte, '5533620', '1lrXLuKFEuO1G5875UKh'
+  config.omniauth :vkontakte, '5533620', '1lrXLuKFEuO1G5875UKh'{
+      :scope => 'friends,audio,photos,email',
+      :display => 'popup',
+      :lang => 'ru',
+      :image_size => 'original'
+    }
 
   # ==> Warden configuration
   # If you want to use other strategies, that are not supported by Devise, or
