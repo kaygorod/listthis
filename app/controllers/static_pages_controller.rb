@@ -8,8 +8,7 @@ class StaticPagesController < ApplicationController
   end
 
   def help
-
-
+    @users = User.all
   end
 
   #def plugin
