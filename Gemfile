@@ -15,7 +15,7 @@ gem 'russian', '~> 0.6.0'
 gem 'will_paginate', '~> 3.1.0'
 
 # Use SCSS for stylesheets
-gem 'sass-rails', '~> 5.0'
+gem 'sass-rails', '>= 3.2'
 # Use Uglifier as compressor for JavaScript assets
 gem 'uglifier', '>= 1.3.0'
 # Use CoffeeScript for .coffee assets and views
